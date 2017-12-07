@@ -1,0 +1,180 @@
+#include <stdio.h>
+//#include "Functions.h"
+#include <math.h>
+#include "Functions.c"
+void ProcessNextEvent();
+float GetNextRandomeInterval(float avg);
+void addPq(struct Customer *Custom);
+
+
+struct Customer *Pq[200];
+struct FIFO *queue;
+
+
+int n,//number of Customers
+i = 0,
+event = 0,
+pqSize = 0;
+l,
+u,
+M,        //server amount
+m;        //available
+
+float timer = 00.00;
+
+int main(int argc, char* argv[])
+{
+
+	n = 10;
+	l = 3;
+	u = 2;
+	M = 5;
+	m = M;
+
+	queue = malloc(sizeof(struct FIFO));
+	queue->start = NULL;
+	queue->end =NULL;
+	struct Customer *initcust;
+	initcust = malloc(sizeof(struct Customer));
+	initcust->arrivalTime = timer;
+	initcust->compareTime = timer;
+	initcust->arrival = 1;
+	Pq[0] = initcust;
+	printf("%f\n",Pq[0]->arrivalTime);
+	pqSize = 1;
+	for(i = 1; i < n; i++)
+	{
+		struct Customer *cust;
+		cust = malloc(sizeof(struct Customer));
+		timer = timer + GetNextRandomeInterval(u);
+		cust->arrivalTime = timer;
+		cust->compareTime = timer;
+		cust->arrival = 1;
+		Pq[i] = cust;
+		//printf("Timer : %f\n", timer);
+		pqSize++;
+	}
+
+	while(event < pqSize)
+	{
+		ProcessNextEvent();
+		event++;
+		for(i = 0; i < pqSize; i++)
+		{
+			if(Pq[i]->arrival == 1)
+			{
+				printf("Arrival: %f\n",Pq[i]->arrivalTime);
+			}
+			else
+			{
+				printf("Departure: %f\n",Pq[i]->departureTime);
+			}
+		}
+	}
+
+	for(i = 0; i < n; i++)
+	{
+		if(Pq[i]->arrival == 1)
+		{
+			printf("Arrival: %f\n",Pq[i]->arrivalTime);
+		}
+		else
+		{
+			printf("Departure: %f\n",Pq[i]->departureTime);
+		}
+	}
+
+
+	return 0;
+}
+
+
+void ProcessNextEvent()
+{
+	struct Customer *cust;
+	cust = malloc(sizeof(struct Customer));
+	cust = Pq[event];
+	printf("arrival %f\n", cust->arrivalTime);
+	if(cust->arrival == 1)
+	{
+		printf("Handling an arrival\n");
+		if(m > 0)
+		{
+			m--;
+			cust->StartOfService = cust->arrivalTime;
+			cust->departureTime = cust->arrivalTime + GetNextRandomeInterval(u);
+			cust->compareTime = cust->departureTime;
+			addPq(cust);
+
+		}
+		else
+		{
+			cust->arrival = 0;
+			if(queue->start == NULL)
+			{
+				queue->start = cust;
+			}
+			else
+			{
+				queue->end->nextcust = cust;
+				queue->end = cust;
+			}
+		}
+	}
+	else
+	{
+		m++;
+		if(queue->start != NULL)
+		{
+			queue->start->StartOfService = cust->departureTime;
+			queue->start->departureTime = queue->start->StartOfService + GetNextRandomeInterval(u);
+			queue->start->compareTime = queue->start->departureTime;
+			addPq(queue->start);
+			queue->start = queue->start->nextcust;
+			m--;
+
+		}
+
+	}
+	event ++;
+}
+
+float GetNextRandomeInterval(float avg)
+{
+	float f = ((float)rand()/(float)RAND_MAX);
+	//printf("%f\n",f);
+	float intervalTime = -1.0*(1.0/avg)*log(f);
+	//printf("%f\n", intervalTime);
+	return intervalTime;
+}
+
+void addPq(struct Customer *Custom)
+{
+	struct Customer *Temp, *Temp2;
+	Temp = malloc(sizeof(struct Customer));
+	Temp2 = malloc(sizeof(struct Customer));
+	Temp = Custom;
+	int z;
+	printf("%i\n",pqSize);
+	for(z = 0; z < pqSize; z++)
+	{
+		printf("Temp = %f\n", Temp->compareTime);
+		if(!Pq[z])
+		{
+			printf("NULL\n");
+			Pq[z] = Temp;
+		}
+		else
+		{
+			if(Temp->compareTime < Pq[z]->compareTime)
+			{
+				printf("%f less than %f\n",Custom->compareTime ,Pq[z]->compareTime);
+				Temp2 = Pq[z];
+				Pq[z] = Temp;
+				Temp = Temp2;
+			}
+		}
+	}
+	pqSize++;
+	printf("The pq has a size of %i\n", pqSize);
+}

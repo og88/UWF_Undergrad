@@ -1,0 +1,29 @@
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+
+public class Test extends Composite {
+
+	/**
+	 * Create the composite.
+	 * @param parent
+	 * @param style
+	 */
+	public Test(Composite parent, int style) {
+		super(parent, style);
+		setLayout(new GridLayout(1, false));
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Label lblNewLabel = new Label(this, SWT.NONE);
+		lblNewLabel.setText("New Label");
+
+	}
+
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
+	}
+
+}

@@ -1,0 +1,28 @@
+package model;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class NPCTest {
+
+	@Test
+	public void testNPC() {
+		NPC tester = new NPC(3, 3, 3, 3);
+
+		assertEquals(3, tester.getStrength());
+		assertEquals(3, tester.getDefense());
+		assertEquals(3, tester.getPower());
+		assertEquals(3, tester.getHealth());
+	}
+
+	@Test
+	public void testSubHealth() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testToString() {
+		fail("Not yet implemented");
+	}
+
+}

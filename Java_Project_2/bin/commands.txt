@@ -1,0 +1,6 @@
+u,apinto,Anthony Pinto,1001,abcd1234$,house 
+b,DOSAlert.c,IDS,12/11/2015,jgosling,xyz83$2Iw,answer
+u,jsmith,John Smith,1004,password,simple
+b,deleteUsers.vb,IDS,01/03/2007,pallen,Pa$$W0rd,login
+u,ddante,Adrian Lamo,1007,KI$$FM102,phone
+u,username,user name,1025,#r#,short

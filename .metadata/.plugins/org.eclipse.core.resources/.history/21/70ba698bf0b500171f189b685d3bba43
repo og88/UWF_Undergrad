@@ -1,0 +1,90 @@
+/*
+ * Collatz_computations.c
+ *
+ *  Created on: Oct 20, 2017
+ *      Author: omarg
+ */
+int collats(int x);
+int f(int x);
+void buildarray();
+void printarray();
+void *compare(void* t);
+double count[1000][3];
+int n, N, x = 2;
+
+void *compare(void* t)
+{
+	long id = *(long *)t;
+	printf("%f", id);
+		while(x <= N)
+		{
+			if((x % id) == 0)
+			{
+			collats(x);
+			int y;
+			for(y = 0; y < (sizeof(count)/ sizeof(count[0]));y++)
+			{
+				if(n == count[y][0])
+				{
+					count[y][1]++;
+				}
+			}
+			printf("%i\n", x);
+			}
+			x++;
+		}
+}
+
+void buildarray()
+{
+	int i;
+	for(i = 0; i < (sizeof(count)/ sizeof(count[0]));i++)
+		{
+			count[i][0]= i;
+			count[i][1]= 0;
+		}
+}
+
+void printarray()
+{
+	int i;
+	for(i = 0; i < (sizeof(count)/ sizeof(count[0]));i++)
+		{
+			printf("<%.f, %.f, %f>\n",count[i][0],count[i][1],count[i][2]);
+		}
+}
+
+int collats(int x)
+{
+	n = 0;
+	if(x == 0)
+	{
+		return n;
+	}
+	else
+	{
+		return f(x);
+	}
+}
+
+int f(int x)
+{
+	if((x % 2) != 0)
+	{
+		n++;
+		x = ((3*x)+1);
+	}
+	else
+	{
+		n++;
+		x = (x/2);
+	}
+	if(x == 1)
+	{
+		return x;
+	}
+	else
+	{
+		f(x);
+	}
+}

@@ -1,0 +1,11 @@
+
+#include <stdio.h>
+#include "construct.c"
+
+int main()
+{
+printf("hello");
+struct node* root;
+    return 0;
+}
+

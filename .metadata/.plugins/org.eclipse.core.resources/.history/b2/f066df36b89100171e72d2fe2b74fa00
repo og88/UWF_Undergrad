@@ -1,0 +1,21 @@
+import java.util.*; //For scanner
+import java.io.*;
+
+public class User
+{
+	public static void main (String[] args)
+	{
+		String username = "username";
+		String clearPassword = "password";
+		String encryptedPassword = "";
+		String key = "house";
+		
+	for (int x = 33; x < 123; x++)
+	{
+		char y = (char)x;
+		encryptedPassword = encryptedPassword + y;
+		//System.out.printf("%s \n", y);
+	}
+	System.out.printf("%s", encryptedPassword);
+	}
+}

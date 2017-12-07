@@ -1,0 +1,49 @@
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class UserTest 
+{
+	public static void main(String[] args)
+	{
+		User usr = new User();
+		Scanner scr = new Scanner(System.in);
+		System.out.println("Enter full name\n");
+		String name = scr.nextLine();
+		usr.setName(name);
+
+		System.out.println("Enter age int number\n");
+		String age = scr.nextLine();
+		usr.setAge(Integer.parseInt(age));
+
+		System.out.println("Enter full email\n");
+		String Email = scr.nextLine();
+		try
+		{
+			usr.setEmail(Email);
+		}catch(MalformedEmailAddress e)
+		{
+			System.out.println(e.getError());
+		}
+		scr.close();
+		usr.setHackerName();
+
+		System.out.println("Enter salary\n");
+		String salary = scr.nextLine();
+
+
+		if(usr.setSalary(salary))
+		{
+			System.out.println("True");
+		}
+		else
+		{
+
+		}
+
+
+
+	}
+
+}

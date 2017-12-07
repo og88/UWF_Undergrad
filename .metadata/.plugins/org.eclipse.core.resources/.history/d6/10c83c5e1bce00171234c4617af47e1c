@@ -1,0 +1,7 @@
+#include <stdio.h>
+
+char array[20480][4096];
+
+int main(int argc, char* argv[])
+{
+}

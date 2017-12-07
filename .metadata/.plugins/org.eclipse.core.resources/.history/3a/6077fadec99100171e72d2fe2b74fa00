@@ -1,0 +1,81 @@
+import java.util.*; //For scanner
+import java.io.*;
+
+public class User
+{
+	public static String username;
+	public static String clearPassword;
+	public static String encryptedPassword;
+	public static String key;
+	
+	public static void main(String[] args)
+	{
+		username = "";
+		clearPassword ="";
+		encryptedPassword = "";
+		key = "";
+		System.out.println("hey");
+		setUserName(username);
+		username = getUserName();
+		System.out.printf("%s", username);
+		
+	}
+	public void user(String username, String clearPassword, String key)
+	{
+		setUserName(username);
+	}
+	
+	public static void setUserName(String username1)
+	{
+		System.out.println("Set Username");
+
+		Scanner sc = new Scanner(System.in);
+		username1 = sc.next();
+		sc.close();
+	}
+	
+	public static String getUserName()
+	{
+		System.out.println("get username");
+	return username;	
+	}
+	
+	private static String encrypt(String clearPassword, String key)
+	{
+		String encryptedPassword = "";
+		int asciiPass;  //Holds the ascii value of the current character for the password string
+		int asciiKey;  //Holds the ascii value of the current character for the key string
+		int passwordLength = clearPassword.length(); //
+		int z = 0;
+		int keylength = key.length();
+		
+	
+		for (int x = 0; x < passwordLength; x++)
+		{
+			asciiPass = (int)clearPassword.charAt(x);
+			asciiKey = (int)key.charAt(z);
+			asciiPass = asciiKey + asciiPass;
+			z++;
+			
+			if (z >= keylength)
+			{
+				z = z - key.length();
+			}
+			
+			
+			char y = (char)asciiPass;
+			encryptedPassword = encryptedPassword + y;	
+			}
+		return encryptedPassword;
+	}
+	
+	
+	
+	public static void toString(String username, String encryptedPassword, String clearPassword, String key)
+	{
+	System.out.printf("%s %s %s %s", username, encryptedPassword, clearPassword, key);	
+	return;
+	}
+	
+	
+}

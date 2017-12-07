@@ -1,0 +1,115 @@
+Omar Garcia
+Data Structures and Algorithms II
+Project 3
+Functional Decomposition
+
+User-defined data structures used as parameters in the functions
+
+/*Struct to hold city information*/
+typedef struct city
+{
+	int name;
+	int visit;
+}city1; 
+
+Files and Functions in the Program
+
+	TravelFunc.c
+
+int SIZE;  //The number of cities to Traverse
+int tour;  //The number of tours in a generation
+int gen;   //The number of generations
+int mut;   //Percent of paths to mutate
+int totalcost = 0; //The total cost of the current path
+/*Count keep track of the number of cities being tested in a path
+ *Count should not exceed SIZE. excount tracks how many executions brute force runs*/
+int count = 0, excount = 0;
+int weights [20][20]; //hold the cost of the paths weights[n][n] should always be 0 or INT_MAX
+int optimalCost; //The current optimal value
+int elitesVal[] = {INT_MAX,INT_MAX}; //Array hold the top two optimal values
+
+city1 elites[21][2]; //array to hole the top two optimal paths
+city1 cities[21];     //Array to hold all the cities
+city1 path[21];       //Array to hold the optimal path
+
+/*Resets every city to not visited*/
+void resetCities()
+
+/*This function compares optval with the two elites. If optval is smaller, then the optval is
+ * the new elite*/
+void compareElites(int optval,city1 city[])
+
+/*Create SIZE number of cities and adds them to the cities array*/
+void generateCities()
+
+/*Prints out all cities and if they where visited*/
+void printCities()
+
+/*Prints the weight value of each path in a matrix table*/
+void printTable()
+
+/*Reads a txt document to retrieve the travel costs*/
+void generateTable()
+
+
+	BruteForce.c
+
+city1 optimalBrutePath [21]; //optimal path for the brute for algorithm
+int bruteOptimal = INT_MAX;  //optimal cost for brute force
+
+/*Initializes the brute force operations*/
+void bruteforce()
+
+/*Uses brute force to calculate the optimal value and path. This is acheaved by visiting all
+ * possible paths*/
+void brutecalc(int x)
+
+/*Basic algorithm to print bruteforce path*/
+void printBrutePath()
+
+Genetic.c
+
+city1 Tour[20][21];         //Holds the path of the tour
+int tourCount = 0, optGen;  //The number of tours. The optimal value of the Genetic algorithm
+city1 optimalGAPath[20];    //Hold the path for the optimal Genetic path
+
+/*Generates the initial tours*/
+void generatetours(int x)
+
+/*Prints the Elite paths*/
+void printElites()
+
+/*initializes genetic calculation*/
+void genetic()
+
+/*Initializes the new mutation calculations*/
+void mutationCalc(int gen)
+
+/*Generates a new mutation*/
+void newMutation()
+
+/*modefied brute force calculator to use for new mutations*/
+void brutecalc1(int x)
+
+/*Prints out the currrent tours*/
+void printTours()
+
+/*Calcultes a random path*/
+void randomCalc(int x)
+
+	TravelingSalesMan.c
+
+
+clock_t start; //holds the time at the start of a process
+clock_t end;   //holds the end value of the process
+clock_t brutTime; //The time brute force took to complete
+clock_t GATime;  //The time the Genetic Algorithm takes
+
+/*Prints out information in a nice word format*/
+void toString()
+
+/*Start bruteforce and calculates the time it takes*/
+void brut()
+
+/*Start the genetic algorithm and calculates the time*/
+void GA()

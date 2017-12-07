@@ -1,0 +1,51 @@
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+
+public class PlaygroundPart extends Composite {
+	private Text text;
+
+	/**
+	 * Create the composite.
+	 * @param parent
+	 * @param style
+	 */
+	public PlaygroundPart(Composite parent, int style) {
+		super(parent, style);
+		setLayout(new GridLayout(2, false));
+		new Label(this, SWT.NONE);
+		
+		Button btnNewButton = new Button(this, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			btnNewButton.setText("Button");
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
+		btnNewButton.setText("New Button");
+		new Label(this, SWT.NONE);
+		
+		Button btnNewButton_1 = new Button(this, SWT.NONE);
+		btnNewButton_1.setText("New Button");
+		
+		Label lblNewLabel = new Label(this, SWT.NONE);
+		lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		lblNewLabel.setText("New Label");
+		
+		text = new Text(this, SWT.BORDER);
+		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+
+	}
+
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
+	}
+
+}

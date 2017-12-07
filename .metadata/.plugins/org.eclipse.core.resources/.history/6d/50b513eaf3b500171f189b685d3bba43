@@ -1,0 +1,45 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "Collatz_computations.c"
+
+
+int main(int argc, char *argv[])
+{
+	if (pthread_mutex_init(&lock, NULL) != 0)
+	{
+		printf("\n mutex init failed\n");
+		return 1;
+	}
+
+	int T;
+	long t;
+	T = 5;
+	pthread_t threads[T];
+	buildarray();
+
+	N = atoi(argv[1]);
+	T = atoi(argv[2]);
+
+	printf("%i %i\n", N,T);
+	clock_t begin = clock();
+
+	for(t = 1; t <= T; t++)
+	{
+		pthread_create(&threads[t], NULL, compare, &t);
+	}
+
+	for(t=0; t<10; t++){
+		pthread_join(threads[t], NULL);
+	}
+	pthread_mutex_destroy(&lock);
+	clock_t end = clock();
+
+	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("%f\n",time_spent);
+	//printarray();
+	pthread_exit(NULL);
+}
+
+

@@ -1,0 +1,68 @@
+/*
+ * construct.c
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: omarg
+ */
+
+
+#include <stdio.h>
+/*struct node
+    {
+        char name;
+        struct node * sib;
+        struct node * child;
+        int isFolder;
+    }file;*/
+
+int main()
+{
+	typedef struct file
+	    {
+	        char name;
+	      struct file* sib;
+	      struct file* child;
+	    }
+
+    return 0;
+}
+
+struct file* addF(char nm)
+{
+	struct file* fil = NULL;
+		fil = (file*)malloc(sizeof(file));
+		fil->name = nm;
+		fil->isFolder = 0;
+		return fil;
+}
+
+file* mkDr(char nm)
+{
+	struct file* fol = NULL;
+		fol = malloc(sizeof(file));
+		fol->name = nm;
+		fol->isFolder = 1;
+		return fol;
+}
+
+file* mkchild(char s, file* parent)
+{
+	struct file* child = NULL;
+	child = malloc(sizeof(file));
+	if (child == NULL){
+		return 1;
+	}
+	child->name = s;
+	return child;
+}
+
+file* mksib(char s, file* parent)
+{
+	struct file* sib = NULL;
+	sib = malloc(sizeof(file));
+	if (sib == NULL){
+		return 1;
+	}
+	sib->name = s;
+	return sib;
+}

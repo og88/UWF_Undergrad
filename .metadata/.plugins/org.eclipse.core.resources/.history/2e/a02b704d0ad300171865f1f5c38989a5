@@ -1,0 +1,17 @@
+import javax.annotation.PostConstruct;
+import org.eclipse.swt.widgets.Composite;
+
+public class PlaygroundPart{
+
+	/**
+	 * Create the composite.
+	 * @param parent
+	 * @param style
+	 */
+	@PostConstruct
+	public void createControls(Composite parent) {
+		System.out.println("createControls methd called");
+
+	}
+
+}

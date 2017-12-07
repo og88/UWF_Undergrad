@@ -1,0 +1,8 @@
+
+public class MyMathClassTest
+{
+	double average(x[])
+	{
+		return 4.00;
+	}
+}

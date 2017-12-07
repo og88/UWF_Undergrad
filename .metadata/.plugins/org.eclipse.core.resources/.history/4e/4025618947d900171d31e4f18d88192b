@@ -1,0 +1,82 @@
+package model;
+
+
+
+
+public class Game
+{	
+	private int difficulty;
+	public UserTeam user;
+	public EnemyTeam enemy;
+	public Loot items;
+	
+	public Game() {
+		user = new UserTeam();
+		enemy = new EnemyTeam();
+		items = new Loot();
+	}
+	
+	public int getDifficulty() {
+		// TODO implement me
+		return difficulty;
+	}
+	
+	public void useMedipacks()
+	{
+		if(items.getMedipacks() != 0)
+		{
+			user.useMedipack(reciever);
+		}
+		
+		else
+		System.out.println("None available");
+	}
+
+	public void setDifficulty(int difficulty) {
+		// TODO implement me
+	}
+
+	
+	public void newMap() {
+		// TODO implement me
+	}
+
+	public void newStory() {
+		// TODO implement me
+	}
+	
+	public void newLoot() {
+		// TODO implement me
+	}
+
+	
+	public void createNewTeams() {
+		// TODO implement me
+	}
+	
+	private void addUserTeam() {
+		// TODO implement me
+	}
+	
+	private void addEnemyTeam() {
+		// TODO implement me
+	}
+
+	
+	public void newRound() {
+		// TODO implement me
+	}
+
+	
+	public static void loadGame() {
+		// TODO implement me
+		System.out.println("Load Game");
+	}
+
+	
+	public void exitGame() {
+		// TODO implement me
+	}
+
+}
+

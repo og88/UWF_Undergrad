@@ -1,0 +1,447 @@
+18:46:05 **** Clean-only build of configuration Debug for project SNI_Project_2 ****
+rm -rf Collatz_computations.d SNI_Project_2.exe Collatz_computations.o mt-collatz.d mt-collatz.o 
+12:08:14 **** Rebuild of configuration Debug for project DSP4 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarloAlgorithm.o "..\\MonteCarloAlgorithm.c" 
+..\MonteCarloAlgorithm.c: In function 'main':
+..\MonteCarloAlgorithm.c:18:31: warning: unused variable 'c4' [-Wunused-variable]
+    c3[] = {500,1000,10,10,50},c4[] = {500,1000,1,1,50};
+                               ^~
+..\MonteCarloAlgorithm.c:18:4: warning: unused variable 'c3' [-Wunused-variable]
+    c3[] = {500,1000,10,10,50},c4[] = {500,1000,1,1,50};
+    ^~
+..\MonteCarloAlgorithm.c:17:32: warning: unused variable 'c2' [-Wunused-variable]
+  int c1[] = {100,2000,24,7,30},c2[] = {100,2000,10,10,50},
+                                ^~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarlo.o "..\\MonteCarlo.c" 
+..\MonteCarlo.c: In function 'main':
+..\MonteCarlo.c:27:43: warning: unused variable 'events' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                                           ^~~~~~
+..\MonteCarlo.c:27:31: warning: unused variable 'frequences' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                               ^~~~~~~~~~
+..\MonteCarlo.c:27:19: warning: unused variable 'categories' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                   ^~~~~~~~~~
+..\MonteCarlo.c:27:6: warning: unused variable 'simulations' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+      ^~~~~~~~~~~
+..\MonteCarlo.c: In function 'test':
+..\MonteCarlo.c:41:17: warning: unused variable 'r' [-Wunused-variable]
+  int count = 0, r;
+                 ^
+..\MonteCarlo.c:41:6: warning: unused variable 'count' [-Wunused-variable]
+  int count = 0, r;
+      ^~~~~
+gcc -o DSP4.exe MonteCarlo.o MonteCarloAlgorithm.o 
+MonteCarloAlgorithm.o: In function `main':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:16: multiple definition of `main'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:26: first defined here
+collect2.exe: error: ld returned 1 exit status
+13:22:14 **** Incremental Build of configuration Debug for project DSP4 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarlo.o "..\\MonteCarlo.c" 
+..\MonteCarlo.c: In function 'main':
+..\MonteCarlo.c:29:43: warning: unused variable 'events' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                                           ^~~~~~
+..\MonteCarlo.c:29:31: warning: unused variable 'frequences' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                               ^~~~~~~~~~
+..\MonteCarlo.c:29:19: warning: unused variable 'categories' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                   ^~~~~~~~~~
+..\MonteCarlo.c:29:6: warning: unused variable 'simulations' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+      ^~~~~~~~~~~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarloAlgorithm.o "..\\MonteCarloAlgorithm.c" 
+gcc -o DSP4.exe MonteCarlo.o MonteCarloAlgorithm.o 
+MonteCarloAlgorithm.o: In function `main':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:19: multiple definition of `main'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:28: first defined here
+collect2.exe: error: ld returned 1 exit status
+14:21:59 **** Incremental Build of configuration Debug for project DSP4 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarlo.o "..\\MonteCarlo.c" 
+..\MonteCarlo.c: In function 'main':
+..\MonteCarlo.c:28:43: warning: unused variable 'events' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                                           ^~~~~~
+..\MonteCarlo.c:28:31: warning: unused variable 'frequences' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                               ^~~~~~~~~~
+..\MonteCarlo.c:28:19: warning: unused variable 'categories' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+                   ^~~~~~~~~~
+..\MonteCarlo.c:28:6: warning: unused variable 'simulations' [-Wunused-variable]
+  int simulations, categories, frequences, events;
+      ^~~~~~~~~~~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarloAlgorithm.o "..\\MonteCarloAlgorithm.c" 
+gcc -o DSP4.exe MonteCarlo.o MonteCarloAlgorithm.o 
+MonteCarloAlgorithm.o: In function `main':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:23: multiple definition of `main'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:27: first defined here
+MonteCarloAlgorithm.o: In function `write':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:34: multiple definition of `write'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:62: first defined here
+collect2.exe: error: ld returned 1 exit status
+17:06:23 **** Incremental Build of configuration Debug for project DSP4 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Start.o "..\\Start.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarlo.o "..\\MonteCarlo.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarloAlgorithm.o "..\\MonteCarloAlgorithm.c" 
+gcc -o DSP4.exe MonteCarlo.o MonteCarloAlgorithm.o Start.o 
+Start.o: In function `launchMonteCarloAlgorithm':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:41: multiple definition of `launchMonteCarloAlgorithm'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:41: first defined here
+Start.o: In function `calculate':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:51: multiple definition of `calculate'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:51: first defined here
+Start.o: In function `openw':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:115: multiple definition of `openw'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:115: first defined here
+Start.o: In function `open':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:124: multiple definition of `open'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:124: first defined here
+Start.o: In function `close':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:133: multiple definition of `close'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:133: first defined here
+Start.o: In function `write':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:138: multiple definition of `write'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:138: first defined here
+Start.o: In function `read':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:152: multiple definition of `read'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:152: first defined here
+Start.o: In function `launchMonteCarlo':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:42: multiple definition of `launchMonteCarlo'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:42: first defined here
+Start.o: In function `write1':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:67: multiple definition of `write1'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:67: first defined here
+Start.o: In function `Calculate':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:84: multiple definition of `Calculate'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:84: first defined here
+Start.o: In function `analyzeToString':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:181: multiple definition of `analyzeToString'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:181: first defined here
+Start.o: In function `runToString':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:190: multiple definition of `runToString'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:190: first defined here
+Start.o: In function `launchMonteCarloAlgorithm':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:41: multiple definition of `run'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:42: first defined here
+collect2.exe: error: ld returned 1 exit status
+16:22:53 **** Rebuild of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+gcc -o SNIP3.exe matrix.o 
+Info: Nothing to build for SNIP3
+17:38:41 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+gcc -o SNIP3.exe matrix.o 
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+21:35:16 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+gcc -o SNIP3.exe matrix.o 
+21:35:20 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+gcc -o SNIP3.exe matrix.o 
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+Info: Nothing to build for SNIP3
+21:37:32 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+gcc -o SNIP3.exe matrix.o 
+c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../../mingw32/bin/ld.exe: cannot open output file SNIP3.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+21:44:37 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+..\matrix.c:7:0: warning: "int" redefined
+ #define int COLUMN_SIZE = 20480;
+ 
+..\matrix.c:6:0: note: this is the location of the previous definition
+ #define int ROW_SIZE = 4096;
+ 
+..\matrix.c:9:12: error: 'COLUMN_SIZE' undeclared here (not in a function)
+ char array[COLUMN_SIZE][ROW_SIZE];
+            ^~~~~~~~~~~
+..\matrix.c:9:25: error: 'ROW_SIZE' undeclared here (not in a function)
+ char array[COLUMN_SIZE][ROW_SIZE];
+                         ^~~~~~~~
+..\matrix.c:7:13: warning: data definition has no type or storage class
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:10:1: note: in expansion of macro 'int'
+ int i,f;
+ ^~~
+..\matrix.c:7:13: warning: type defaults to 'int' in declaration of 'COLUMN_SIZE' [-Wimplicit-int]
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:10:1: note: in expansion of macro 'int'
+ int i,f;
+ ^~~
+..\matrix.c:10:5: warning: data definition has no type or storage class
+ int i,f;
+     ^
+..\matrix.c:10:5: warning: type defaults to 'int' in declaration of 'i' [-Wimplicit-int]
+..\matrix.c:10:7: warning: type defaults to 'int' in declaration of 'f' [-Wimplicit-int]
+ int i,f;
+       ^
+..\matrix.c:7:13: warning: data definition has no type or storage class
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:20:1: note: in expansion of macro 'int'
+ int main(int argc, char* argv[])
+ ^~~
+..\matrix.c:7:13: warning: type defaults to 'int' in declaration of 'COLUMN_SIZE' [-Wimplicit-int]
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:20:1: note: in expansion of macro 'int'
+ int main(int argc, char* argv[])
+ ^~~
+..\matrix.c:7:13: error: redefinition of 'COLUMN_SIZE'
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:20:1: note: in expansion of macro 'int'
+ int main(int argc, char* argv[])
+ ^~~
+..\matrix.c:7:13: note: previous definition of 'COLUMN_SIZE' was here
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:10:1: note: in expansion of macro 'int'
+ int i,f;
+ ^~~
+..\matrix.c:7:25: error: expected ')' before '=' token
+ #define int COLUMN_SIZE = 20480;
+                         ^
+..\matrix.c:20:10: note: in expansion of macro 'int'
+ int main(int argc, char* argv[])
+          ^~~
+..\matrix.c: In function 'pageFaultColumn':
+..\matrix.c:116:6: error: 'faults' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+      ^~~~~~
+..\matrix.c:116:6: note: each undeclared identifier is reported only once for each function it appears in
+..\matrix.c:116:17: error: 'count' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                 ^~~~~
+..\matrix.c:116:16: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                ^
+..\matrix.c:116:28: error: 'count1' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                            ^~~~~~
+..\matrix.c:116:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                          ^
+..\matrix.c:116:40: error: 'copy' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                                        ^~~~
+..\matrix.c:116:38: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                                      ^
+..\matrix.c:117:6: error: 'mem' undeclared (first use in this function)
+  int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX}; //First two are used for the stack and program, so they are always set to 0
+      ^~~
+..\matrix.c:117:10: error: expected expression before ']' token
+  int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX}; //First two are used for the stack and program, so they are always set to 0
+          ^
+..\matrix.c:126:9: error: 'y' undeclared (first use in this function)
+     int y;
+         ^
+..\matrix.c: In function 'pageFaultRow':
+..\matrix.c:164:6: error: 'faults' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+      ^~~~~~
+..\matrix.c:164:17: error: 'count' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                 ^~~~~
+..\matrix.c:164:16: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                ^
+..\matrix.c:164:28: error: 'count1' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                            ^~~~~~
+..\matrix.c:164:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                          ^
+..\matrix.c:164:41: error: 'copy' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                                         ^~~~
+..\matrix.c:164:39: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                                       ^
+..\matrix.c:165:6: error: 'mem' undeclared (first use in this function)
+  int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX};
+      ^~~
+..\matrix.c:165:10: error: expected expression before ']' token
+  int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX};
+          ^
+..\matrix.c:174:9: error: 'y' undeclared (first use in this function)
+     int y;
+         ^
+21:44:39 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+..\matrix.c:7:0: warning: "int" redefined
+ #define int COLUMN_SIZE = 20480;
+ 
+..\matrix.c:6:0: note: this is the location of the previous definition
+ #define int ROW_SIZE = 4096;
+ 
+..\matrix.c:9:12: error: 'COLUMN_SIZE' undeclared here (not in a function)
+ char array[COLUMN_SIZE][ROW_SIZE];
+            ^~~~~~~~~~~
+..\matrix.c:9:25: error: 'ROW_SIZE' undeclared here (not in a function)
+ char array[COLUMN_SIZE][ROW_SIZE];
+                         ^~~~~~~~
+..\matrix.c:7:13: warning: data definition has no type or storage class
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:10:1: note: in expansion of macro 'int'
+ int i,f;
+ ^~~
+..\matrix.c:7:13: warning: type defaults to 'int' in declaration of 'COLUMN_SIZE' [-Wimplicit-int]
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:10:1: note: in expansion of macro 'int'
+ int i,f;
+ ^~~
+..\matrix.c:10:5: warning: data definition has no type or storage class
+ int i,f;
+     ^
+..\matrix.c:10:5: warning: type defaults to 'int' in declaration of 'i' [-Wimplicit-int]
+..\matrix.c:10:7: warning: type defaults to 'int' in declaration of 'f' [-Wimplicit-int]
+ int i,f;
+       ^
+..\matrix.c:7:13: warning: data definition has no type or storage class
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:20:1: note: in expansion of macro 'int'
+ int main(int argc, char* argv[])
+ ^~~
+..\matrix.c:7:13: warning: type defaults to 'int' in declaration of 'COLUMN_SIZE' [-Wimplicit-int]
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:20:1: note: in expansion of macro 'int'
+ int main(int argc, char* argv[])
+ ^~~
+..\matrix.c:7:13: error: redefinition of 'COLUMN_SIZE'
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:20:1: note: in expansion of macro 'int'
+ int main(int argc, char* argv[])
+ ^~~
+..\matrix.c:7:13: note: previous definition of 'COLUMN_SIZE' was here
+ #define int COLUMN_SIZE = 20480;
+             ^
+..\matrix.c:10:1: note: in expansion of macro 'int'
+ int i,f;
+ ^~~
+..\matrix.c:7:25: error: expected ')' before '=' token
+ #define int COLUMN_SIZE = 20480;
+                         ^
+..\matrix.c:20:10: note: in expansion of macro 'int'
+ int main(int argc, char* argv[])
+          ^~~
+..\matrix.c: In function 'pageFaultColumn':
+..\matrix.c:116:6: error: 'faults' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+      ^~~~~~
+..\matrix.c:116:6: note: each undeclared identifier is reported only once for each function it appears in
+..\matrix.c:116:17: error: 'count' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                 ^~~~~
+..\matrix.c:116:16: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                ^
+..\matrix.c:116:28: error: 'count1' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                            ^~~~~~
+..\matrix.c:116:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                          ^
+..\matrix.c:116:40: error: 'copy' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                                        ^~~~
+..\matrix.c:116:38: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2, copy = 0;
+                                      ^
+..\matrix.c:117:6: error: 'mem' undeclared (first use in this function)
+  int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX}; //First two are used for the stack and program, so they are always set to 0
+      ^~~
+..\matrix.c:117:10: error: expected expression before ']' token
+  int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX}; //First two are used for the stack and program, so they are always set to 0
+          ^
+..\matrix.c:126:9: error: 'y' undeclared (first use in this function)
+     int y;
+         ^
+..\matrix.c: In function 'pageFaultRow':
+..\matrix.c:164:6: error: 'faults' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+      ^~~~~~
+..\matrix.c:164:17: error: 'count' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                 ^~~~~
+..\matrix.c:164:16: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                ^
+..\matrix.c:164:28: error: 'count1' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                            ^~~~~~
+..\matrix.c:164:26: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                          ^
+..\matrix.c:164:41: error: 'copy' undeclared (first use in this function)
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                                         ^~~~
+..\matrix.c:164:39: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  int faults = 0,count = 0, count1 = 2 , copy = 0;;
+                                       ^
+..\matrix.c:165:6: error: 'mem' undeclared (first use in this function)
+  int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX};
+      ^~~
+..\matrix.c:165:10: error: expected expression before ']' token
+  int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX};
+          ^
+..\matrix.c:174:9: error: 'y' undeclared (first use in this function)
+     int y;
+         ^
+21:47:34 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+..\matrix.c:9:6: error: variably modified 'array' at file scope
+ char array[COLUMN_SIZE][ROW_SIZE];
+      ^~~~~
+..\matrix.c:9:6: error: variably modified 'array' at file scope
+21:48:04 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o matrix.o "..\\matrix.c" 
+gcc -o SNIP3.exe matrix.o 
+c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../../mingw32/bin/ld.exe: cannot open output file SNIP3.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+21:48:13 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -o SNIP3.exe matrix.o 
+c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../../mingw32/bin/ld.exe: cannot open output file SNIP3.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+16:54:08 **** Rebuild of configuration Debug for project Bonus ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o lizard2017.o "..\\lizard2017.c" 
+..\lizard2017.c:21:21: fatal error: pthread.h: No such file or directory
+ #include <pthread.h>
+                     ^
+compilation terminated.

@@ -1,0 +1,33 @@
+Debug
+makefile
+myShell
+myShell.c
+myShell.o
+output
+output.txt
+Parse
+Parse.c
+Parse.h
+Parse.o
+slow
+slow.c
+Test
+testfile.txt
+total 43283
+drwxrwxrwx 0 root root  4096 Sep 25 22:12 Debug
+-rwxrwxrwx 1 root root   189 Sep 30 19:28 makefile
+-rwxrwxrwx 1 root root 16896 Oct  2 12:32 myShell
+-rwxrwxrwx 1 root root  3082 Oct  2 12:32 myShell.c
+-rwxrwxrwx 1 root root 10712 Oct  2 12:32 myShell.o
+-rwxrwxrwx 1 root root   108 Sep 30 20:11 output
+-rwxrwxrwx 1 root root     4 Sep 30 20:16 output.txt
+-rwxrwxrwx 1 root root  9176 Sep 30 16:21 Parse
+-rwxrwxrwx 1 root root   397 Sep 30 19:14 Parse.c
+-rwxrwxrwx 1 root root  3138 Oct  2 12:29 Parse.h
+-rwxrwxrwx 1 root root  9104 Sep 30 18:49 Parse.o
+-rwxrwxrwx 1 root root  8760 Sep 30 17:35 slow
+-rwxrwxrwx 1 root root   219 Sep 30 17:34 slow.c
+drwxrwxrwx 0 root root  4096 Sep 26 18:22 Test
+-rwxrwxrwx 1 root root   121 Oct  2 12:35 testfile.txt
+/mnt/c/Users/omarg/eclipse-workspace/Parse
+$ $ $ $ 

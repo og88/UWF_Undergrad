@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import static java.lang.Math.sqrt;
+
+public class MyMathClass
+{
+
+
+	public static double average( ArrayList< ? extends Number > list )
+	{
+		double total = 0; // initialize total
+
+		// calculate sum
+		for ( Number element : list )
+		{
+			total += element.doubleValue();
+		}
+		double AVG = total/list.size();
+		return AVG;
+	} 
+
+	public static double standardDeviation( ArrayList< ? extends Number > list )
+	{
+		double total = 0, Deviation = 0; // initialize total
+double avg = average(list);
+
+		// calculate sum
+		for ( Number element : list )
+		{
+			total += (element.doubleValue()-avg);
+			System.out.println(element);
+
+		}
+		Deviation = Math.sqrt(total/(double)list.size());
+		return Deviation;
+	} 
+
+} 
+

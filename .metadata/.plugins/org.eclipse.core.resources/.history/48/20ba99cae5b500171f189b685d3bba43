@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include "Collatz_computations.c"
+
+
+int main(int argc, char *argv[])
+{
+	buildarray();
+	N = 10;
+	compare(N);
+	printarray();
+}
+
+

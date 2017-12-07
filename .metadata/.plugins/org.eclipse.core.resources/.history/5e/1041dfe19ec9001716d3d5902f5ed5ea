@@ -1,0 +1,235 @@
+import javafx.scene.control.Label;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+//package model;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * <!--  end-user-doc  -->
+ * @generated
+ */
+
+public class Game extends Application
+{
+	
+	public static void newGame()
+	{
+		launch();
+	}
+	
+	@Override
+	public void start(Stage secondaryStage) {
+
+		secondaryStage.setTitle("Java League");
+		Button btn = new Button();
+		Button btn0 = new Button();
+		Button btn1 = new Button();
+		final Label lbl = new Label();
+		lbl.setLayoutX(520);        
+		lbl.setLayoutY(520);
+
+		btn.setText("New Game");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Game.newGame();
+				//primaryStage.close();
+			}
+		});
+
+		btn0.setText("Load Game");
+		btn0.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Game.loadGame();
+				secondaryStage.close();
+			}
+		});
+
+		btn1.setText("Exit");
+		btn1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				secondaryStage.close();
+			}
+		});
+
+
+
+
+		Group root = new Group();
+		btn.setLayoutX(115);
+		btn.setLayoutY(50);
+
+		btn0.setLayoutX(115);
+		btn0.setLayoutY(100);
+
+		btn1.setLayoutX(140);
+		btn1.setLayoutY(150);
+
+		root.getChildren().add(btn);
+		root.getChildren().add(btn0);
+		root.getChildren().add(btn1);
+		root.getChildren().add(lbl);
+
+
+		secondaryStage.setScene(new Scene(root, 1280, 720));
+		secondaryStage.show();
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	private int difficulty;
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public Game() {
+		super();
+		// TODO construct me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public int getDifficulty() {
+		// TODO implement me
+		return difficulty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void setDifficulty(int difficulty) {
+this.difficulty = difficulty;
+}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void newMap() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void newStory() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void newLoot() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void createNewTeams() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	private void addUserTeam() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	private void addEnemyTeam() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void newRound() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public static void loadGame() {
+		System.out.println("Game Loaded");
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void exitGame() {
+		// TODO implement me
+	}
+
+}
+

@@ -1,0 +1,30 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <time.h>
+#include "Collatz_computations.c"
+
+
+int main(int argc, char *argv[])
+{
+	clock_t begin = clock();
+	int T,t;
+	T = 2;
+	pthread_t threads[T];
+	buildarray();
+	N = 10000;
+	for(t = 0; t < T; t++)
+	{
+		pthread_create(&threads[t], NULL, compare, NULL);
+	}
+	for(t=0; t<T; t++){
+		pthread_join(threads[t], NULL);
+	}
+	//compare();
+	clock_t end = clock();
+	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("%f\n",time_spent);
+	//printarray();
+	pthread_exit(NULL);
+}
+
+

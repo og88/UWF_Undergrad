@@ -1,0 +1,69 @@
+#include <stdio.h>
+//#include "Functions.h"
+#include <math.h>
+#include "Functions.c"
+void ProcessNextEvent(struct Customer *cust);
+float GetNextRandomeInterval(float avg);
+
+
+int n,
+	l,
+	u,
+	M,        //server amount
+	m;        //available
+
+int main(int argc, char* argv[])
+{
+
+	n = 15;
+	l = 3;
+	u = 2;
+	M = 5;
+	m = M;
+
+	struct Customer *cust;
+	cust = malloc(sizeof(struct Customer));
+	float PQ[n*2];
+	cust->arrivalTime = 00.00;
+	cust->arrival = 1;
+	printf("%f\n",cust->arrivalTime);
+ProcessNextEvent(cust);
+printf("%f\n",cust->departureTime);
+	return 0;
+}
+
+
+void ProcessNextEvent(struct Customer *cust)
+{
+	if(cust->arrival == 1)
+	{
+		if(m > 0)
+		{
+			m--;
+			cust->StartOfService = cust->arrivalTime;
+			cust->departureTime = cust->arrivalTime + GetNextRandomeInterval(u);
+			//InsertPQ
+		}
+		else
+		{
+if(startFIFO == NULL)
+{
+	startFIFO = cust;
+}
+		}
+	}
+	else
+	{
+		m++;
+
+	}
+}
+
+float GetNextRandomeInterval(float avg)
+{
+	float f = ((float)rand()/(float)RAND_MAX);
+	printf("%f\n",f);
+	float intervalTime = -1.0*(1.0/avg)*log(f);
+	printf("%f\n", intervalTime);
+	return intervalTime;
+}

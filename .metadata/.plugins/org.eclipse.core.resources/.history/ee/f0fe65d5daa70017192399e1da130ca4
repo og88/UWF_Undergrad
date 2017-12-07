@@ -1,0 +1,48 @@
+/*
+ * Parse.h
+ *
+ */
+
+#ifndef PARSE_H_
+#define PARSE_H_
+
+#define PARAM_LENGTH 256  //For this project, I don't expect commands or names to be over 50 characters long.
+#define MAXARGS 32
+//#include "Parse.c"
+char input[PARAM_LENGTH];
+
+typedef struct PARAM
+{
+	char *inputRedirect;           /* file name or NULL */
+	char *outputRedirect;          /* file name or NULL */
+	int  background;               /* either 0 (false) or 1 (true)*/
+	int  argumentCount;            /* number of tokens in argument vector */
+	char *argumentVector[MAXARGS]; /* array of strings */
+}Param_t;
+Param_t* parseTokens();
+Param_t parsekens();
+Param_t parsekens()
+{
+	return parseToken();s
+}
+
+/*This is a function to print out the information stored in param*/
+
+void printParams(Param_t * param)
+{
+
+	int i;
+	printf ("\nInputRedirect: [%s]\n",                                     //Prints the inputRedirect. If no input is called, NULL will be printed
+			(param->inputRedirect != NULL)?param->inputRedirect:"NULL");
+	printf ("OutputRedirect: [%s]\n",                                      //Prints the ouputRedirect. If no output is called, NULL will be printed
+			(param->outputRedirect != NULL)?param->outputRedirect:"NULL");
+	printf ("Background: [%d]\n", param->background);                      //Prints out whether the process runs in the background or foreground. 0 for foreground, 1 for background
+	printf ("ArgumentCount: [%d]\n", param->argumentCount);                //Prints out the number of arguments called
+	for (i = 0; i < param->argumentCount; i++)                             //For loop to print out each argument in argumentVector.
+	{
+		printf("ArgumentVector[%2d]: [%s]\n\n", i, param->argumentVector[i]);   //Each print out is labeled
+	}
+
+}
+
+#endif /* PARSE_H_ */

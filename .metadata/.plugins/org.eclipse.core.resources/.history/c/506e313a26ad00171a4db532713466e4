@@ -1,0 +1,39 @@
+#include <stdio.h>
+//#include "Functions.h"
+//#include <math.h>
+#include "Functions.c"
+int n,
+	l,
+	u,
+	M,        //server amount
+	m;        //available
+
+int main(int argc, char* argv[])
+{
+
+	n = 15;
+	l = 3;
+	u = 2;
+	M = 5;
+	m = M;
+
+	struct Customer cust;
+	float PQ[n*2];
+	cust.arrivalTime = 00.00;
+	cust.arrival = 1;
+
+	return 0;
+}
+
+
+public void ProcessNextEvent(struct Customer cust)
+{
+	if(cust.arrival == 1)
+	{
+		if(m > 0)
+		{
+			m--;
+			cust.StartofService = cust.arrivalTime;
+		}
+	}
+}

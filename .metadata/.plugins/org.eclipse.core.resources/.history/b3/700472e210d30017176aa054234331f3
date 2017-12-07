@@ -1,0 +1,81 @@
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
+import swing2swt.layout.BoxLayout;
+import java.awt.Frame;
+import org.eclipse.swt.awt.SWT_AWT;
+import java.awt.Panel;
+import java.awt.BorderLayout;
+import javax.swing.JRootPane;
+
+public class PlaygroundPart extends Composite {
+
+	public static void main(String [] args)
+	{
+		PlaygroundPart();
+	}
+	/**
+	 * Create the composite.
+	 * @param parent
+	 * @param style
+	 */
+	public  PlaygroundPart(Composite parent, int style) {
+		super(parent, style);
+		setLayout(new GridLayout(4, false));
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Button btnNewButton = new Button(this, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
+		btnNewButton.setText("New Button");
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Button btnNewButton_1 = new Button(this, SWT.NONE);
+		btnNewButton_1.setText("New Button");
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Label lblNewLabel = new Label(this, SWT.NONE);
+		lblNewLabel.setText("New Label");
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		new Label(this, SWT.NONE);
+		
+		Composite composite = new Composite(this, SWT.EMBEDDED);
+		
+		Frame frame = SWT_AWT.new_Frame(composite);
+		
+		Panel panel = new Panel();
+		frame.add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JRootPane rootPane = new JRootPane();
+		panel.add(rootPane);
+		new Label(this, SWT.NONE);
+
+	}
+
+	@Override
+	protected void checkSubclass() {
+		// Disable the check that prevents subclassing of SWT components
+	}
+}

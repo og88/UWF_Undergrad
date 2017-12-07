@@ -1,0 +1,34 @@
+//package model;
+
+public class Round
+{	
+	private boolean userTurns;
+	private boolean enemyTurns;
+	
+	public Round() {
+		super();
+		// TODO construct me
+	}
+
+	
+	public boolean getUserTurns() {
+		return this.userTurns;
+	}
+
+	
+	public void setUserTurns(boolean turn) {
+		this.userTurns = turn;
+	}
+
+	
+	public boolean getEnemyTurns() {
+		return this.enemyTurns;
+	}
+
+	
+	public void setEnemyTurns(boolean turn) {
+		this.enemyTurns = turn;
+	}
+
+}
+

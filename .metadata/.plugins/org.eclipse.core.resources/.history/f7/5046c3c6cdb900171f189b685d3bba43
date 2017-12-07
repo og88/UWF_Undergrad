@@ -1,0 +1,13 @@
+import java.io.IOException;
+public class RandomAccessDemo 
+{
+	private RandomAccessFile file;
+	public static final int INT_SIZE = 4;  
+	public static final int DOUBLE_SIZE = 8;  
+	public static final int RECORD_SIZE = INT_SIZE + DOUBLE_SIZE;
+	
+	public static void main(String[] args) 
+	{
+
+	}
+}

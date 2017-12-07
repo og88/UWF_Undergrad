@@ -1,0 +1,5 @@
+18:46:05 **** Clean-only build of configuration Debug for project SNI_Project_2 ****
+rm -rf Collatz_computations.d SNI_Project_2.exe Collatz_computations.o mt-collatz.d mt-collatz.o 
+
+18:46:07 Build Finished (took 2s.12ms)
+

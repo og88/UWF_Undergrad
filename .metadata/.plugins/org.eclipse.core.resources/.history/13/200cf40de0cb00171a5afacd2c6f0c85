@@ -1,0 +1,10 @@
+
+public class Building implements CarbonFootprint{
+double kWhyr, EF;
+	@Override
+	public double getCarbonFootprint() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

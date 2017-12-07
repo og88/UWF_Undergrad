@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <time.h>
+
+char array[20480][4096];
+
+int main(int argc, char* argv[])
+{
+	clock_t before,after;
+	int i;
+	before = clock();
+	for(i = 0; i < 20480; i++)
+	{
+		array[i][0] = 'a';
+	}
+	after = clock();
+	printf("%ld\n",(1000 * ((after - before)/CLOCKS_PER_SEC)));
+}

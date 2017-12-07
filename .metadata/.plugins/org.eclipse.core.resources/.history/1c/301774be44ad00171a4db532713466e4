@@ -1,0 +1,120 @@
+#include <stdio.h>
+//#include "Functions.h"
+#include <math.h>
+#include "Functions.c"
+void ProcessNextEvent();
+float GetNextRandomeInterval(float avg);
+struct Customer *Pq[200];
+struct FIFO *queue;
+
+
+int n,//number of Customers
+i = 0,
+event = 0,
+l,
+u,
+M,        //server amount
+m;        //available
+
+float timer = 00.00;
+
+int main(int argc, char* argv[])
+{
+
+	n = 100;
+	l = 3;
+	u = 2;
+	M = 5;
+	m = M;
+
+	struct FIFO *FIFOqueue;
+	FIFOqueue = malloc(sizeof(struct FIFO));
+	struct Customer *initcust;
+	initcust = malloc(sizeof(struct Customer));
+	initcust->arrivalTime = timer;
+	initcust->arrival = 1;
+	Pq[0] = initcust;
+	printf("%f\n",Pq[0]->arrivalTime);
+i = 1;
+for(i = 1; i < n; i++)
+{
+		struct Customer *cust;
+		cust = malloc(sizeof(struct Customer));
+		timer = timer + GetNextRandomeInterval(u);
+		cust->arrivalTime = timer;
+		cust->arrival = 1;
+		Pq[i] = cust;
+		//printf("Timer : %f\n", timer);
+	}
+	for(i = 0; i < n; i++)
+	{
+		if(Pq[i]->arrival == 1)
+		{
+		printf("Arrival: %f\n",Pq[i]->arrivalTime);
+		}
+		else
+		{
+			printf("Departure: %f\n",Pq[i]->departureTime);
+		}
+	}
+
+
+	return 0;
+}
+
+
+void ProcessNextEvent()
+{
+	struct Customer *cust;
+			cust = malloc(sizeof(struct Customer));
+			cust = Pq[event];
+	if(cust->arrival == 1)
+	{
+		if(m > 0)
+		{
+			m--;
+			cust->StartOfService = cust->arrivalTime;
+			cust->departureTime = cust->arrivalTime + GetNextRandomeInterval(u);
+
+		}
+		else
+		{
+			if(queue->start == NULL)
+			{
+				queue->start = cust;
+			}
+			else
+			{
+				queue->end->nextcust = cust;
+				queue->end = cust;
+			}
+		}
+	}
+	else
+	{
+		m++;
+		if(queue->start != NULL)
+		{
+
+		}
+
+	}
+	event ++;
+}
+
+float GetNextRandomeInterval(float avg)
+{
+	float f = ((float)rand()/(float)RAND_MAX);
+	//printf("%f\n",f);
+	float intervalTime = -1.0*(1.0/avg)*log(f);
+	//printf("%f\n", intervalTime);
+	return intervalTime;
+}
+
+void addPq(Struct Custom)
+{
+	struct Customer Temp;
+	Temp = malloc(sizeof(struct customer));
+	Temp = Custom
+
+}

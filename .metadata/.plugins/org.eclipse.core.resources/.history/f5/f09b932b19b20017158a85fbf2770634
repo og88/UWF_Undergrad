@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import static java.lang.Math.*;
+
+public class MyMathClass<T extends Number>
+{
+ArrayList<T> list;
+void add1(T x)
+{
+list.add(x);	
+}
+	public double average()//( ArrayList< ? extends Number > list )
+	{
+		double total = 0; // initialize total
+
+		// calculate sum
+		for ( T element : list )
+		{
+			total += ((double) element);
+		}
+		double AVG = total/list.size();
+		return AVG;
+	} 
+
+	public double standardDeviation()//( ArrayList< ? extends Number > list )
+	{
+		double total = 0, Deviation = 0; // initialize total
+		double avg = average();
+		System.out.println(avg);
+
+		// calculate sum
+		for ( T element : list )
+		{
+			total += (Math.pow(( ((double) element)-avg),2));
+		}
+		/*sample standard deviation*/
+		double av = total/(double)list.size() - 1;
+
+		Deviation = Math.sqrt(av);
+		return Deviation;
+	} 
+
+} 
+

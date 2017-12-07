@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <time.h>
+
+char array[20480][4096];
+
+int main(int argc, char* argv[])
+{
+	clock_t before,after;
+	int i;
+	for(i = 0; i < 20480; i++)
+	{
+		array[i][0] = 'a';
+	}
+}

@@ -1,0 +1,49 @@
+17:06:23 **** Incremental Build of configuration Debug for project DSP4 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Start.o "..\\Start.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarlo.o "..\\MonteCarlo.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o MonteCarloAlgorithm.o "..\\MonteCarloAlgorithm.c" 
+gcc -o DSP4.exe MonteCarlo.o MonteCarloAlgorithm.o Start.o 
+Start.o: In function `launchMonteCarloAlgorithm':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:41: multiple definition of `launchMonteCarloAlgorithm'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:41: first defined here
+Start.o: In function `calculate':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:51: multiple definition of `calculate'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:51: first defined here
+Start.o: In function `openw':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:115: multiple definition of `openw'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:115: first defined here
+Start.o: In function `open':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:124: multiple definition of `open'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:124: first defined here
+Start.o: In function `close':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:133: multiple definition of `close'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:133: first defined here
+Start.o: In function `write':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:138: multiple definition of `write'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:138: first defined here
+Start.o: In function `read':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:152: multiple definition of `read'
+MonteCarlo.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:152: first defined here
+Start.o: In function `launchMonteCarlo':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:42: multiple definition of `launchMonteCarlo'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:42: first defined here
+Start.o: In function `write1':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:67: multiple definition of `write1'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:67: first defined here
+Start.o: In function `Calculate':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:84: multiple definition of `Calculate'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:84: first defined here
+Start.o: In function `analyzeToString':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:181: multiple definition of `analyzeToString'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:181: first defined here
+Start.o: In function `runToString':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:190: multiple definition of `runToString'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:190: first defined here
+Start.o: In function `launchMonteCarloAlgorithm':
+C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarlo.c:41: multiple definition of `run'
+MonteCarloAlgorithm.o:C:\Users\omarg\eclipse-workspace\DSP4\Debug/../MonteCarloAlgorithm.c:42: first defined here
+collect2.exe: error: ld returned 1 exit status
+
+17:06:27 Build Finished (took 4s.249ms)
+

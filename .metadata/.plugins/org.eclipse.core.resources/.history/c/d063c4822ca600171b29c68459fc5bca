@@ -1,0 +1,18 @@
+Debug
+myShell
+myShell.c
+output.txt
+Parse
+Parse.c
+Parse.h
+Test
+/mnt/c/Users/omarg/eclipse-workspace/Parse
+total 20539
+drwxrwxrwx 0 root root  4096 Sep 25 22:12 Debug
+-rwxrwxrwx 1 root root 13712 Sep 30 16:58 myShell
+-rwxrwxrwx 1 root root  1836 Sep 30 16:58 myShell.c
+-rwxrwxrwx 1 root root   105 Sep 30 16:59 output.txt
+-rwxrwxrwx 1 root root  9176 Sep 30 16:21 Parse
+-rwxrwxrwx 1 root root   664 Sep 30 16:21 Parse.c
+-rwxrwxrwx 1 root root  2465 Sep 30 16:54 Parse.h
+drwxrwxrwx 0 root root  4096 Sep 26 18:22 Test

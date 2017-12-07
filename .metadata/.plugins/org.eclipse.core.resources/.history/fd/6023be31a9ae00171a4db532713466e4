@@ -1,0 +1,184 @@
+#include <stdio.h>
+//#include "Functions.h"
+#include <math.h>
+#include "Functions.c"
+void ProcessNextEvent();
+float GetNextRandomeInterval(float avg);
+void addPq(struct Customer Custom);
+void printStats();
+
+
+struct Customer Pq[200];
+struct FIFO queue;
+
+
+int n,//number of Customers
+batch = 1;
+ncom,
+i = 0,
+event = 0,
+pqSize = 0; //Size of priority Queue
+l,
+u,
+M,        //server amount
+m;        //available
+
+float timer = 00.00;
+
+int main(int argc, char* argv[])
+{
+
+	n = 250;
+	ncom = 0;
+	l = 100;
+	u = 2;
+	M = 5;
+	m = M;
+
+	queue.isEmpty = 1;
+	struct Customer initcust;
+
+	pqSize = 1;
+	while(ncom < n)
+	{
+		initcust.arrivalTime = timer;
+		initcust.compareTime = timer;
+		initcust.arrival = 1;
+		ncom++;
+		initcust.id = ncom;
+		Pq[0] = initcust;
+
+		for(i = 1; ((i < 100) && (ncom <= n)); i++)
+		{
+			struct Customer cust;
+			timer = timer + GetNextRandomeInterval(l);
+			cust.arrivalTime = timer;
+			cust.compareTime = timer;
+			cust.arrival = 1;
+			cust.id = ncom + 1;
+			cust.nextcust = malloc(sizeof(struct Customer));
+			Pq[i] = cust;
+			pqSize++;
+			ncom++;
+		}
+
+		while(event < pqSize)
+		{
+			ProcessNextEvent();
+			event++;
+		}
+		printStats();
+		batch++;
+		event = 0;
+		pqSize = 0;
+		timer = timer + GetNextRandomeInterval(l);
+	}
+
+
+	return 0;
+}
+
+
+void ProcessNextEvent()
+{
+	struct Customer cust;
+	cust = Pq[event];
+	if(cust.arrival == 1)
+	{
+		if(m > 0)
+		{
+			m=m-1;
+			cust.StartOfService = cust.arrivalTime;
+			cust.departureTime = cust.arrivalTime + (GetNextRandomeInterval(u));
+			cust.compareTime = cust.departureTime;
+			cust.arrival = 0;
+			addPq(cust);
+
+		}
+		else
+		{
+			cust.arrival = 0;
+			if(queue.isEmpty == 1)
+			{
+				queue.start = cust;
+				queue.end = &queue.start;
+				queue.isEmpty--;
+			}
+			else
+			{
+				queue.end->nextcust = &cust;
+				queue.end = &cust;
+				queue.isEmpty--;
+			}
+		}
+	}
+	else
+	{
+		m++;
+		if(queue.isEmpty != 1)
+		{
+			queue.start.StartOfService = cust.departureTime;
+			queue.start.departureTime = queue.start.StartOfService + GetNextRandomeInterval(l);
+			queue.start.compareTime = queue.start.departureTime;
+			queue.start.arrival = 0;
+			addPq(queue.start);
+			queue.isEmpty++;
+			if(queue.isEmpty != 1)
+			{
+				cust = queue.start;
+				queue.start = *cust.nextcust;
+			}
+			m--;
+
+		}
+
+	}
+}
+
+float GetNextRandomeInterval(float avg)
+{
+	float f = ((float)rand()/(float)RAND_MAX);
+	float intervalTime = -1.0*(1.0/avg)*log(f);
+	return intervalTime;
+}
+
+void addPq(struct Customer Custom)
+{
+	struct Customer Temp, Temp2;
+	Temp = Custom;
+	int z;
+	for(z = 0; z < pqSize + 1; z++)
+	{
+		if(z == pqSize)
+		{
+			Pq[z] = Temp;
+		}
+		else
+		{
+			if(Temp.compareTime < Pq[z].compareTime)
+			{
+				Temp2 = Pq[z];
+				Pq[z] = Temp;
+				Temp = Temp2;
+			}
+		}
+	}
+	pqSize++;
+}
+
+
+void printStats()
+{
+	printf("\nBatch %i\n", batch);
+	for(i = 0; i < pqSize; i++)
+	{
+		if(Pq[i].arrival == 1)
+		{
+			printf("Arrival %i: %f\n",Pq[i].id,Pq[i].arrivalTime);
+		}
+		else
+		{
+			printf("Arrival %i: %f, Departure %i: %f,  StartOfService: %f\n",Pq[i].id,Pq[i].arrivalTime,Pq[i].id,Pq[i].departureTime,Pq[i].StartOfService);
+		}
+	}
+}

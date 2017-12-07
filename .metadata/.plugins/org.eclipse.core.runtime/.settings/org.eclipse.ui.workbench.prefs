@@ -1,0 +1,9 @@
+//org.eclipse.ui.commands/state/org.eclipse.papyrus.infra.nattable.column.index.style/org.eclipse.ui.commands.radioState=Alphabetic
+//org.eclipse.ui.commands/state/org.eclipse.papyrus.infra.nattable.row.index.style/org.eclipse.ui.commands.radioState=Alphabetic
+//org.eclipse.ui.commands/state/org.eclipse.papyrus.infra.nattable.table.hierarchic.style/org.eclipse.ui.commands.radioState=HIERARCHIC_MULTI_TREE_COLUMN
+//org.eclipse.ui.commands/state/org.eclipse.ui.navigator.resources.nested.changeProjectPresentation/org.eclipse.ui.commands.radioState=false
+PLUGINS_NOT_ACTIVATED_ON_STARTUP=;org.eclipse.m2e.discovery;
+REMOTE_COMMANDS_VIEW_FONT=1|Consolas|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
+UIActivities.org.eclipse.cdt.debug.dsfgdbActivity=true
+eclipse.preferences.version=1
+org.eclipse.tracecompass.tmf.ui.font.eventraw=1|Consolas|8.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;

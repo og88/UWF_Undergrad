@@ -1,0 +1,82 @@
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+public class Trivia_Game 
+{
+	private static RandomAccessFile file;
+
+	public static final int Q_SIZE = 50;
+	public static final int A_SIZE = 20;
+	public static final int ID_SIZE = 4;
+	public static final int VALUE_SIZE = 4;
+	public static final int RECORD_SIZE = (Q_SIZE + A_SIZE + ID_SIZE + VALUE_SIZE) * 15;
+/*When created, file is null*/
+	public Trivia_Game()
+	{
+		file = null;
+	}
+
+	public  void open(String filename) throws IOException
+	{
+		if (file != null) 
+		{
+			file.close();
+		}
+		file = new RandomAccessFile(filename, "rw");
+	}
+	public int size() throws IOException
+	{
+		return (int)(file.length() / RECORD_SIZE);	
+	}
+
+	public void close() throws IOException
+	{
+		if (file != null) 
+		{
+			file.close();
+		}
+		file = null;
+	}
+	public Question read(int x) throws IOException
+	{
+		file.seek(x * RECORD_SIZE);
+		int ID = file.readInt();
+		String question = file.readUTF();
+		String answer = file.readUTF();
+		int value = file.readInt();
+		return new Question(question, answer, value, ID);	
+	}
+
+	public int find(int ID) throws IOException
+	{
+		for(int i = 0; i <= size(); i++)
+		{
+			file.seek(i * RECORD_SIZE);
+			int a = file.readInt();
+			if(a == ID)
+			{
+				return i;
+			}	
+		}
+		return -1;
+	}
+
+	public void list() throws IOException
+	{
+		for(int i = 0; i < size(); i++)
+		{
+			file.seek(i * RECORD_SIZE);
+			System.out.printf("ID : %d\nQuestion : %s\nAnswers : %s\nValue : %d\n\n",  file.readInt(), file.readUTF(),
+					file.readUTF(), file.readInt());
+			
+		}
+	}
+	public void write(int x, Question question) throws IOException
+	{
+		file.seek(x * RECORD_SIZE);
+		file.writeInt(question.getID());
+		file.writeUTF(question.getQuestion());
+		file.writeUTF(question.getAnswer());
+		file.writeInt(question.getValue());
+	}
+}

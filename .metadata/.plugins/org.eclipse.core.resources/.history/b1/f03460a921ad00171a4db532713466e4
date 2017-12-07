@@ -1,0 +1,24 @@
+#include <stdio.h>
+//#include "Functions.h"
+//#include <math.h>
+#include "Functions.h"
+
+int main(int argc, char* argv[])
+{
+int n,l,u,m;
+	double x = Po(2,3,2);
+	printf("%.2f\n", x);
+	x = factorial(5);
+	printf("%.2f\n", x);
+	x = pow(3,2);
+	printf("%.2f\n", x);
+	x = L(2,3,2);
+	printf("L: %.2f\n ", x);
+	x = W(2,3,2);
+	printf("W: %.3f \n", x);
+	x = Lq(2,3,2);
+	printf("Lq: %.3f\n", x);
+	x = Wq(2,3,2);
+	printf("Wq: %.4f \n", x);
+	return 0;
+}

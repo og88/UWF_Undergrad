@@ -1,0 +1,9 @@
+import java.util.*;
+public class MyMathClassTest
+{
+	public static void main(String arg[])
+	{
+ArrayList<Integer> I = new ArrayList<Integer>();
+I.add(1);
+	}
+}

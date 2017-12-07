@@ -1,0 +1,44 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "Collatz_computations.c"
+
+
+int main(int argc, char *argv[])
+{
+	if (pthread_mutex_init(&lock, 5) != 0) //Checks to see if a lock can be created
+	{
+		printf("\n mutex init failed\n");
+		return 1;
+	}
+
+
+	buildarray();      //Builds an array to hold information needed. The stopping time, occurance rate, time
+	N = atoi(argv[1]); //Sets the number of elements to the first parameter
+	T = atoi(argv[2]); //Sets number of threads to second parameter
+	pthread_t threads[T];  //Creates T threads
+
+	//printf("%i %i\n", N,T);
+	clock_t begin = clock();  //Records start of processes
+	//while(x <= N)
+	//{
+		for(t = 0; t < T; t++)
+		{
+			pthread_create(&threads[t], NULL, compare, &t);  //Creates the necessary threads
+		}
+
+		for(t=0; t<T; t++) //Loop joins all threads together
+		{
+			pthread_join(threads[t], NULL);
+		}
+	//}
+	pthread_mutex_destroy(&lock);  //Destroys lock
+	clock_t end = clock();  //records the stopping time of the threads
+
+	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC; //Calculates the time the process ran for
+	printf("%f\n",time_spent);
+	//printarray();
+}
+
+

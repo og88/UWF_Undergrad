@@ -1,0 +1,166 @@
+/*
+ * MonteCarloAldgorithm.c
+ *
+ *  Created on: Nov 14, 2017
+ *      Author: omarg
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <math.h>
+
+FILE *fp;
+int run=0;
+
+void Calculate(int c[]);
+void runToString(int c[]);
+void analyzeToString(double c[]);
+
+void write();
+
+int main(int argc, const char* argv[])
+{
+	write();
+	int x[4];
+	int i=0;
+	fp = fopen("c1.txt","r");
+	int c;
+	fread(&c, sizeof(int),1,fp);
+	printf("%i\n", c);
+fclose(fp);
+
+	/*int c1[] = {100,2000,24,7,30},c2[] = {100,2000,10,10,50},
+			c3[] = {500,1000,10,10,50},c4[] = {500,1000,1,1,50};
+	Calculate(c1);
+	Calculate(c2);
+	Calculate(c3);
+	Calculate(c4);*/
+}
+
+
+void write()
+{
+	fp = fopen("c1.txt", "w");
+	fprintf(fp,"%d\n%d\n%d\n%d\n%d",100,2000,24,7,30);
+	fclose(fp);
+	fp = fopen("c2.txt", "w");
+	fprintf(fp,"%d\n%d\n%d\n%d\n%d",100,2000,10,10,50);
+	fclose(fp);
+	fp = fopen("c3.txt", "w");
+	fprintf(fp,"%d\n%d\n%d\n%d\n%d",500,1000,10,10,50);
+	fclose(fp);
+	fp = fopen("c4.txt", "w");
+	fprintf(fp,"%d\n%d\n%d\n%d\n%d",500,1000,1,1,50);
+	fclose(fp);
+}
+
+void Calculate(int c[])
+{
+	run++;
+	printf("\nRunning:\n");
+	runToString(c);
+	srand(time(NULL));
+	printf("Genrating data set:\n");
+	int i,f,r,totalBad = 0,totalCreated = 0, totalAnalyzed = 0;
+
+
+	for(i = 0; i <c[0]; i++)
+	{
+		char name[128];
+		snprintf(name, sizeof(name), "ds%d.txt",i);
+		fp = fopen(name, "w");
+		r = rand() % 100;
+		if(r>=0 && r<c[2])
+		{
+			totalCreated++;
+			for(f = 0; f <c[1];f++)
+			{
+				r = rand() % 100;
+				if(r>=0 && r<c[3])
+				{
+					totalBad++;
+					fprintf(fp,"b\n");
+				}
+				else
+				{
+					fprintf(fp,"g\n");
+				}
+			}
+			printf("Create bad set batch # %4.1d, totBad = %4.d, total = %d badpct = %d\n",i,totalBad, c[1],c[3] );
+		}
+		else
+		{
+			for(f = 0; f <c[1];f++)
+			{
+
+				fprintf(fp,"g\n");
+
+			}
+		}
+		fclose(fp);
+	}
+	printf("Total bad sets = %d\n\n", totalCreated);
+
+	printf("Analyzing Data Sets\n");
+	for(i = 0; i <c[0]; i++)
+	{
+		char name[128];
+		snprintf(name, sizeof(name), "ds%d.txt",i);
+		fp = fopen(name, "r");
+		char c;
+		int count = 0, r, x = 0;
+
+		while(((c = fgetc(fp)) != EOF) && count < 50)
+		{
+			x++;
+			if((r = rand()%2000) < 30)
+			{
+				count++;
+				if(c != '\n' && c != '\r')
+				{
+					if(c == 'b')
+					{
+						printf("batch %3.i is a bad batch\n",i);
+						totalAnalyzed ++;
+						break;
+					}
+				}
+			}
+		}
+		fclose(fp) ;
+	}
+	printf("Total bad sets = %d\n\n", totalAnalyzed);
+	double b[5];
+	b[0] = 1-((double)c[3]/100);
+	b[1] = pow(b[0],c[4]),
+			b[2] = 1 - b[1];
+	b[3] = c[4];
+	b[4] = (double)totalAnalyzed/(double)totalCreated;
+
+
+
+	printf("Summary\n\nRun %i\n",run);
+	runToString(c);
+	analyzeToString(b);
+}
+
+void analyzeToString(double b[])
+{
+	printf("Base %f exponent %i\n"
+			"P(failure to detect bad items) = %f\n"
+			"P(batch is good) = %f\n"
+			"Percentage of bad batches detected = %.f%%\n\n", b[0], (int)b[3], b[1],b[2], b[4]*100);
+
+}
+
+void runToString(int c[])
+{
+	printf("Number of batches of items:                   %d\n"
+			"Number of items in each batch                 %d\n"
+			"Percentage of batches containing bad items    %d%%\n"
+			"Percentage of items that are bad in a bad set %d%%\n"
+			"Items sampled from each set                   %d\n",c[0],c[1],c[2],c[3],c[4]);
+
+
+}

@@ -1,0 +1,14 @@
+public class Grade 
+{
+	byte studentID;
+	double grade;
+	Grade()
+	{
+		this.(0,0.0);
+	}
+	Grade(byte ID, double grade1)
+	{
+		this.studentID = ID;
+		this.grade = grade1;
+	}
+}

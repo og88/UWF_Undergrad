@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <timer.h>
+
+char array[20480][4096];
+
+int main(int argc, char* argv[])
+{
+	clock_t before
+	int i;
+	for(i = 0; i < 20480; i++)
+	{
+		array[i][0] = 'a';
+		printf("%c\n",array[i][0]);
+	}
+}

@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+
+char array[20480][4096];
+int i;
+
+
+void writeRow();
+void readRow();
+void writeColumn();
+void readColumn();
+
+int main(int argc, char* argv[])
+{
+	clock_t before,after;
+	int x;
+	before = clock();
+
+	for(x = 0; x < 10; x++)
+	{
+		writeColumn();
+		writeRow();
+		readRow();
+		readColumn();
+	}
+	after = clock();
+	printf("%0.2fs\n",(double)(1* ((double)(after - before)/(double)CLOCKS_PER_SEC)));
+}
+
+void writeRow()
+{
+	for(i = 0; i < 20480; i++)
+	{
+		array[i][0] = 'a';
+	}
+}
+
+void readRow()
+{
+	for(i = 0; i < 20480; i++)
+	{
+		//char a = array[i][0];
+		asm("");
+	}
+}
+
+void writeColumn()
+{
+
+
+	for(i = 0; i < 4096; i++)
+	{
+		array[0][i] = 'a';
+	}
+}
+
+void readColumn()
+{
+
+	for(i = 0; i < 4096; i++)
+	{
+		char* a = array[0][i];
+		strcpy(a,a);
+		asm("");
+	}
+}

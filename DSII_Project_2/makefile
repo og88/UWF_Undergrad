@@ -1,0 +1,14 @@
+CFLAGS = -g -Wall -lm
+CC = gcc
+
+objects = Queue.o
+
+Queue: $(objects)
+	$(CC) -o Queue  $(objects) $(CFLAGS)
+
+
+Queue.o: Queue.c Functions.c 
+Functions.o: Functions.c Functions.h
+.PHONY : clean
+clean: 
+	rm Queue $(objects)

@@ -1,0 +1,40 @@
+#include <stdio.h>
+//#include "Functions.h"
+//#include <math.h>
+#include "Functions.c"
+
+int main(int argc, char* argv[])
+{
+	int n,
+	l,
+	u,
+	M,        //server amount
+	m;        //available
+	M = 5;
+	u=15;
+	m = M;
+
+	Customer cust;
+	float PQ[u*2];
+cust->arrivalTime = 00.00;
+
+
+
+
+	/*
+	double x = Po(2,3,2);
+	printf("%.2f\n", x);
+	x = factorial(5);
+	printf("%.2f\n", x);
+	x = pow(3,2);
+	printf("%.2f\n", x);
+	x = L(2,3,2);
+	printf("L: %.2f\n ", x);
+	x = W(2,3,2);
+	printf("W: %.3f \n", x);
+	x = Lq(2,3,2);
+	printf("Lq: %.3f\n", x);
+	x = Wq(2,3,2);
+	printf("Wq: %.4f \n", x);*/
+	return 0;
+}

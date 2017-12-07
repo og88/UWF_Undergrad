@@ -1,0 +1,212 @@
+public class Game
+{	
+	private int difficulty;
+	public UserTeam user;
+	public EnemyTeam enemy;
+	public Loot items;
+	
+/**
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
+ * @generated
+ */
+public class Game {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	private int difficulty;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	public Game() {
+		user = new UserTeam();
+		enemy = new EnemyTeam();
+		items = new Loot();
+	}
+<<<<<<< HEAD
+	
+=======
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	public int getDifficulty() {
+		// TODO implement me
+		return difficulty;
+	}
+<<<<<<< HEAD
+	
+	public void useMedipacks()
+	{
+		if(items.getMedipacks() != 0)
+		{
+			user.useMedipack(reciever);
+		}
+		
+		else
+		System.out.println("None available");
+	}
+
+=======
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	public void setDifficulty(int difficulty) {
+		// TODO implement me
+	}
+
+<<<<<<< HEAD
+	
+=======
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	public void newMap() {
+		// TODO implement me
+	}
+
+<<<<<<< HEAD
+	public void newStory() {
+		// TODO implement me
+	}
+	
+=======
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void newStory() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	public void newLoot() {
+		// TODO implement me
+	}
+
+<<<<<<< HEAD
+	
+	public void createNewTeams() {
+		// TODO implement me
+	}
+	
+	private void addUserTeam() {
+		// TODO implement me
+	}
+	
+=======
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void createNewTeams() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	private void addUserTeam() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	private void addEnemyTeam() {
+		// TODO implement me
+	}
+
+<<<<<<< HEAD
+	
+=======
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	public void newRound() {
+		// TODO implement me
+	}
+
+<<<<<<< HEAD
+	
+=======
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	public static void loadGame() {
+		// TODO implement me
+		System.out.println("Load Game");
+	}
+
+<<<<<<< HEAD
+	
+=======
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+>>>>>>> 7eee3434855139e6eb4be66fd308aaddc7e957c1
+	public void exitGame() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void combat() {
+		// TODO implement me
+		
+		// check combat stats
+	}
+}

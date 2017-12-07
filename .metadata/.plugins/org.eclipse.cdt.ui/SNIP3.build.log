@@ -1,0 +1,8 @@
+21:48:13 **** Incremental Build of configuration Debug for project SNIP3 ****
+Info: Internal Builder is used for build
+gcc -o SNIP3.exe matrix.o 
+c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../../mingw32/bin/ld.exe: cannot open output file SNIP3.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+
+21:48:13 Build Finished (took 156ms)
+

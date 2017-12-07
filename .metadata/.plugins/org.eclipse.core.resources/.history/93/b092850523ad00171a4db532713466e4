@@ -1,0 +1,16 @@
+#include <stdio.h>
+//#include <math.h>
+#include "Functions.h"
+
+struct Customer
+{
+	float arrivalTime;
+	float StartOfService;
+	float departureTime;
+	struct Customer *nextcust; //Links to the next customer in the FIFO queue
+	int arrival;               //arrival 1, departure 0
+};
+
+Customer *startFIFO, endFIFO;
+
+ProcessNextEvent()

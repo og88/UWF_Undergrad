@@ -1,0 +1,181 @@
+import javafx.scene.control.Label;
+import java.util.concurrent.TimeUnit;
+import java.util.zip.Inflater;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.scene.Group;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+
+
+public class JavaLeagueTactics
+{
+	void main()
+	{
+		SplashView.main();
+		Menu();
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 */
+	public JavaLeagueTactics(){
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+
+	public void Menu() {
+		Menu.launch();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+
+	public static void PlayerTurn(final Scene scene, final Button btn, final Button btn0, final Label lbl, final Round r) {
+		EventHandler<KeyEvent> j = new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				KeyCode k = event.getCode();
+				switch (k) {
+				case UP:   btn.setLayoutY(btn.getLayoutY() - 10); scene.setOnKeyPressed(null); break;
+				case DOWN: btn.setLayoutY(btn.getLayoutY() + 10); scene.setOnKeyPressed(null); break;
+				case LEFT: btn.setLayoutX(btn.getLayoutX() - 10); scene.setOnKeyPressed(null); break;
+				case RIGHT:btn.setLayoutX(btn.getLayoutX() + 10); scene.setOnKeyPressed(null); break;
+				case SHIFT:btn.setLayoutX(150); btn.setLayoutY(150); scene.setOnKeyPressed(null); break;
+				}
+				if((((btn.getLayoutX() - btn0.getLayoutX()) < 70) && ((btn.getLayoutX() - btn0.getLayoutX()) > -70))
+						&& (((btn.getLayoutY() - btn0.getLayoutY()) < 40) && ((btn.getLayoutY() - btn0.getLayoutY()) > -40)))
+				{
+					final int h = Integer.parseInt(lbl.getText()) - 1;
+					lbl.setText(Integer.toString(h));	
+				}
+			}
+		};
+		scene.setOnKeyPressed(j);
+	}
+	public static void Game(final Stage stage, final Button btn, final Button btn0) throws InterruptedException
+	{
+		stage.setTitle("Game");	
+		final Label lbl = new Label();
+		final Label lbl1 = new Label();
+		int hp = 100;
+
+		lbl.setText(Integer.toString(hp));
+		lbl.setLayoutX(10);
+		lbl.setLayoutY(10);
+		Group root = new Group();
+
+		btn.setLayoutX(115);
+		btn.setLayoutY(50);
+
+		btn0.setLayoutX(350);
+		btn0.setLayoutY(100);
+
+		root.getChildren().add(btn);
+		root.getChildren().add(btn0);
+		root.getChildren().add(lbl);
+		root.getChildren().add(lbl1);
+		final Round r = new Round();
+		Scene scene = new Scene(root, 300, 250);
+
+		btn.setText("Player");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+			}
+		});
+
+		btn0.setText("Enemy");
+
+		stage.setScene(scene);
+		stage.show();		
+		for(int i = 0; i < 10; i++)
+		{
+			if(r.getUserTurns() == true)
+			{
+				PlayerTurn(scene, btn, btn0, lbl, r);				
+				System.out.println(r.getEnemyTurns());
+				System.out.println(r.getUserTurns());
+				r.setEnemyTurns(true);
+				r.setUserTurns(false);
+			}
+			else 
+			{
+				r.setEnemyTurns(false);
+				r.setUserTurns(true);	
+			}
+		}
+
+	}
+	public static void newGame(final Stage stage, final Button btn, final Button btn0, final Button btn1)
+	{
+		stage.setTitle("New Game");	
+
+		btn.setText("Easy");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					Game(stage, btn, btn0);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+
+		btn0.setText("Medium");
+		btn0.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+			}
+		});
+
+		btn1.setText("Hard");
+		btn1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+			}
+		});
+
+		Group root = new Group();
+		btn1.setLayoutX(100);
+		root.getChildren().add(btn);
+		root.getChildren().add(btn0);
+		root.getChildren().add(btn1);
+		stage.setScene(new Scene(root, 300, 250));
+		stage.show();
+	}
+
+}

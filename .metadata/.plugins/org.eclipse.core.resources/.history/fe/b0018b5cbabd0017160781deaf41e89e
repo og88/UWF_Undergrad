@@ -1,0 +1,19 @@
+CFLAGS = -g -Wall  
+CC = gcc
+CC2 = gcc
+
+objects = mt-collatz.o 
+
+mt-collatz: $(objects)
+	$(CC) -pthread -o mt-collatz $(objects)
+	
+Collatz_computaions: $(objects)
+	$(CC2) -o Collatz_computaions $(objects)
+
+mt-collatz.o: mt-collatz.c
+Collatz_computations.c.o: Collatz_computaions.c
+
+.PHONY : clean
+clean: 
+	rm mt-collatz $(objects)
+	rm Collatz_computations $(objects)

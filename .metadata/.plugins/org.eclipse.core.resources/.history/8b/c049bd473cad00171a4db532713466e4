@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+#include "Functions.h"
+
+float GetNextRandomeInterval(float avg);
+
+struct Customer
+{
+	float arrivalTime;         //holds the arrival time
+	float StartOfService;      //holds the start of service time
+	float departureTime;       //holds the departure time
+	struct Customer *nextcust; //Links to the next customer in the FIFO queue
+	int arrival;               //arrival 1, departure 0
+};
+
+struct Customer *startFIFO =  malloc(sizeof(struct Customer)), endFIFO =  malloc(sizeof(struct Customer));
+

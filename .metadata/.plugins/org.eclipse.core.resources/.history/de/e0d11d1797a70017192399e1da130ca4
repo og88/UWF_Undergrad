@@ -1,0 +1,16 @@
+total 47379
+drwxrwxrwx 0 root root  4096 Sep 25 22:12 Debug
+-rwxrwxrwx 1 root root   189 Sep 30 19:28 makefile
+-rwxrwxrwx 1 root root 17400 Oct  2 12:07 myShell
+-rwxrwxrwx 1 root root  4719 Oct  2 12:07 myShell.c
+-rwxrwxrwx 1 root root 12632 Oct  2 12:07 myShell.o
+-rwxrwxrwx 1 root root   108 Sep 30 20:11 output
+-rwxrwxrwx 1 root root     4 Sep 30 20:16 output.txt
+-rwxrwxrwx 1 root root  9176 Sep 30 16:21 Parse
+-rwxrwxrwx 1 root root   397 Sep 30 19:14 Parse.c
+-rwxrwxrwx 1 root root  3138 Oct  1 19:41 Parse.h
+-rwxrwxrwx 1 root root  9104 Sep 30 18:49 Parse.o
+-rwxrwxrwx 1 root root  8760 Sep 30 17:35 slow
+-rwxrwxrwx 1 root root   219 Sep 30 17:34 slow.c
+drwxrwxrwx 0 root root  4096 Sep 26 18:22 Test
+-rwxrwxrwx 1 root root     0 Oct  2 12:07 testfile.txt

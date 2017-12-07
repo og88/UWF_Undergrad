@@ -1,0 +1,90 @@
+#include <stdio.h>
+//#include "Functions.h"
+#include <math.h>
+#include "Functions.c"
+void ProcessNextEvent(struct Customer *cust, struct FIFO *queue);
+float GetNextRandomeInterval(float avg);
+struct Customer *Pq[200];
+
+int n,
+i = 0,
+l,
+u,
+M,        //server amount
+m;        //available
+
+int main(int argc, char* argv[])
+{
+
+	n = 15;
+	l = 3;
+	u = 2;
+	M = 5;
+	m = M;
+
+	struct FIFO *FIFOqueue;
+	FIFOqueue = malloc(sizeof(struct FIFO));
+	struct Customer *cust;
+	cust = malloc(sizeof(struct Customer));
+	cust->arrivalTime = 00.00;
+		cust->arrival = 1;
+		Pq[0] = cust;
+	int i = 1;
+while((i < n) && (i < 200));
+	{
+	cust->arrivalTime = 00.00;
+	cust->arrival = 1;
+	Pq[i] = cust;
+}
+	printf("%f\n",cust->arrivalTime);
+	ProcessNextEvent(cust, FIFOqueue);
+	printf("%f\n",cust->departureTime);
+
+
+	return 0;
+}
+
+
+void ProcessNextEvent(struct Customer *cust, struct FIFO *queue)
+{
+	if(cust->arrival == 1)
+	{
+		if(m > 0)
+		{
+			m--;
+			cust->StartOfService = cust->arrivalTime;
+			cust->departureTime = cust->arrivalTime + GetNextRandomeInterval(u);
+			//InsertPQ
+		}
+		else
+		{
+			if(queue->start == NULL)
+			{
+				queue->start = cust;
+			}
+			else
+			{
+				queue->end->nextcust = cust;
+				queue->end = cust;
+			}
+		}
+	}
+	else
+	{
+		m++;
+		if(queue->start != NULL)
+		{
+
+		}
+
+	}
+}
+
+float GetNextRandomeInterval(float avg)
+{
+	float f = ((float)rand()/(float)RAND_MAX);
+	printf("%f\n",f);
+	float intervalTime = -1.0*(1.0/avg)*log(f);
+	printf("%f\n", intervalTime);
+	return intervalTime;
+}

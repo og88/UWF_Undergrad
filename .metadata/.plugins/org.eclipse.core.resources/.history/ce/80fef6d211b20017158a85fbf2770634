@@ -1,0 +1,6 @@
+import java.util.*;
+public class MyMathClassTest
+{
+ArrayList<Integer> I = new ArrayList<Integer>();
+I.add(1);
+}

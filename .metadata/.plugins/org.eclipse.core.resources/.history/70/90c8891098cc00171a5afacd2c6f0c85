@@ -1,0 +1,105 @@
+
+public class Food implements CarbonFootprint{
+	double consumption, EF;
+	void beef()
+	{
+		EF = 0.77;
+	}
+
+	public double getConsumption() {
+		return consumption;
+	}
+
+	public void setConsumption(double consumption) {
+		this.consumption = consumption;
+	}
+
+	public double getEF() {
+		return EF;
+	}
+
+	public void setEF(char x) {
+		switch(x) 
+		{
+		case 'p':
+		case 'P':
+			Chicken();
+			break;
+		case 'd':
+		case 'D': 
+			Dairy();
+			break;
+		case 'c':
+		case 'C':
+			Cereals();
+			break;
+		case 'v':
+		case 'V':
+			Vegetables();
+			break;
+		case 'f':
+		case 'F':
+			Fruits();
+			break;
+		case 'o':
+		case 'O':
+			Oils();
+			break;
+		case 's':
+		case 'S': 
+			Snacks();
+			break;
+		case 'r':
+		case 'R':
+			Drinks();
+			break;
+
+
+		}
+	}
+
+	void Chicken()
+	{
+		EF = 0.34;
+	}
+
+	void Dairy()
+	{
+		EF = 0.46;
+	}
+
+	void Cereals()
+	{
+		EF = 0.30;
+	}
+
+	void Vegetables()
+	{
+		EF = 0.12;
+	}
+
+	void Fruits()
+	{
+		EF = 0.15;
+	}
+
+	void Oils()
+	{
+		EF = 0.18;
+	}
+
+	void Snacks()
+	{
+		EF = 0.06;
+	}
+
+	void Drinks()
+	{
+		EF = 0.14;
+	}
+	@Override
+	public double getCarbonFootprint() {
+		return consumption * 365 * EF;
+	}
+
+}

@@ -1,0 +1,15 @@
+Debug
+makefile
+myShell
+myShell.c
+myShell.o
+output
+output.txt
+Parse
+Parse.c
+Parse.h
+Parse.o
+slow
+slow.c
+Test
+/mnt/c/Users/omarg/eclipse-workspace/Parse

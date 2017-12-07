@@ -1,0 +1,54 @@
+
+public class Food implements CarbonFootprint{
+	double EF;
+	void beef()
+	{
+		EF = 0.77;
+	}
+	
+	void Chicken()
+	{
+		EF = 0.34;
+	}
+	
+	void Dairy()
+	{
+		EF = 0.46;
+	}
+	
+	void Cereals()
+	{
+		EF = 0.30;
+	}
+	
+	void Vegetables()
+	{
+		EF = 0.12
+	}
+	
+	void Chicken()
+	{
+		
+	}
+	
+	void Chicken()
+	{
+		
+	}
+	
+	void Chicken()
+	{
+		
+	}
+	
+	void Chicken()
+	{
+		
+	}
+	@Override
+	public double getCarbonFootprint() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

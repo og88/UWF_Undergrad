@@ -1,0 +1,126 @@
+package model;
+
+public class Soldier implements Character
+{
+
+	private String name;
+	private int strength;
+	private int intelligence;
+	private int defense;
+	private int energy;
+	private int exp;
+	private int trainedLevel;
+	private int maxHealth = 10;
+	private int currentHealth;
+	
+	private static int nextTagNum = 0;
+	
+	public Soldier()
+	{
+		setName();
+		setStrength(2);
+		setIntelligence(1);
+		setDefense(2);
+		setEnergy(10);
+		setExp(0);
+		setHealth(10);
+		setTrainedLevel(1);
+	}
+	
+	public void setName()
+	{
+		this.name = "soldier" + nextTagNum++;
+	}
+	
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public int getStrength() {
+		return this.strength;
+	}
+
+	@Override
+	public void setStrength(int strength) {
+		this.strength = strength;		
+	}
+
+	@Override
+	public int getIntelligence() {
+		return this.intelligence;
+	}
+
+	@Override
+	public void setIntelligence(int intelligence) {
+		this.intelligence = intelligence;
+		
+	}
+
+	@Override
+	public int getDefense() {
+		return this.defense;
+	}
+
+	@Override
+	public void setDefense(int defense) {
+		this.defense = defense;
+		
+	}
+
+	@Override
+	public int getEnergy() {
+		return this.energy;
+	}
+
+	@Override
+	public void setEnergy(int energy) {
+		this.energy = energy;
+	}
+
+	@Override
+	public int getExp() {
+		return this.exp;
+	}
+
+	@Override
+	public void setExp(int exp) {
+		this.exp = exp;
+	}
+
+	@Override
+	public int getHealth() {
+		return this.currentHealth;
+	}
+
+	@Override
+	public void setHealth(int health) {
+		if(health < this.maxHealth)
+			this.currentHealth = health;
+		
+		else
+			this.currentHealth = this.maxHealth;
+	}
+
+	@Override
+	public int getTrainedLevel() {
+		return this.trainedLevel;
+	}
+
+	@Override
+	public void setTrainedLevel(int tL) {
+		this.trainedLevel = tL;
+	}
+
+	@Override
+	public void levelUp() {
+		this.maxHealth++;
+		this.strength++;
+		this.defense++;
+		this.trainedLevel++;
+	}
+
+
+}
+

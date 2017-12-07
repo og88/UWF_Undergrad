@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\omarg\OneDrive\Documents\GitHub\SEI_Evening_Group6\JavaLeaugeTacticsRPG\JavaLeagueTacticsRPG"/>
+		<item value="C:\Users\omarg\OneDrive\Documents\GitHub\UWF_Undergrad\ch19\JavaDB"/>
+		<item value="C:\Users\omarg\OneDrive\Documents\GitHub\UWF_Undergrad\JDBCTutorial"/>
+		<item value="C:\Users\omarg\OneDrive\Documents\GitHub\SEI_Evening_Group6"/>
+		<item value="C:\Users\omarg\eclipse-workspace\JavaLeagueTacticsRPG"/>
+		<item value="C:\Users\omarg\eclipse-workspace\DSII_Project1"/>
+		<item value="C:\Users\omarg\eclipse-workspace\SNI_Project_1"/>
+		<item value="C:\Users\omarg\eclipse-workspace\lab3debugprog"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\omarg\eclipse-workspace\DSII_Project1"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
+		<item value="C:\MinGW\bin" key="OUTSIDE_LOCATION"/>
+	</section>
+	<section name="DialogMarkerPropertiesDialogSettings">
+		<item value="949" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="351" key="DIALOG_HEIGHT"/>
+		<item value="14" key="DIALOG_X_ORIGIN"/>
+		<item value="285" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="TaskPropertiesDialogSettings">
+		<item value="949" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="351" key="DIALOG_HEIGHT"/>
+		<item value="14" key="DIALOG_X_ORIGIN"/>
+		<item value="285" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.cdt.ui.wizards.NewCWizard2" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.cdt.ui.newCWizards"/>
+			<item value="org.eclipse.linuxtools.rpm.ui.editor"/>
+			<item value="org.eclipse.linuxtools.tmf.ui.wizards.new"/>
+			<item value="org.eclipse.ui.Examples"/>
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="138" key="DIALOG_X_ORIGIN"/>
+		<item value="269" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item value="false" key="FilterByLocation"/>
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/JaneQUser/JanesFolder/JanesFile.txt&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
+		<item value="false" key="ShowDerived"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="188" key="DIALOG_X_ORIGIN"/>
+			<item value="186" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

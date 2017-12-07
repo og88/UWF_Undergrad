@@ -1,0 +1,50 @@
+//package model;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * <!--  end-user-doc  -->
+ * @generated
+ */
+
+public class JavaLeagueTactics
+{
+	int main()
+	{
+		Menu();
+		return 0;
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 */
+	public JavaLeagueTactics(){
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void Menu() {
+		// TODO implement me
+		Menu.launch(args);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	
+	public void Game() {
+		// TODO implement me
+	}
+
+}
+

@@ -1,0 +1,71 @@
+Omar Garcia 
+Data Structures and Algorithms II
+Project 4
+Functional Decomposition
+
+Files and Functions in the program
+
+/*Uses the Monte Carlo method to simulate results. 
+*These results are then compared to the expected outcome
+*to access the error percentage caused by random numbers*/
+MonteCarlo.c
+
+	/*Write and open function ar used to create a default binary file.*/
+	
+	void write();
+	void openw();
+
+
+	/*Opens user binary file to retrieve information from a binary file*/
+	
+	void open();
+
+	/*Closes the user binary file*/
+	
+	void close();
+
+	/*Retrieves and sets user defined variable. It then passes the variables into the calculate function*/
+	
+	void read();
+
+	/*Calculates The expected value aswell as the simulated value. The program also calculates the error percentage*/
+	
+	void calculate(int categories, int frequences,int events, int simulation);
+
+
+/*Creates a Monte Carlo algorithm to test whether a
+*batch of chips are faulty. The results are compared to the actual 
+*amount of faulty batches to determine the error caused
+*by random testing*/
+MonteCarloAlgorithm.c
+	
+	int run=0; //The number of runs performed
+
+	/*Calculates the Monte Carlo Calculation
+	 * It first creates the actual database, recording information as needed.
+	 * It then runs a simulation by randomly selecting chips to test
+	 * It then passes the information through the appropriate method to print the information for the user*/
+	
+	void Calculate(int c[]);
+
+	/*Takes in an int of the information provided by the user
+	 * Prints out the information in a nicely formated paragraph*/
+	
+	void runToString(int c[]);
+
+	/*Takes in an array of double containing the information
+	 * Base, Exponent, Probability of failure to detect bad chips, Probability of good chips, and Percent of bad chips found
+	 * Prints a nicely formated summary of the analyzed run*/
+	
+	void analyzeToString(double c[]);
+
+	/*Begins the program.
+	 * It reads the configuration from the required user document
+	 * If the files are not found, the program will warn the user than quite.
+	 * If the files are found, the program executes.*/
+
+	void launch();
+
+	/*Write four default configuration files*/
+
+	void write();

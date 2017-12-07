@@ -1,0 +1,8 @@
+
+public class MyMathClassTest
+{
+	double average()
+	{
+		return 4.00;
+	}
+}

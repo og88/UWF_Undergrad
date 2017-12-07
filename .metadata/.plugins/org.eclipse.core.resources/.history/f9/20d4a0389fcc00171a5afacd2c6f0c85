@@ -1,0 +1,73 @@
+
+public class Auto implements CarbonFootprint{
+	double MPG, DE, IDE, CE, TE;
+
+
+
+	public double getMPG() {
+		return MPG;
+	}
+
+
+
+	public void setMPG(double mPG) {
+		MPG = mPG;
+	}
+
+
+
+	public double getDE() {
+		return DE;
+	}
+
+
+
+	public void setDE(double dE) {
+		DE = dE;
+	}
+
+
+
+	public double getIDE() {
+		return IDE;
+	}
+
+
+
+	public void setIDE(double iDE) {
+		IDE = iDE;
+	}
+
+
+
+	public double getCE() {
+		return CE;
+	}
+
+
+
+	public void setCE(double cE) {
+		CE = cE;
+	}
+
+
+
+	public double getTE() {
+		return TE;
+	}
+
+
+
+	public void setTE(double tE) {
+		TE = tE;
+	}
+
+
+
+	@Override
+	public double getCarbonFootprint() {
+		TE = DE + IDE + CE;
+		return MPG*TE;
+	}
+
+}

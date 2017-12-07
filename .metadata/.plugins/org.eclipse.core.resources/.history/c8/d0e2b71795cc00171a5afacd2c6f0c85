@@ -1,0 +1,17 @@
+
+public class Auto implements CarbonFootprint{
+	double MPG, DE, IDE, CE, TE;
+	public double getMPG() {
+		return MPG;
+	}
+	public void setMPG(double mPG) {
+		MPG = mPG;
+	}
+
+	@Override
+	public double getCarbonFootprint() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

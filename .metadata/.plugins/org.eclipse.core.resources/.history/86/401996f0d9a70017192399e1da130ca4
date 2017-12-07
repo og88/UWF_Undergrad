@@ -1,0 +1,73 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+#define PARAM_LENGTH 256  //For this project, I don't expect commands or names to be over 50 characters long.
+#define MAXARGS 32
+
+char* token;
+//char* s = " \t\n\0";      //@s is used by strtok to split the string up. strtok looks for s and splits the char before
+//and after s into different array locations in token.
+char input[PARAM_LENGTH];
+
+
+typedef struct PARAM
+{
+	char *inputRedirect;           /* file name or NULL */
+	char *outputRedirect;          /* file name or NULL */
+	int  background;               /* either 0 (false) or 1 (true)*/
+	int  argumentCount;            /* number of tokens in argument vector */
+	char *argumentVector[MAXARGS]; /* array of strings */
+}Param_t;
+
+//Param_t* parseTokens();
+
+Param_t* parseTokens()
+{
+
+	printf("$ ");                          //input line. reprints after each action
+
+	fgets(input, sizeof(input), stdin);    //Retrieves user input and stores into input.
+	token = strtok(input, " \t\n\0");              //Tokenizes input. Seperates by what is  in s.
+	Param_t* p1 = malloc(sizeof(Param_t)); //Assigns apropriate size for p1
+	int i = 0;                             //i keeps count of the number of parameters inserted
+
+	while(token != NULL)
+	{
+
+		if(token[0] == '<')
+		{
+			p1->inputRedirect = token + 1;      //adds the user requested input directpry
+			i++;
+		}
+		if(token[0] == '>')
+		{
+			p1->outputRedirect = token + 1;     //Adds the user requested output directory
+			i++;
+		}
+		if(token[0] == '&')
+		{
+			p1->background = 1;
+			token = strtok(NULL, " \t\n\0");           //Continues to add phrases until it reaches the end of the sentence
+		}
+		else
+		{
+			p1->argumentVector[i] = token;
+			i++;
+
+			token = strtok(NULL, " \t\n\0");           //Continues to add phrases until it reaches the end of the sentence
+		}
+
+
+	}
+
+	p1->argumentCount = i;                    //Adds the number of arguments into p1
+	return p1;
+
+}
+
+

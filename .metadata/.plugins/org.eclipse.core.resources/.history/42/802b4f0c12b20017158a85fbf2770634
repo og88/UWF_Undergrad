@@ -1,0 +1,12 @@
+import java.util.*;
+public class MyMathClassTest
+{
+	public static void main(String arg[])
+	{
+		ArrayList<Integer> I = new ArrayList<Integer>();
+		I.add(1);
+		I.add(5);
+		I.add(10);
+		average(I);
+	}
+}

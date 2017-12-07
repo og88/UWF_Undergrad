@@ -1,0 +1,21 @@
+Debug
+makefile
+myShell
+myShell.c
+myShell.o
+output
+output.txt
+Parse.h
+Parse.o
+slow
+slow.c
+Test
+testfile
+testfile.txt
+test.h
+/mnt/c/Users/omarg/eclipse-workspace/Parse
+$ $ $ Error: invalid command
+$ /mnt/c/Users/omarg/eclipse-workspace/Parse
+$ $ $ Error: invalid command
+$ Error: invalid command
+$ $ 

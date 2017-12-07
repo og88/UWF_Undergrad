@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include "Parse.h"
+
+
+/*#define MAX_PARAMS 20    //token can hold as many parameters as possible. For this project params will need to hold a max of 3.
+#define PARAM_LENGTH 256  //For this project, I don't expect commands or names to be over 50 characters long.
+#define MAXARGS 32*/
+
+
+
+int main(void)
+{
+printf("This program will take in a user input and display it each word in a new line.\n");
+Param_t* test = malloc(sizeof(Param_t));
+test = param(0);
+int x;
+for(x = 0; x < test->argumentCount; x++)
+{
+printf("%s\n", test->argumentVector[x]);
+}
+	return 0;
+}
+
+
+

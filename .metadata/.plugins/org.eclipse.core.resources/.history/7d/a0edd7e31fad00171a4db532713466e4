@@ -1,0 +1,53 @@
+
+import java.util.Scanner;
+
+public class UserTest 
+{
+	public static void main(String[] args)
+	{
+		int check = 0;
+		User usr = new User();
+		Scanner scr = new Scanner(System.in);
+		
+		System.out.println("Enter full name");
+		String name = scr.nextLine();
+		usr.setName(name);
+		System.out.println("Enter age int number");
+		String age = scr.nextLine();
+		usr.setAge(Integer.parseInt(age));
+
+		while(check == 0)
+		{
+			System.out.println("Enter full email");
+			String Email = scr.nextLine();
+			try
+			{
+				check = usr.setEmail(Email);
+				
+			}catch(MalformedEmailAddress e)
+			{
+				check = 0;
+				System.out.println(e.getError());
+			}
+		}
+
+		System.out.println("Enter salary");
+		String salary = scr.nextLine();
+
+		while(check == 0)
+		{
+			if(usr.setSalary(salary))
+			{
+				check = 1;		}
+			else
+			{
+				check = 0;
+			}
+		}
+		scr.close();
+		usr.setHackerName();
+
+
+	}
+
+}

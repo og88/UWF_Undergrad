@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;DSP4/MonteCarloAldgorithm.c&apos; to &apos;MonteCarloAlgorithm.c&apos;" description="Rename resource &apos;MonteCarloAldgorithm.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="MonteCarloAldgorithm.c" name="MonteCarloAlgorithm.c" stamp="1510676304368" updateReferences="true"/>
+</session>

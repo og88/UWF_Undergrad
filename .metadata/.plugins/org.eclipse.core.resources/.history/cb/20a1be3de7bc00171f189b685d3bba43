@@ -1,0 +1,107 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Game 
+{
+	public static void main(String[] args) throws IOException
+	{
+		Trivia_Game game = new Trivia_Game();
+		Scanner in = new Scanner(System.in);
+		System.out.println("Welcome, Please make a selection\n"
+				+ "1.) Returning Player\n2.)New Player");
+		String response = in.nextLine();
+		Player p = new Player();
+		playerData play = new playerData();
+
+		if(response.equals("1"))
+		{
+			while(!response.equals("2") || !response.equals("3"))
+			{
+				System.out.println("What is your name?");
+				response = in.nextLine();
+				File check = new File(response+".bat");
+				if(!check.exists())
+				{
+					System.out.println("Sorry user not found\nWould you like to try again?");
+					response = in.nextLine();
+					if(response.equals("y") || response.equals("Y"))
+					{
+
+					}
+					else
+					{
+						response = "2";
+					}
+				}
+				else
+				{
+					play.open(response+".bat");
+					p = play.read();
+					response = "3";
+					Game(p);
+				}
+			}
+		}
+		else if (response.equals("2"))
+		{
+			System.out.println("What is your name?");
+			String name = in.nextLine();
+			System.out.println("Please create a nick name.");
+			String nickName = in.nextLine();
+			p.setName(name);
+			p.setNickName(nickName);
+			p.setTotalScore(0);
+			play.open(name+".bat");
+			play.write(p);
+			Game(p);
+		}
+
+
+	}
+
+
+
+	private static void Game(Player p, playerData play) throws IOException
+	{
+		Trivia_Game game = new Trivia_Game();
+		Scanner in = new Scanner(System.in);
+		try
+		{
+			game.open("Questions.bat");
+			Question q = new Question();
+			Random rand = new Random();
+			int done = 0;
+			while(done != 1)
+			{
+				for(int i = 0; i <5;i++)
+				{
+					int position = game.find(rand.nextInt(game.size()));
+					q = game.read(position);
+					System.out.println(q.getQuestion());
+					String answer = in.nextLine();
+					if(answer.equals(q.getAnswer()))
+					{
+						System.out.println("Correct!");
+						p.setTotalScore((p.getTotalScore() + q.getValue()));
+						System.out.println("Your total score is: " + p.getTotalScore());
+						play.write(p);
+					}
+				}
+				System.out.println("Would you like to Continue? (y/n)");
+				String response = in.nextLine();
+				if(response.equals("n") || response.equals("N"))
+				{
+					done = 1;
+				}
+
+			}
+			//in.close();
+		}
+		finally
+		{
+
+		}
+	}
+}

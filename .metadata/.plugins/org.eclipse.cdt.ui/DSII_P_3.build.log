@@ -1,0 +1,60 @@
+20:17:19 **** Incremental Build of configuration Debug for project DSII_P_3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o BruteForce.o "..\\BruteForce.c" 
+In file included from ..\BruteForce.c:7:0:
+..\TravelFunc.c:22:1: error: unknown type name 'clock_t'
+ clock_t start_t, end_t, total_t;
+ ^~~~~~~
+..\TravelFunc.c:32:20: error: 'INT_MAX' undeclared here (not in a function)
+ int elitesVal[] = {INT_MAX,INT_MAX};
+                    ^~~~~~~
+..\TravelFunc.c: In function 'printCities':
+..\TravelFunc.c:86:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   printf("City %i, has been visited? %i\n",cities[i].name, cities[i].visit);
+   ^~~~~~
+..\TravelFunc.c:86:3: warning: incompatible implicit declaration of built-in function 'printf'
+..\TravelFunc.c:86:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+..\TravelFunc.c: In function 'printTable':
+..\TravelFunc.c:98:4: warning: incompatible implicit declaration of built-in function 'printf'
+    printf("%i ", weights[i][j]);
+    ^~~~~~
+..\TravelFunc.c:98:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+..\TravelFunc.c:100:3: warning: incompatible implicit declaration of built-in function 'printf'
+   printf("\n");
+   ^~~~~~
+..\TravelFunc.c:100:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+..\TravelFunc.c: In function 'generateTable':
+..\TravelFunc.c:106:2: error: unknown type name 'FILE'
+  FILE *file;
+  ^~~~
+..\TravelFunc.c:107:9: warning: implicit declaration of function 'fopen' [-Wimplicit-function-declaration]
+  file = fopen("Weights.txt", "r");
+         ^~~~~
+..\TravelFunc.c:107:7: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+  file = fopen("Weights.txt", "r");
+       ^
+..\TravelFunc.c:123:5: warning: implicit declaration of function 'fgets' [-Wimplicit-function-declaration]
+     fgets(line, sizeof(line), file);
+     ^~~~~
+..\TravelFunc.c:124:13: warning: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+     stuff = atoi(line);
+             ^~~~
+..\TravelFunc.c:129:2: warning: implicit declaration of function 'fclose' [-Wimplicit-function-declaration]
+  fclose(file);
+  ^~~~~~
+..\BruteForce.c: In function 'bruteforce':
+..\BruteForce.c:20:2: warning: incompatible implicit declaration of built-in function 'printf'
+  printf("Count = %i\n",count);
+  ^~~~~~
+..\BruteForce.c:20:2: note: include '<stdio.h>' or provide a declaration of 'printf'
+..\BruteForce.c:24:15: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+  bruteOptimal = INT_MAX;
+               ^
+..\BruteForce.c: In function 'printBrutePath':
+..\BruteForce.c:71:2: warning: incompatible implicit declaration of built-in function 'printf'
+  printf("\nBrute Force optimal path %i\n", bruteOptimal);
+  ^~~~~~
+..\BruteForce.c:71:2: note: include '<stdio.h>' or provide a declaration of 'printf'
+
+20:17:20 Build Finished (took 893ms)
+

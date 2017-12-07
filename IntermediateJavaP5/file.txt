@@ -1,0 +1,39 @@
+a
+2008 Chevy Silverado
+25
+9000
+150000
+a
+2003 Lincoln Navigato
+30
+10000
+255000
+a
+2005 Ford Mustuange
+100
+17500
+500000
+b
+Azteca
+1000
+0.7
+b
+Olympic Stadium
+50000
+1.6
+b
+Empire State Building
+300
+0.7
+f
+f
+Apple
+260
+f
+c
+Chicken
+205
+f
+r
+Pepsi
+1234

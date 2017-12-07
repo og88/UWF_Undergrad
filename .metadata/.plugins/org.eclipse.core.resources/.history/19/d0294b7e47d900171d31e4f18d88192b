@@ -1,0 +1,183 @@
+public class Game
+{	
+	private int difficulty;
+	public UserTeam user;
+	public EnemyTeam enemy;
+	public Loot items;
+	
+/**
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
+ * @generated
+ */
+public class Game {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	private int difficulty;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+
+	public Game() {
+		user = new UserTeam();
+		enemy = new EnemyTeam();
+		items = new Loot();
+	}
+/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public int getDifficulty() {
+		// TODO implement me
+		return difficulty;
+	}
+	
+	public void useMedipacks()
+	{
+		if(items.getMedipacks() != 0)
+		{
+			user.useMedipack(reciever);
+		}
+		
+		else
+		System.out.println("None available");
+	}
+
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void setDifficulty(int difficulty) {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void newMap() {
+		// TODO implement me
+	}
+
+	public void newStory() {
+		// TODO implement me
+	}
+	
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void newStory() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void newLoot() {
+		// TODO implement me
+	}
+
+	
+	public void createNewTeams() {
+		// TODO implement me
+	}
+	
+	private void addUserTeam() {
+		// TODO implement me
+	}
+	
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void createNewTeams() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	private void addUserTeam() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	private void addEnemyTeam() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void newRound() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public static void loadGame() {
+		// TODO implement me
+		System.out.println("Load Game");
+	}
+
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void exitGame() {
+		// TODO implement me
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	public void combat() {
+		// TODO implement me
+		
+		// check combat stats
+	}
+}

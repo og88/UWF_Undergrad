@@ -1,0 +1,138 @@
+import javafx.scene.control.Label;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+/**
+ * <!-- begin-user-doc -->
+ * <!--  end-user-doc  -->
+ * @generated
+ */
+
+public class Menu extends Application {
+
+	@Override
+	public void start(Stage primaryStage) {
+
+		primaryStage.setTitle("Java League");
+		Button btn = new Button();
+		Button btn0 = new Button();
+		Button btn1 = new Button();
+		final Label lbl = new Label();
+		lbl.setLayoutX(640);        
+		lbl.setLayoutY(360);
+
+		btn.setText("New Game");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				newGame(primaryStage);
+			}
+		});
+
+		btn0.setText("Load Game");
+		btn0.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Game.loadGame();
+			}
+		});
+
+		btn1.setText("Exit");
+		btn1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				primaryStage.close();
+			}
+		});
+
+
+
+
+		Group root = new Group();
+		btn.setLayoutX(640);
+		btn.setLayoutY(260);
+
+		btn0.setLayoutX(640);
+		btn0.setLayoutY(360);
+
+		btn1.setLayoutX(640);
+		btn1.setLayoutY(460);
+
+		root.getChildren().add(btn);
+		root.getChildren().add(btn0);
+		root.getChildren().add(btn1);
+		root.getChildren().add(lbl);
+
+
+		primaryStage.setScene(new Scene(root, 1280, 720));
+		primaryStage.show();
+	}
+	
+	public static void newGame(Stage secondaryStage)
+	{
+		secondaryStage.setTitle("Java League");
+		Button btn = new Button();
+		Button btn0 = new Button();
+		Button btn1 = new Button();
+		final Label lbl = new Label();
+		lbl.setLayoutX(700);        
+		lbl.setLayoutY(640);
+
+		btn.setText("Easy");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				secondaryStage.close();
+			}
+		});
+
+		btn0.setText("Medium");
+		btn0.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				secondaryStage.close();
+			}
+		});
+
+		btn1.setText("Hard");
+		btn1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				secondaryStage.close();
+			}
+		});
+
+
+
+
+		Group root = new Group();
+		btn.setLayoutX(640);
+		btn.setLayoutY(460);
+
+		btn0.setLayoutX(640);
+		btn0.setLayoutY(360);
+
+		btn1.setLayoutX(640);
+		btn1.setLayoutY(260);
+
+		root.getChildren().add(btn);
+		root.getChildren().add(btn0);
+		root.getChildren().add(btn1);
+		root.getChildren().add(lbl);
+
+
+		secondaryStage.setScene(new Scene(root, 1280, 720));
+		secondaryStage.show();
+	}
+}

@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+int collats(int x);
+int f(int x);
+int count[1000][1];
+int y;
+int n, N;
+int main(int argc, char *argv[])
+{
+	for(y = 0; y < 1000;y++)
+	{
+		count[y][0]= y;
+		count[y][1]= 0;
+	}
+	N = 10;
+	int i;
+	for(i = 1; i <= N; i++)
+	{
+		collats(i);
+		for(y = 0; y < 1000;y++)
+		{
+			if(n == count[1][0])
+			{
+				count[1][1]++;
+			}
+		}
+		printf("%i\n", n);
+	}
+	for(y = 0; y < 1000;y++)
+		{
+			printf("<%i, %i>",count[y],count[y][1]);
+		}
+}
+
+int collats(int x)
+{
+	n = 0;
+	if(x == 0)
+	{
+		return n;
+	}
+	else
+	{
+		return f(x);
+	}
+}
+
+int f(int x)
+{
+	if((x % 2) != 0)
+	{
+		n++;
+		x = ((3*x)+1);
+	}
+	else
+	{
+		n++;
+		x = (x/2);
+	}
+	if(x == 1)
+	{
+		return x;
+	}
+	else
+	{
+		f(x);
+	}
+}

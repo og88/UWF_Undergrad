@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include "Collatz_computations.c"
+int collats(int x);
+int f(int x);
+void buildarray();
+void printarray();
+void compare(int N);
+int count[100][2];
+int n, N;
+int main(int argc, char *argv[])
+{
+	buildarray();
+	N = 10;
+	compare(N);
+	printarray();
+}
+
+

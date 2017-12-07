@@ -1,0 +1,75 @@
+import java.util.*; //For scanner
+import java.io.*;
+
+public class User
+{
+	public String username;
+	public String clearPassword;
+	public String encryptedPassword;
+	public String key;
+	
+	public void main()
+	{
+		username = "";
+		clearPassword ="";
+		encryptedPassword = "";
+		key = "";
+		
+	}
+	public void user(String username, String clearPassword, String key)
+	{
+		setUserName(username);
+	}
+	
+	public void setUserName(String username)
+	{
+		Scanner sc = new Scanner(System.in);
+		username = sc.next();
+		sc.close();
+		//return username;
+	}
+	
+	public String getUserName()
+	{
+	return username;	
+	}
+	
+	private static String encrypt(String clearPassword, String key)
+	{
+		String encryptedPassword = "";
+		int asciiPass;  //Holds the ascii value of the current character for the password string
+		int asciiKey;  //Holds the ascii value of the current character for the key string
+		int passwordLength = clearPassword.length(); //
+		int z = 0;
+		int keylength = key.length();
+		
+	
+		for (int x = 0; x < passwordLength; x++)
+		{
+			asciiPass = (int)clearPassword.charAt(x);
+			asciiKey = (int)key.charAt(z);
+			asciiPass = asciiKey + asciiPass;
+			z++;
+			
+			if (z >= keylength)
+			{
+				z = z - key.length();
+			}
+			
+			
+			char y = (char)asciiPass;
+			encryptedPassword = encryptedPassword + y;	
+			}
+		return encryptedPassword;
+	}
+	
+	
+	
+	public static void toString(String username, String encryptedPassword, String clearPassword, String key)
+	{
+	System.out.printf("%s %s %s %s", username, encryptedPassword, clearPassword, key);	
+	return;
+	}
+	
+	
+}

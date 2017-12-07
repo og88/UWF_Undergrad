@@ -1,0 +1,36 @@
+#include <stdio.h>
+//#include "Functions.h"
+//#include <math.h>
+#include "Functions.c"
+
+int main(int argc, char* argv[])
+{
+	int n,
+	l,
+	u,
+	M,        //server amount
+	m;        //available
+	M = 5;
+	u=15;
+	m = M;
+
+	Customer cust;
+	float PQ[u*2];
+	cust->arrivalTime = 00.00;
+	cust->arrival = 1;
+
+	return 0;
+}
+
+
+ProcessNextEvent(Customer cust)
+{
+	if(cust.arrival == 1)
+	{
+		if(m > 0)
+		{
+			m--;
+			cust->StartofService = cust->arrivalTime;
+		}
+	}
+}

@@ -1,0 +1,11 @@
+total 26740
+drwxrwxrwx 0 root root  4096 Sep 25 22:12 Debug
+-rwxrwxrwx 1 root root 13712 Sep 30 17:38 myShell
+-rwxrwxrwx 1 root root  2025 Sep 30 17:37 myShell.c
+-rwxrwxrwx 1 root root     0 Sep 30 17:41 output.txt
+-rwxrwxrwx 1 root root  9176 Sep 30 16:21 Parse
+-rwxrwxrwx 1 root root   664 Sep 30 16:21 Parse.c
+-rwxrwxrwx 1 root root  2472 Sep 30 17:29 Parse.h
+-rwxrwxrwx 1 root root  8760 Sep 30 17:35 slow
+-rwxrwxrwx 1 root root   219 Sep 30 17:34 slow.c
+drwxrwxrwx 0 root root  4096 Sep 26 18:22 Test

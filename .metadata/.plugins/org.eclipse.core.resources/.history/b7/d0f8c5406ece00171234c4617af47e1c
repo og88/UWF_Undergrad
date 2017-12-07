@@ -1,0 +1,209 @@
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+#include <limits.h>
+
+#define int ROW_SIZE = 4096;
+#define int COLUMN_SIZE = 20480;
+
+char array[COLUMN_SIZE][ROW_SIZE];
+int i,f;
+
+
+void writeRow();
+void readRow();
+void writeColumn();
+void readColumn();
+void pageFaultRow();
+void pageFaultColumn();
+
+int main(int argc, char* argv[])
+{
+	clock_t before,after; //creates two clock objects to be used as a timer
+	int x; 				  //Used to loop the process
+	before = clock();     //record clock before the process begins
+	for(x = 0; x < 10; x++) //loops ten times
+	{
+		writeRow();
+	}
+	after = clock(); //record the time after the processes
+	printf("Average compute time to write columns = %0.2fms\n", (double)(100* ((double)(after - before)/(double)CLOCKS_PER_SEC))); //print out the time the process took in milliseconds
+
+	before = clock();     //record clock before the process begins
+	for(x = 0; x < 10; x++) //loops ten times
+	{
+		writeColumn();
+	}
+	after = clock(); //record the time after the processes
+	printf("Average compute time to write rows = %0.2fms\n", (double)(100* ((double)(after - before)/(double)CLOCKS_PER_SEC))); //print out the time the process took in milliseconds
+
+	before = clock();     //record clock before the process begins
+	for(x = 0; x < 10; x++) //loops ten times
+	{
+		readRow();
+	}
+	after = clock(); //record the time after the processes
+	printf("Average compute time to read rows = %0.2fms\n", (double)(100* ((double)(after - before)/(double)CLOCKS_PER_SEC))); //print out the time the process took in milliseconds
+
+	before = clock();     //record clock before the process begins
+	for(x = 0; x < 10; x++) //loops ten times
+	{
+
+		readColumn();
+	}
+	after = clock(); //record the time after the processes
+	printf("Average compute time to read columns = %0.2fms\n", (double)(100* ((double)(after - before)/(double)CLOCKS_PER_SEC))); //print out the time the process took in milliseconds
+
+	pageFaultRow();
+	pageFaultColumn();
+
+	return 0;
+}
+
+/*Assigns a char to each column of the matrix*/
+void writeColumn()
+{
+	for(f = 0; f < ROW_SIZE; f++)
+	{
+		for(i = 0; i < COLUMN_SIZE; i++)
+		{
+			array[i][f] = 'a';
+		}
+	}
+}
+
+/*Writes a character to each row of the matrix*/
+void writeRow()
+{
+
+	for(f = 0; f < COLUMN_SIZE; f++)
+		{
+			for(i = 0; i < ROW_SIZE; i++)
+			{
+				array[f][i] = 'a';
+			}
+		}
+}
+
+/*Reads the elements of the columns in the matrix*/
+void readColumn()
+{
+	for(f = 0; f < 4096; f++)
+	{
+		for(i = 0; i < 20480; i++)
+		{
+			char *a = &array[i][f];
+			strcpy(a,a);
+		}
+	}
+}
+
+/*Reads a char from each row o the matrix*/
+void readRow()
+{
+	for(f = 0; f < 20480; f++)
+	{
+		for(i = 0; i < 4096; i++)
+		{
+			char* a = &array[0][f];
+			strcpy(a,a);
+		}
+	}
+}
+
+void pageFaultColumn()
+{
+	int faults = 0,count = 0, count1 = 2, copy = 0;
+	int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX}; //First two are used for the stack and program, so they are always set to 0
+	for(f = 0; f < 4096; f++) //runs through each row
+	{
+		for(i = 0; i < 20480; i++)  //Goes through each element of the row
+		{
+			count++;                //increments the count when an element is processed
+			if( count == 4096)      //Checks to see if the size of a page has been met
+			{
+				count = 0;          //defaults back to 0 to restart the count
+				int y;
+				for(y = 2; y < 10; y++)  //checks the memory frame to see if the process is already in memory
+				{
+					if(f == mem[y])
+					{
+						copy = 1;        //If process exist, copy is set to one and there is no page fault
+					}
+				}
+				if(copy != 1)           //If the process is not in memory, then there is  a page fault
+				{
+					faults++;           //Number of page faults is incremented
+					if(count1 == 10)    //If the memory is full, last read process is replaced
+					{
+						/*int z;
+						for(z = 0; z < 10;z++)   //Print out the current memory
+						{
+							printf("%i ", mem[z]);
+						}
+						printf("\n");*/
+
+						count1 = 2;     //Counter for memory is reset to 2
+						mem[count1] = f;  //frame is set to process f
+						count1++;         //count incremented
+					}
+					else
+					{
+						mem[count1] = f;  //memory frame count1 is set to f
+						count1++;         //memory count is incremented
+					}
+				}
+				copy = 0;
+			}
+		}
+	}
+	printf("Columns have %i page faults\n", faults);
+}
+void pageFaultRow()
+{
+	int faults = 0,count = 0, count1 = 2 , copy = 0;;
+	int mem[] = {0,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX};
+	for(f = 0; f < 20480; f++)
+	{
+		for(i = 0; i < 4096; i++)
+		{
+			count++;                //increments the count when an element is processed
+			if( count == 4096)      //Checks to see if the size of a page has been met
+			{
+				count = 0;          //defaults back to 0 to restart the count
+				int y;
+				for(y = 2; y < 10; y++)  //checks the memory frame to see if the process is already in memory
+				{
+					if(f == mem[y])
+					{
+						copy = 1;        //If process exist, copy is set to one and there is no page fault
+					}
+				}
+				if(copy != 1)           //If the process is not in memory, then there is  a page fault
+				{
+					faults++;           //Number of page faults is incremented
+					if(count1 == 10)    //If the memory is full, last read process is replaced
+					{
+						/*int z;
+						for(z = 0; z < 10;z++)   //Print out the current memory
+						{
+							printf("%i ", mem[z]);
+						}
+						printf("\n");*/
+
+						count1 = 2;     //Counter for memory is reset to 2
+						mem[count1] = f;  //frame is set to process f
+						count1++;         //count incremented
+					}
+					else
+					{
+						mem[count1] = f;  //memory frame count1 is set to f
+						count1++;         //memory count is incremented
+					}
+				}
+				copy = 0;
+			}
+		}
+	}
+	printf("Rows have %i page faults\n", faults);
+}

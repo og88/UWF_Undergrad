@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int collats(int x);
+int f(int x);
+int count[1000][1];
+
+int n, N;
+int main(int argc, char *argv[])
+{
+	N = 10;
+	int i;
+	for(i = 1; i <= N; i++)
+	{
+		collats(i);
+		int y;
+		for(x = 0; x < 1000;x++)
+		{
+
+		}
+		printf("%i\n", n);
+	}
+}
+
+int collats(int x)
+{
+	n = 0;
+	if(x == 0)
+	{
+		return n;
+	}
+	else
+	{
+		return f(x);
+	}
+}
+
+int f(int x)
+{
+	if((x % 2) != 0)
+	{
+		n++;
+		x = ((3*x)+1);
+	}
+	else
+	{
+		n++;
+		x = (x/2);
+	}
+	if(x == 1)
+	{
+		return x;
+	}
+	else
+	{
+		f(x);
+	}
+}

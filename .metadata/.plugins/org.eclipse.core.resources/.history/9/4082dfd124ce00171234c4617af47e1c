@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+
+char array[20480][4096];
+
+int main(int argc, char* argv[])
+{
+	clock_t before,after;
+	int i,x; char a;
+	before = clock();
+	for(x = 0; x < 10; x++)
+	{
+		for(i = 0; i < 20480; i++)
+		{
+			array[i][0] = 'a';
+		}
+
+		for(i = 0; i < 20480; i++)
+		{
+			a = array[i][0];
+			char * t;
+			//printf("%c\n", a);
+		}
+
+		for(i = 0; i < 20480; i++)
+		{
+			array[0][i] = 'a';
+		}
+
+		for(i = 0; i < 20480; i++)
+		{
+			a = array[0][i];
+		}
+	}
+	after = clock();
+	printf("%ld\n",(1000 * ((after - before)/CLOCKS_PER_SEC)));
+}

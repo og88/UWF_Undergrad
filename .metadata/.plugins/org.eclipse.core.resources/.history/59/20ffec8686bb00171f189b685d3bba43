@@ -1,0 +1,75 @@
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+
+public class Admin 
+{
+	public static void main(String[] args) throws IOException	
+	{
+		Scanner in = new Scanner(System.in);
+		int response =0; 
+		while(response != 4)
+		{
+			System.out.println("1. List all questions\n"
+					+ "2. Delete question\n"
+					+ "3. Add question\n"
+					+ "4. Quit");
+			response = in.nextInt();
+			switch(response)
+			{
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				addQuestion();
+				break;
+			case 4:
+				break;
+			default:
+				System.out.println("Invalid Response");
+			}
+		}
+		in.close();
+
+	}
+	
+	public static void listQuestion() throws IOException
+	{
+		RandomAccessFile file = new RandomAccessFile("Questions.bat", "r");
+		Trivia_Game game = new Trivia_Game();
+		game.open("Question.bat");
+		for(int i = 0; i < game.size(); i++)
+		{
+			game.file.seek(i * game.RECORD_SIZE);
+		}
+	}
+
+	public static void addQuestion() throws IOException
+	{
+		Scanner in = new Scanner(System.in);
+		Question nq = new Question();
+		Trivia_Game game = new Trivia_Game();
+		int position;
+		try
+		{
+			game.open("Questions.bat");
+			System.out.println("Please input the question");
+			nq.setQuestion(in.nextLine());
+			System.out.println("Please input the answer");
+			nq.setAnswer(in.nextLine());
+			System.out.println("Please input the value of the question (1-5)");
+			nq.setValue(in.nextInt());
+			in.close();
+			nq.setID((game.size() + 1));
+			
+			game.write(nq.getID() , nq);
+		}
+		finally
+		{
+			game.close();
+		}
+	}
+}

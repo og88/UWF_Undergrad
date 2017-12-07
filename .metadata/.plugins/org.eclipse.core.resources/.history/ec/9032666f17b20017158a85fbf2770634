@@ -1,0 +1,31 @@
+import java.util.*;
+public class MyMathClassTest
+{
+	public static void main(String arg[])
+	{
+		MyMathClass p = new MyMathClass();
+		ArrayList<Integer> I = new ArrayList<Integer>();
+		I.add(9);
+		I.add(2);
+		I.add(5);
+		I.add(4);
+		I.add(12);
+		I.add(7);
+		ArrayList<Double> D = new ArrayList<Double>();
+		D.add(2.0);
+		D.add(6.0);
+		D.add(8.0);
+		D.add(12.0);
+		D.add(2.0);
+		D.add(17.0);
+		ArrayList<Long> L = new ArrayList<Long>();
+		L.add((long) 12);
+		L.add((long) 8);
+		L.add((long) 14);
+		L.add((long) 26);
+		L.add((long) 15);
+		L.add((long) 35);
+		//System.out.printf("%.2f\n", p.average(I));
+		System.out.printf("%.2f\n", p.standardDeviation(I));
+}
+}

@@ -1,0 +1,43 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+public class main 
+{
+	 public static void main(String[] args) throws IOException {
+		 CarbonFootprint array[9];
+	        BufferedReader output = null;
+	        try {
+	            FileReader file = new FileReader("file.txt");
+	            output = new BufferedReader(file);
+	            String a;
+	            while((a = output.readLine()) != null)
+	            {
+	            	switch(a)
+	            	{
+	            	case "a": 
+	            		System.out.println(a);
+	            		Auto x = new Auto();
+	            		break;
+	            	case "b": 
+	            		System.out.println(a);
+	            		Building x1 = new Building();
+	            		break;
+	            	case "f": 
+	            		System.out.println(a);
+	            		Food x2 = new Food();
+	            		break;
+	            	}
+	            //System.out.println(a);
+	            }
+	        } catch ( IOException e ) {
+	            e.printStackTrace();
+	        } finally {
+	          if ( output != null ) {
+	            output.close();
+	          }
+	        }
+	    }
+}

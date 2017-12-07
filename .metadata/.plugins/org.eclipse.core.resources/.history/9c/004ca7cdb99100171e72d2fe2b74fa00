@@ -1,0 +1,37 @@
+import java.util.*; //For scanner
+import java.io.*;
+
+public class User
+{
+	public static void main (String[] args)
+	{
+		String username = "username";
+		String clearPassword = "password";
+		String encryptedPassword = "";
+		String key = "house";
+		
+		int asciiPass;
+		int asciiKey;
+		int passwordLength = clearPassword.length();
+	
+	for (int x = 0; x < passwordLength; x++)
+	{
+		asciiPass = (int)clearPassword.charAt(x);
+		asciiKey = (int)key.charAt(x);
+		asciiPass = asciiPass - 33;
+		asciiPass = asciiKey + asciiPass;
+		if (asciiPass > 122)
+		{
+			asciiPass = asciiPass - 89;
+		}
+		else if (asciiPass < 33)
+		{
+			asciiPass = asciiPass+33;
+		}
+		char y = (char)asciiPass;
+		encryptedPassword = encryptedPassword + y;
+		//System.out.printf("%s \n", y);
+	}
+	System.out.printf("%s", encryptedPassword);
+	}
+}

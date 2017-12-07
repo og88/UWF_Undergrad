@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <pthread.h>
+#include "Collatz_computations.c"
+
+
+int main(int argc, char *argv[])
+{
+	int N;
+	buildarray();
+	N = 100;
+	compare(N);
+	printarray();
+}
+
+

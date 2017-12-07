@@ -1,0 +1,146 @@
+package model;
+
+import java.util.ArrayList;
+
+
+public class UserTeam
+{
+	
+	
+	private String name;
+	private ArrayList<Character> characterList;
+	private boolean onBase;	
+	private boolean engaged;
+	private boolean rallyPosition;
+	private static int MEDIPACK = 4;
+	private Round turn = new Round();
+	
+	private static int nextAvailable = 0;
+	public UserTeam() {
+		characterList = new ArrayList<Character>();
+	
+		
+	}
+
+	
+	public void addCharacter(Character add) {
+		
+		
+		characterList.add(nextAvailable++, add);
+	}
+
+	
+	public void subtractCharacter(Character remove) {
+		characterList.remove(remove);
+		nextAvailable--;
+	}
+	
+	public void attack() {
+		for(int i = 0; i < characterList.size(); i ++)
+		{
+			
+		}
+	}
+
+	
+	public void flee() {
+		// TODO implement me
+	}
+
+	
+	public void detach() {
+		// TODO implement me
+	}
+
+
+	
+	public void rally() {
+		
+	}
+
+	
+	
+	public void encamp() {
+	
+		for(int i = 0; i < characterList.size(); i++)
+		{
+			characterList.get(i).setEnergy(10);
+		}
+		
+		endTurn();
+	}
+
+	
+	
+	public void useMedipack(int user, int reciever)
+	{
+		int recover;
+		int health = characterList.get(user).getHealth();
+		
+		if (characterList.get(user).getIntelligence() >= 3)
+			recover = MEDIPACK * 2;
+			
+		else
+			recover = MEDIPACK;
+		
+		characterList.get(user).setHealth(health + recover);
+		
+		endTurn();
+	}
+
+	
+	public String getName() {
+		return this.name;
+	}
+
+	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
+	
+	public boolean getEngaged() {
+		return this.engaged;
+	}
+
+	
+	
+	public void setEngaged(boolean engaged) {
+		// TODO implement me
+	}
+
+	
+	
+	public boolean getOnBase() {
+		// TODO implement me
+		return this.onBase;
+	}
+
+	
+	
+	public void setOnBase(boolean onBase) {
+		// TODO implement me
+	}
+
+	
+	public boolean getRallyPosition() {
+		// TODO implement me
+		return this.rallyPosition;
+	}
+
+	
+	
+	public void setRallyPosition(boolean rallyPosition) {
+		// TODO implement me
+	}
+	
+	public void endTurn()
+	{
+		turn.setUserTurns(false);
+		turn.setEnemyTurns(true);
+	}
+
+}
+

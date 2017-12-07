@@ -1,0 +1,67 @@
+/*
+ * TravelingSalesMan.c
+ *
+ *  Created on: Oct 28, 2017
+ *      Author: omarg
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <time.h>
+#include "Genetic.c"
+
+void brut();
+void GA();
+void toString();
+
+clock_t start; //holds the time at the start of a process
+clock_t end;   //holds the end value of the process
+clock_t brutTime; //The time brute force took to complete
+clock_t GATime;  //The time the Genetic Algorithm takes
+
+
+int main(int argc, char *argv[])
+{
+	printf("How many Cities?\n");
+	scanf("%i",&SIZE);
+	printf("How many tours?\n");
+	scanf("%i", &tour);
+	printf("How many Generations?\n");
+	scanf("%i", &gen);
+	printf("What percentage of Generations should be mutated?\n");
+	scanf("%i", &mut);
+
+	generateTable(); //Generates the weights
+	generateCities(); //Creates SIZE number of cities
+	brut(); //Brute force calculation
+	GA(); //Genetic Algorithm calculation
+toString();
+}
+
+void toString()
+{
+	printf("Cities simulated : %i\n"
+			"Optimal for Brute Force is : %i "
+			"Time for Brute Force : %ld\n"
+			"Cost For Genetic Algorithm is: %i"
+			" Genetic Algorithm Time is : %ld\n"
+			"Percent optimal : \n",SIZE, bruteOptimal, brutTime, optGen, GATime);
+
+}
+void brut()
+{
+	start = clock();
+	bruteforce();
+	end = clock();
+	brutTime = (double)(end -start)/CLOCKS_PER_SEC;
+	//printBrutePath();
+}
+
+void GA()
+{
+	start = clock();
+	mutationCalc(gen);
+	end = clock();
+	GATime = (double)(end -start)/CLOCKS_PER_SEC;
+	//printElites();
+}

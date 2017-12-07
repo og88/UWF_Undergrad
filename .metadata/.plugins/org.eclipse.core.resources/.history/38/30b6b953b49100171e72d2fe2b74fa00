@@ -1,0 +1,18 @@
+import java.util.*; //For scanner
+import java.io.*;
+
+public class User
+{
+	public static void main (String[] args)
+	{
+		String s = "Hello World";
+		char m = s.charAt(0);
+		int l = (int)m;
+	//System.out.printf("%s",l);
+	for (int x = 33; x > 123; x++)
+	{
+		char y = (char) x;
+		System.out.printf("%s \n", y);
+	}
+	}
+}

@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+
+char array[20480][4096];
+int i;
+
+
+void writeRow();
+void readRow();
+void writeColumn();
+void readColumn();
+void pageFaultRow();
+void pageFaultColumn();
+
+int main(int argc, char* argv[])
+{
+	clock_t before,after; //creates two clock objects to be used as a timer
+	int x; //Used to loop the proces
+	before = clock();  //record clock before the process begins
+
+	for(x = 0; x < 10; x++) //loops ten times
+	{
+		writeColumn();
+		//writeRow();
+		//readRow();
+		readColumn();
+	}
+	after = clock(); //record the time after the processes
+	printf("%0.2fms\n", (double)(1000* ((double)(after - before)/(double)CLOCKS_PER_SEC))); //print out the time the process took in milliseconds
+}
+
+/*Assigns a char to each row of the matrix*/
+void writeRow()
+{
+	for(i = 0; i < 20480; i++)
+	{
+		array[i][0] = 'a';
+	}
+}
+
+/*Reads the elements of the row in the matrix*/
+void readRow()
+{
+	for(i = 0; i < 20480; i++)
+	{
+		char *a = &array[i][0];
+		strcpy(a,a);
+	}
+}
+
+/*Writes a character to each column of the matrix*/
+void writeColumn()
+{
+
+
+	for(i = 0; i < 4096; i++)
+	{
+		array[0][i] = 'a';
+	}
+}
+
+/*Reads a char from each column o the matrix*/
+void readColumn()
+{
+
+	for(i = 0; i < 4096; i++)
+	{
+		char* a = &array[0][i];
+		strcpy(a,a);
+	}
+}
+
+void pageFaultRow()
+{
+	for(i = 0; i < 20480; i++)
+		{
+
+		}
+}
+void pageFaultColumn()
+{
+	for(i = 0; i < 4096; i++)
+		{
+
+		}
+}

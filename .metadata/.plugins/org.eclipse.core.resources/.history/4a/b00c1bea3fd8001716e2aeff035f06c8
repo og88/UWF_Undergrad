@@ -1,0 +1,69 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSetMetaData;
+
+
+public class Lab10
+{
+	private static final String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+	private static final String protocol = "jdbc:derby:";
+
+	public static void main(String[] args)
+	{
+
+	}
+public void read()
+{
+
+}
+	public void create()
+	{
+		try
+		{
+			Class.forName(driver).newInstance();
+			System.out.println("Loaded the embedded driver.");
+		}
+		catch (Exception err) 
+		{
+			System.err.println("Unable to load the embedded driver.");
+			err.printStackTrace(System.err);
+			System.exit(0);
+		}
+
+		String dbName = "ClassDatabase";
+		Connection conn = null;
+		try
+		{
+			System.out.println("Connecting to and creating the database...");
+			conn = DriverManager.getConnection(protocol + dbName + ";create=true");
+			System.out.println("Database created.");
+
+			Statement s = conn.createStatement();
+
+			s.execute("CREATE TABLE class" +
+					"(name varchar(50), Instructor varchar(50), classCode int, dept varchar(50))");
+			System.out.println("Created 'Class' table.");
+
+			System.out.println("Inserting class information.");
+			s.execute("INSERT INTO class " +
+					"VALUES ('Physical Science', 'Adams, Douglas', 3056, 'Science')");
+			s.execute("INSERT INTO class " +
+					"VALUES ('University Physics','Gounch, Simmon', 2049, 'Physics')");
+			s.execute("INSERT INTO class " +
+					"VALUES ('Data Structors I','Coffey, John', 3110, 'Computer Science')");
+
+			System.out.println("Class Information inserted.");
+
+			conn.close();
+		}
+		catch (SQLException err)
+		{
+			System.err.println("SQL error.");
+			err.printStackTrace(System.err);
+			System.exit(0);
+		}
+	}
+}

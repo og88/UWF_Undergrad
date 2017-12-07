@@ -1,0 +1,11 @@
+
+public class Food implements CarbonFootprint{
+	double footPrint;
+
+	@Override
+	public double getCarbonFootprint() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

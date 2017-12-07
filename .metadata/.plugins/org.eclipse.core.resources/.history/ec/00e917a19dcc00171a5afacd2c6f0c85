@@ -1,0 +1,21 @@
+
+public class Building implements CarbonFootprint{
+	double kWhyr, EF;
+	public double getkWhyr() {
+		return kWhyr;
+	}
+	public void setkWhyr(double kWhyr) {
+		this.kWhyr = kWhyr;
+	}
+	public double getEF() {
+		return EF;
+	}
+	public void setEF(double eF) {
+		EF = eF;
+	}
+	@Override
+	public double getCarbonFootprint() {
+		return (kWhyr * EF);
+	}
+
+}

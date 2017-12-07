@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int collats(int x);
+int f(int x);
+
+int main(int argc, char *argv[])
+{
+	printf("%i", 3%2);
+}
+
+int collats(int x)
+{
+	if(x == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		x = f(x);
+	}
+}
+
+int f(int x)
+{
+	if(x % 2)
+	{
+return (x/2);
+	}
+	else
+	{
+return ((3*x)+1);
+	}
+}

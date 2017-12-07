@@ -1,0 +1,30 @@
+13:36:56 **** Incremental Build of configuration Debug for project DSII_Project_2 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Queue.o "..\\Queue.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Functions.o "..\\Functions.c" 
+gcc -o DSII_Project_2.exe Functions.o Queue.o 
+Queue.o: In function `pow':
+C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.h:8: multiple definition of `pow'
+Functions.o:C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.h:8: first defined here
+Queue.o: In function `factorial':
+C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.h:26: multiple definition of `factorial'
+Functions.o:C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.h:26: first defined here
+Queue.o: In function `Po':
+C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:6: multiple definition of `Po'
+Functions.o:C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:6: first defined here
+Queue.o: In function `L':
+C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:20: multiple definition of `L'
+Functions.o:C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:20: first defined here
+Queue.o: In function `W':
+C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:28: multiple definition of `W'
+Functions.o:C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:28: first defined here
+Queue.o: In function `Lq':
+C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:34: multiple definition of `Lq'
+Functions.o:C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:34: first defined here
+Queue.o: In function `Wq':
+C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:39: multiple definition of `Wq'
+Functions.o:C:\Users\omarg\eclipse-workspace\DSII_Project_2\Debug/../Functions.c:39: first defined here
+collect2.exe: error: ld returned 1 exit status
+
+13:36:56 Build Finished (took 842ms)
+

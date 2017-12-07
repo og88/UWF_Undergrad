@@ -1,0 +1,13 @@
+
+#include <stdio.h>
+#include "construct.c"
+
+int main()
+{
+printf("hello");
+struct node* root;
+root->name = "ROOT";
+root->child = addF();
+    return 0;
+}
+
