@@ -7,7 +7,7 @@
 #include "twoSequences.c"
 #include <string.h>
 
-void part2();
+void multipleSequences();
 void sim(char* c[], int d[], int i);
 char comp2(int sHort,int lOng, int compare);
 
@@ -15,12 +15,11 @@ char comp2(int sHort,int lOng, int compare);
 /*This method reads an int and multiple strings from a file
  * The int is used to determine how many sentences there are.
  * The strings are compare and a table is filled up to show whether there are similar*/
-void part2()
+void multipleSequences()
 {
 	FILE * fp;
-	char * line = NULL, * line2 = NULL;
 	size_t len = 0;
-	ssize_t read,read1;
+	char * line = NULL;
 
 	fp = fopen("multipleSequences.txt", "r");
 	if (fp == NULL)
@@ -33,35 +32,32 @@ void part2()
 	int i;
 	if(fscanf(fp, "%d", &i))
 	{
-	char * c[i];
-	int d[i];
-	int x = 0;
-	while (((read = getline(&line, &len, fp)) != -1) && x <= i)
-	{
-		read -= 1;
-		c[x] = malloc(strlen(line) + 1);
-		strcpy(c[x], line);
-		d[x] = read;
-		//printf("%s\n%s\n",c[0], line);
-		x++;
-	}
-	sim(c ,d, i);
-	printf("\n");
+		ssize_t read;
+		char * c[i];
+		int d[i];
+		int x = 0;
+		while (((read = getline(&line, &len, fp)) != -1) && x <= i)
+		{
+			read -= 1;
+			c[x] = malloc(strlen(line) + 1);
+			strcpy(c[x], line);
+			d[x] = read;
+			x++;
+		}
+		sim(c ,d, i);
+		printf("\n");
 	}
 	else
 	{
 		printf("Error: Number of sentences not found");
 	}
 
-
-
-
 	fclose(fp);
 	if (line)
 	{
 		free(line);
 	}
-	exit(EXIT_SUCCESS);
+	//exit(EXIT_SUCCESS);
 }
 
 
@@ -69,27 +65,35 @@ void part2()
  * Medium similarity,  Low similarity Depending on the length of the short, long, and LCS*/
 char comp2(int sHort,int lOng, int compare)
 {
-	char c;
-	if((((double)sHort/(double) lOng) >= .9) && (((double) compare/(double)sHort) > .8))
+	char c = 'D';
+	if((((double)sHort/(double) lOng) > 0) && (((double) compare/(double)sHort) > 0))
 	{
-		printf("High similar\n\n");
-		c = 'H';
-	}
+		if((((double)sHort/(double) lOng) >= .9) && (((double) compare/(double)sHort) > .8))
+		{
+			printf("High similar\n\n");
+			c = 'H';
+		}
 
-	else if((((double)sHort/(double) lOng) >= .8) && (((double) compare/(double)sHort) > .6))
-	{
-		printf("Medium similar\n\n");
-		c = 'M';
-	}
-	else if((((double)sHort/(double) lOng) >= .6) && (((double) compare/(double)sHort) > .5))
-	{
-		printf("Low similar\n\n");
-		c = 'L';
+		else if((((double)sHort/(double) lOng) >= .8) && (((double) compare/(double)sHort) > .6))
+		{
+			printf("Medium similar\n\n");
+			c = 'M';
+		}
+		else if((((double)sHort/(double) lOng) >= .6) && (((double) compare/(double)sHort) > .5))
+		{
+			printf("Low similar\n\n");
+			c = 'L';
+		}
+		else
+		{
+			printf("Dissimilar\n\n");
+			c = 'D';
+		}
 	}
 	else
 	{
 		printf("Dissimilar\n\n");
-		c = 'D';
+					c = 'D';
 	}
 	return c;
 }
@@ -108,25 +112,22 @@ void sim(char * c[], int d[], int i)
 		}
 	}
 
-	for(y = 0; y < i; y++)
+	for(y = 1; y < i+1; y++)
 	{
-		for(x = 0; x < y; x++)
+		for(x = 1; x < y+1; x++)
 		{
-			//printf("%i %i", x, y);
 			if(x != y)
 			{
 				printf("Line 1 : %s\nLine 2 : %s\n",c[x], c[y]);
 				if(d[x] <= d[y])
 				{
 					int len = compare(c[x], d[x], c[y], d[y], 0);
-					printf("%i\n", len);
 					char s = comp2(d[x], d[y], len);
 					t[x][y] = s;
 				}
 				else
 				{
 					int len = compare(c[y], d[y], c[x], d[x], 0);
-					printf("%i\n", len);
 					char s = comp2(d[x], d[y], len);
 					t[x][y] = s;
 				}
@@ -134,12 +135,12 @@ void sim(char * c[], int d[], int i)
 		}
 	}
 
-	for(x = 0; x < i; x++)
+	for(x = 1; x < i + 1; x++)
 	{
 		printf("\n");
-		for(y = 0; y < i; y++)
+		for(y = 1; y < i + 1; y++)
 		{
-			printf("%c",t[x][y]);;
+			printf("%c ",t[x][y]);;
 		}
 	}
 }

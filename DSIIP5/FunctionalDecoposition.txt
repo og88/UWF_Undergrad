@@ -1,0 +1,43 @@
+Omar Garcia 
+Data Structures and Algorithms II
+Project 5
+Functional Decomposition
+
+Files and Functions in the program
+
+
+twoSequences.c
+
+/*This method reads two sequences from a file
+ * The method then passes the sequences into the compare method*/
+ 
+void twoSequences()
+
+/*This method uses the c matrix to retrieve the LCS*/
+
+void find(int** c, int x, int y, char * line1, char * line2)
+
+/*This method calculates the c matrix for LCS. It does this by going through each character from the
+ * second sequence and compares them to the characters of the first sequence
+ * It then passes the sequences to the find method, to find the LCS*/
+ 
+int compare(char * line, int read, char * line2, int read1, int true)
+
+
+multipleSequences.c
+
+/*This method reads an int and multiple strings from a file
+ * The int is used to determine how many sentences there are.
+ * The strings are compare and a table is filled up to show whether there are similar*/
+
+void multipleSequences()
+
+/*This method determines whether the the two compare sequences are High similarity,
+ * Medium similarity,  Low similarity Depending on the length of the short, long, and LCS*/
+
+char comp2(int sHort,int lOng, int compare)
+
+/*This method computes assigns two methods with each other to be compared.
+ * The method then records the length of the LCS and passes it to comp2*/
+ 
+void sim(char * c[], int d[], int i)

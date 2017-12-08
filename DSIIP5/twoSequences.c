@@ -6,9 +6,12 @@
  */
 int compare(char * line, int len, char * line2, int read1, int true);
 void find(int** c, int x, int y, char * line1, char * line2);
-void part1();
+void twoSequences();
 
-void part1()
+
+/*This method reads two sequences from a file
+ * The method then passes the sequences into the compare method*/
+void twoSequences()
 {
 	FILE * fp;
 	char * line = NULL, * line2 = NULL;
@@ -26,7 +29,6 @@ void part1()
 		if((read1 = getline(&line2, &len2, fp)) != -1)
 		{
 			read -= 1;
-			//printf("Line 1 : %sLine 2 : %s\n", line, line2);
 			if(read < read1)
 			{
 				compare(line , read, line2, read1, 1);
@@ -49,9 +51,7 @@ void part1()
 /*This method uses the c matrix to retrieve the LCS*/
 void find(int** c, int x, int y, char * line1, char * line2)
 {
-	int i, f;
 	char c1;
-
 	if((x >= 0) && (y>=0))
 	{
 
@@ -74,7 +74,8 @@ void find(int** c, int x, int y, char * line1, char * line2)
 }
 
 /*This method calculates the c matrix for LCS. It does this by going through each character from the
- * second sequence and compares them to the characters of the first sequence*/
+ * second sequence and compares them to the characters of the first sequence
+ * It then passes the sequences to the find method, to find the LCS*/
 int compare(char * line, int read, char * line2, int read1, int true)
 {
 
@@ -140,7 +141,9 @@ int compare(char * line, int read, char * line2, int read1, int true)
 	}*/
 if(true == 1)
 {
-	printf("LCS : ");
+	printf("Line 1 : %s\n"
+			"Line 2 : %s\n"
+			"LCS : ", line, line2);
 	find(c , (read), (read1), line, line2);
 	printf("\n\n");
 }

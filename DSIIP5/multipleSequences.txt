@@ -1,13 +1,9 @@
-10
+8
 Kermit the frog here
 I can't stand the frog from the muppets
-Some more stuff
-It's fun to stay at the YMCA
 stuff is not cool
 stuff is cool
-The file of strings will first contain an integer that indicates how many strings are in the file, followed by that number of character strings.
-The file of strings will first contain an integer that indicates how many strings are in the file, followed by that number of.
 H = high similarity between the strings
 M = medium similarity between the strings
-L = low similarity between the strings
-D = the two strings are dissimilar
+xxxxxyyyyyxxx
+yxyxyxyxyxyxyx

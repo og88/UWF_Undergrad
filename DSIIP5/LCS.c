@@ -6,13 +6,18 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include "Similarities.c"
+
+#include "multiSequences.c"
 
 
-int main(int agv, char* args)
+int main(int argv, char* args[])
 {
-	part1();
+	printf("Part : 1\n");
+	twoSequences();
+	printf("******************************************************************\n"
+			"Part : 2\n");
+	multipleSequences();
 	printf("\n");
-	part2();
+	return 0;
 }
 
