@@ -1,0 +1,15 @@
+begin 
+a = b;
+end
+
+a=af+=
+a=;
+a_5 = 2;
+6 = j;
+a=d*
+dd5=((3+5*8);
+%iii=0
+a=b2-(((xyz + 99.999)* abc)*d);
+qwerty=((6 - abcd) * (a + b));
+xyz = (9*8*7*6)/(a+b+c);
+:
