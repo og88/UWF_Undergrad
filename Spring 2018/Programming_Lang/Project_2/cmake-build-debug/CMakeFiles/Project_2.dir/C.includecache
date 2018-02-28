@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/omarg/Documents/UWF_Undergrad/Spring 2018/Programming_Lang/Project_2/Lexan.c
+stdio.h
+-
+stdbool.h
+-
+string.h
+-
+stdlib.h
+-
+
+C:/Users/omarg/Documents/UWF_Undergrad/Spring 2018/Programming_Lang/Project_2/Parse.c
+stdio.h
+-
+Lexan.c
+C:/Users/omarg/Documents/UWF_Undergrad/Spring 2018/Programming_Lang/Project_2/Lexan.c
+
+C:/Users/omarg/Documents/UWF_Undergrad/Spring 2018/Programming_Lang/Project_2/main.c
+stdio.h
+-
+stdlib.h
+-
+Parse.c
+C:/Users/omarg/Documents/UWF_Undergrad/Spring 2018/Programming_Lang/Project_2/Parse.c
+
