@@ -1,30 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Parse.c"
-
+ 
 void openF(char *str);
 void Begin(char *str);
-
-
+ 
+ 
 /*Initilizes all prerequisites
 Sets the first two values of the hash table to begin and end
 The program then tries to open all file passed onto it*/
 int main(int argc, char *argv[])
 {
-    int i = 0;
-
+    int i = 0; 
+	  
     hashTable[1] = malloc(CHUNK);
     strcpy(hashTable[1], "begin");  //Sets the first value begin
-    hashTable[2] = malloc(CHUNK);
+	numofReservedWords++;
+    hashTable[2] = malloc(CHUNK); 
     strcpy(hashTable[2], "end");    //Sets the second value to end
+	numofReservedWords++;
     hashTable[3] = malloc(CHUNK);
     strcpy(hashTable[3], "int");
-
+	numofReservedWords++;
+	 
     for (i = 1; i < argc; i++)      //Loop to excecute each program
     {
         openF(argv[i]);             //Passes apropriate program to openF
     }
-    return 0;
+    return 0; 
 
 }
 
@@ -34,12 +37,13 @@ Once the file is opened, the program checks for the begin key word to start the 
 the program is then passed onto the begin function*/
 void openF(char *str)
 {
-    file = fopen(str, "r");   //Opens file str in read mode
+    file = fopen(str, "r");   //Opens file str in read mode 
     if (file)
     {
         lookahead = lexan();    //sets lookahead to the first value of the parser
         if (lookahead == BEGIN)    //Program block is defined by blocks, block starts with begin
         {
+			printf("Compiling %s\n", str);
             Begin(str);       //launches begin funct, passes program name to function
         }
         else if (lookahead == END)   //if the first value is end, an error is thrown
@@ -73,17 +77,19 @@ void Begin(char *str)
                 printf("%c\n", lookahead);
                 if (lookahead != 0)
                 {
-                    printf("Error redeclaraction\n");
+                    printf("Error redeclaraction\n"); 
                 }
             }
             }
+			memset(equation, 0, sizeof(equation));  //Reset equation for next use
             lookahead = lexan();
         }
        else if (lookahead == ID)  //Checks to see that an identifier is being set to a value
         {
+
             AssignStmt();  //Starts assignment with parser
         }
-            else if(lookahead == 0)
+        else if(lookahead == 0)
         {
             printf("Value type must be declared\n");
         }
@@ -97,7 +103,7 @@ void Begin(char *str)
     {
         int position;  //int used to keep track of position
         printf("Program %s ran Successfully!!\nIdentifiers used\n", str); //Message that tells the user their program works
-        for (position = 4; position < arraySize + 1; position++)   //For loop to print out all identifiers used by the user
+        for (position = numofReservedWords + 1; position < arraySize + 1; position++)   //For loop to print out all identifiers used by the user
         {
             printf("%s\n", hashTable[position]);
         }

@@ -8,6 +8,7 @@ int lexan();
 int lookup(char * c);
 int arraySize = 3;
 int lineNo = 1;
+int numofReservedWords = 0;
 
 #define CHUNK 1024 /*Limits identifiers to 1024 bits*/
 #define ID 300    
@@ -23,6 +24,7 @@ char value[CHUNK];  //holds the identifiers and numebers
 FILE *file;  //file object
 
 char* hashTable[124]; //Hashtable of strings
+char equation[CHUNK];
 
 
 /*Lexan is used to determine what the next element will be*/
@@ -56,6 +58,7 @@ int lexan()
 		{
 			value[0] = ch; //amends chars to value string
 			int i = 1;
+			ch = getc(file); //retrieves next values
 			//retrieve full number
 			while (ch >= 48 && ch <= 57)  //loop that appends numbers
 			{
@@ -64,6 +67,9 @@ int lexan()
 				ch = getc(file); //retrieves next values
 			}
 			ungetc(ch, file);  //If next value is not a number, go back to avoid problems with getc
+			char temp1[i];
+			sprintf(temp1, "%s ", value);
+			strcat(equation, temp1);
 			memset(value, 0, sizeof(value)); //clears value for next use
 			return NUM; 
 		}
@@ -132,6 +138,12 @@ int lookup(char * c)
 		if (strcmp(c, temp) == 0)  //Position is found
 		{
 			free(temp); //frees up space used by temp
+			if (position > numofReservedWords)
+			{
+			char temp1[3];
+			sprintf(temp1, "R%i ", position - (numofReservedWords + 1));
+			strcat(equation, temp1);
+		}
 			return position; 
 		}
 	}
@@ -139,5 +151,6 @@ int lookup(char * c)
 	hashTable[arraySize] = malloc(CHUNK);  //allocates memory use for array
 	strcpy(hashTable[arraySize], c);  //adds new identifier to table
 	free(temp);  //frees memory used for temp
+	printf("R%i = %s", arraySize - (numofReservedWords + 1), c);
 	return 0;
 }
