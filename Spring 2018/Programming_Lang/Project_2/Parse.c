@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "Lexan.c"
+#include "ErrorHandler.c"
+#include "Stringer.c"
 
 int lookahead;
 void AssignStmt();
@@ -7,22 +9,18 @@ void match(int t);
 void Expression();
 void Term();
 void Factor();
-void add(int x);
-void errorHandler(int t);
-
-char error[CHUNK]; /*Hold the error comments*/
 
 /*This function determines whether the next value is legal*/
 void match(int t)
 {
-	if (lookahead == t)  //If the value is legal, the lookahead is assigned to the next element of the program
+	if (lookahead != ERROR && lookahead == t)  //If the value is legal, the lookahead is assigned to the next element of the program
 	{
 		lookahead = lexan(t);
 	}
-	
 	else  //If the next element is not legal, the user will recieve an error
 	{
-		errorHandler(t);
+		errorHandler(t, lookahead);
+		lookahead = ERROR;
 	}
 }
 
@@ -36,14 +34,10 @@ void AssignStmt()
 	}
 	else
 	{
-		strcat(equation, "= ");
+		strcat(program, "= ");
 		match(lookahead);   //checks next variable and retreves element
 		Expression();     //start expression function
-		if (lookahead != 0)
-		{
-			printf("%s\n", equation);
-		}
-		memset(equation, 0, sizeof(equation));
+		strcat(program, "\n");
 		match(';');       //matches to find the end of the statement
 	}
 }
@@ -54,7 +48,7 @@ void Expression()
 	Term();
 	while (lookahead == '+' || lookahead == '-')  //checks for addition or subtraction
 	{
-		add(lookahead);
+		add(lookahead, program);
 		match(lookahead);  //Checks if the program is legal
 		Term();           //calls term
 	}
@@ -66,7 +60,7 @@ void Term()
 	Factor();   //calls factors
 	while (lookahead == '*' || lookahead == '/')  //Checks for division and multiplication
 	{
-		add(lookahead);
+		add(lookahead, program);
 		match(lookahead);     //checks is program is legal
 		Factor();     //Calls Factor
 	}
@@ -85,14 +79,14 @@ void Factor()
 	}
 	else if (lookahead == NUM)  //Checks to see if number is legal
 	{
-		match(NUM);
+		match(NUM);   
 	}
 	else if (lookahead == '(')   //starts an parenthesis statement
 	{
-		add(lookahead);
+		add(lookahead, program);
 		match('(');  //open parenthesis
 		Expression();  //calls Expression, recursively
-		add(lookahead);
+		add(lookahead, program);
 		match(')');  //close parenthesis
 	}
 	else  //error is no factors are found
@@ -102,40 +96,6 @@ void Factor()
 
 }
 
-void add(int x)
-{
-	char temp1[3];
-	sprintf(temp1, "%c ", x);
-	strcat(equation, temp1);
-}
 
 
-void errorHandler(int t)
-{
-if (t == ID)  //Custom error message for identifiers
-{
-	sprintf(error, "Syntax Error Line %i\nIdentifier expected\n", lineNo);
-	lookahead = ERROR;
-}
-else if (t == NUM)  //Custom error message for number
-{
-	sprintf(error, "Syntax Error Line %i\nNumber expected\n", lineNo);
-	lookahead = ERROR;
-}
-else if (t == ';' && lookahead == '\n')  //Custom error message for ;, compasates for \n that appears at the end of assignment
-{
-	sprintf(error, "Syntax Error Line %i\nNumber expected\n", lineNo - 1);
-	lookahead = ERROR;
-}
-else if (lookahead == ERROR);  //If an error already occured, will be ignored until previous errors are fixed
-else if (lookahead == 0)
-{
-	printf("Undeclaresd identifier");
-	lookahead = ERROR;
-}
-else  //If the next element is not legal, the user will recieve an error
-{
-	sprintf(error, "Syntax Error Line %i\n%c expected\n", lineNo, t);
-	lookahead = ERROR;
-}
-}
+

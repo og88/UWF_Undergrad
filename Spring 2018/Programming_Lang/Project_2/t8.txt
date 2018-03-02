@@ -1,6 +1,8 @@
 begin
+int x, y, z, a;
 x = 4;
 y = 6;
+```This is a comment````
 z = x + y;
 a = x + y + (4 + (5 - 3);
 end

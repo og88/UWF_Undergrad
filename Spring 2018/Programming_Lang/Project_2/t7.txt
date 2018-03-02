@@ -1,6 +1,7 @@
 begin
+int b , a;
 b = 3;
 a = 5;
 b =
-a 1 + 2;
+a = 1 + 2;
 end

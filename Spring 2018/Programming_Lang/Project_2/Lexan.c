@@ -6,7 +6,7 @@
 void openF(char *str);
 int lexan();
 int lookup(char * c);
-int arraySize = 3;
+int arraySize = 0;
 int lineNo = 1;
 int numofReservedWords = 0;
 
@@ -24,8 +24,7 @@ char value[CHUNK];  //holds the identifiers and numebers
 FILE *file;  //file object
 
 char* hashTable[124]; //Hashtable of strings
-char equation[CHUNK];
-
+char program[CHUNK]; 
 
 /*Lexan is used to determine what the next element will be*/
 int lexan()
@@ -69,7 +68,7 @@ int lexan()
 			ungetc(ch, file);  //If next value is not a number, go back to avoid problems with getc
 			char temp1[i];
 			sprintf(temp1, "%s ", value);
-			strcat(equation, temp1);
+			strcat(program, temp1);
 			memset(value, 0, sizeof(value)); //clears value for next use
 			return NUM; 
 		}
@@ -142,7 +141,7 @@ int lookup(char * c)
 			{
 			char temp1[3];
 			sprintf(temp1, "R%i ", position - (numofReservedWords + 1));
-			strcat(equation, temp1);
+			strcat(program, temp1);
 		}
 			return position; 
 		}
@@ -151,6 +150,8 @@ int lookup(char * c)
 	hashTable[arraySize] = malloc(CHUNK);  //allocates memory use for array
 	strcpy(hashTable[arraySize], c);  //adds new identifier to table
 	free(temp);  //frees memory used for temp
-	printf("R%i = %s", arraySize - (numofReservedWords + 1), c);
+	char temp1[CHUNK];
+	sprintf(temp1, "R%i = %s\n", arraySize - (numofReservedWords + 1), c);
+	strcat(program, temp1);
 	return 0;
 }
