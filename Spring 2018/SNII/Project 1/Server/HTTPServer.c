@@ -53,7 +53,7 @@ int HTTP()
 
 		printf("##############\n");												  //send(tcp_client_socket, tcp_server_message, sizeof(tcp_server_message), 0);  // send where, what, how much, flags (optional)
 		read(tcp_client_socket, &tcp_client_message, sizeof(tcp_client_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
-		printf("%s\n", tcp_client_message);
+		//printf("%s\n", tcp_client_message);
 		char c;
 		int i;
 		int L = 0;
@@ -113,7 +113,6 @@ int HTTP()
 		}
 		close(tcp_client_socket);
 	}
-	//close the socket
 	close(tcp_server_socket);
 
 	return 0;
@@ -133,19 +132,21 @@ int GET(int tcp_client_socket, char file[])
 		char *buffer;
 		buffer = malloc(input_file_size * (sizeof(char)));
 		fread(buffer, sizeof(char), input_file_size, f);
+		printf("%s\n", buffer);
 		fclose(f);
 		strcat(tcp_server_message, buffer);
-		write(tcp_client_socket, tcp_server_message, input_file_size);
+		write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message));
 		return 0;
 	}
-	else if(strcmp(file, "/KILL") == 0)
+	else if (strcmp(file, "/KILL") == 0)
 	{
-return 1;
+		printf("User requested to exit \n\n");
+		return 1;
 	}
 	else
 	{
 		char c = file[1];
-		char fle[514];
+		char fle[128];
 		int i;
 		for (i = 0; c > 32 && c < 127; i++)
 		{
@@ -164,6 +165,7 @@ return 1;
 		}
 		else
 		{
+			printf("%i\n", strlen(tcp_server_message));
 			fseek(f, 0, SEEK_END);
 			long input_file_size = ftell(f);
 			rewind(f);
@@ -172,7 +174,8 @@ return 1;
 			fread(buffer, sizeof(char), input_file_size, f);
 			fclose(f);
 			strcat(tcp_server_message, buffer);
-			write(tcp_client_socket, tcp_server_message, input_file_size);
+			printf("%s\n", buffer);
+			write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message));
 		}
 		return 0;
 	}
