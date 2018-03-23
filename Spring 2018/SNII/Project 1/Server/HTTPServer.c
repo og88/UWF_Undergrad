@@ -1,84 +1,71 @@
 
-//TCP Server
-// Create Socket > bind the IP and port for the socket > listen on port > accept connection > send data > close socket
-
-#include <stdio.h>  //Standard library
-#include <stdlib.h> //Standard library
-#include <string.h>
-#include <sys/socket.h> //API and definitions for the sockets
-#include <sys/types.h>  //more definitions
-#include <netinet/in.h> //Structures to store address information
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-
-int GET(int tcp_client_socket, char file[]);
-int HTTP();
+#include "Server.h"
 
 int main()
 {
-	HTTP();
-}
-
-int HTTP()
-{
-	char tcp_server_message[5140] = "HTTP/1.1 200 OK\r\n";
-	char tcp_client_message[5140];
-
-	int kill = 0;
-
 	//create the server socket
-
 	int tcp_server_socket;								 //variable for the socket descriptor
 	tcp_server_socket = socket(AF_INET, SOCK_STREAM, 0); //calling the socket function. Params: Domain of the socket (Internet in this case), type of socket stream (TCP), Protocol (default, 0 for TCP)
+
+	//Define an ip adress
 	struct in_addr ip;
 	if (inet_pton(AF_INET, "127.0.0.1", &ip) != 1)
 	{
-		perror("inet_pton");
+		perror("inet_pton"); //printout error if ip address could not be found
 		exit(1);
 	}
+
 	//define the server address
 	struct sockaddr_in tcp_server_address;		//declaring a structure for the address
 	tcp_server_address.sin_family = AF_INET;	//Structure Fields' definition: Sets the address family of the address the client would connect to
-	tcp_server_address.sin_port = htons(60039); //Passing the port number - converting in right network byte order
-	tcp_server_address.sin_addr = ip;			//Connecting to 0.0.0.0
+	tcp_server_address.sin_port = htons(60039); //Passing the port number - in this case 60039
+	tcp_server_address.sin_addr = ip;			//Connecting to 127.0.0.1
 
 	// binding the socket to the IP address and port
 	bind(tcp_server_socket, (struct sockaddr *)&tcp_server_address, sizeof(tcp_server_address)); //Params: which socket, cast for server address, its size																						 //listen for simultaneous connections
-	listen(tcp_server_socket, 5);
-	while (kill != 1)
-	{ //which socket, how many connections
+	listen(tcp_server_socket, 5);																 //which socket, how many connections
+	HTTP(tcp_server_socket);																	 //Call on the HTTP method
+
+	close(tcp_server_socket); //Closes the connection to the server soccket
+
+	return 0;
+}
+
+int HTTP(int tcp_server_socket)
+{
+	int kill = 0;	 //Kill is used to determine if the server connection should terminate
+	while (kill != 1) //loop lets the server listen to multiple request per instance
+	{
+		char tcp_client_message[1024];
+
+		//Create a client socket
 		int tcp_client_socket;
 		tcp_client_socket = accept(tcp_server_socket, NULL, NULL); // server socket to interact with client, structure like before - if you know - else NULL for local connection
 
-		printf("##############\n");												  //send(tcp_client_socket, tcp_server_message, sizeof(tcp_server_message), 0);  // send where, what, how much, flags (optional)
+		//Read the request of a client
 		read(tcp_client_socket, &tcp_client_message, sizeof(tcp_client_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
-		//printf("%s\n", tcp_client_message);
-		char c;
-		int i;
-		int L = 0;
-		char header[256];
-		char body[514];
-		char command[256];
-		char file[256];
-		char type[256];
-		c = tcp_client_message[L];
+
+		//Variables needed to handle requests
+		char c;				 //Holds a char value. This is used to check for spaces and new-lines characters
+		int i;				 //Variable used to keep track of our position of the variables used for HTTP headers
+		int L = 0;			 //Variable used to keep track of the current position of the client message
+		char header[CHUNK];  //Holds the entire HTTP header that will be broken down
+		char command[CHUNK]; //Holds what command the client would like to run, for this project GET is the only available command
+		char file[CHUNK];	//Holds the name of the file the client wants to retrieve
+		char type[CHUNK];	//Type of connection
+
+		c = tcp_client_message[L]; //c is set to the first character of the client message
+								   //For loop to store the header into the header variable. Stops after new line or EOF.
 		for (i = 0; c != EOF && c != '\n'; i++)
 		{
 			header[i] = c;
 			L++;
 			c = tcp_client_message[L];
 		}
-		L++;
-		c = tcp_client_message[L];
-		for (i = 0; c != EOF; i++)
-		{
-			body[i] = c;
-			L++;
-			c = tcp_client_message[L];
-		}
 		L = 0;
 		c = header[L];
+
+		//Records the command
 		for (i = 0; c > 32 && c < 127; i++)
 		{
 			command[i] = c;
@@ -86,9 +73,10 @@ int HTTP()
 			L++;
 			c = header[L];
 		}
-
 		L++;
 		c = header[L];
+
+		//records the name of the file that needs to be retrieved
 		for (i = 0; c > 32 && c < 127; i++)
 		{
 			file[i] = c;
@@ -96,9 +84,10 @@ int HTTP()
 			L++;
 			c = header[L];
 		}
-		printf("File == %s\n\n", file);
 		L++;
 		c = header[L];
+
+		//Records the type of conection
 		for (i = 0; c > 32 && c < 127; i++)
 		{
 			type[i] = c;
@@ -107,75 +96,87 @@ int HTTP()
 			c = header[L];
 		}
 
+		//Calls the appropriate command from the user requests
 		if (strcmp(command, "GET") == 0)
 		{
-			kill = GET(tcp_client_socket, file);
+			//return item determines whether the code should run again
+			kill = GET(tcp_client_socket, file, type);
 		}
+		//closes connection with client
 		close(tcp_client_socket);
 	}
-	close(tcp_server_socket);
-
 	return 0;
 }
 
-int GET(int tcp_client_socket, char file[])
+int GET(int tcp_client_socket, char file[], char *type)
 {
-	char tcp_server_message[256] = "HTTP/1.1 200 OK\r\n";
+
+	//Open defualt page
 	if (strcmp(file, "/") == 0)
 	{
+		char tcp_server_message[CHUNK] = "HTTP/1.1 200 OK\r\n"; //Basic HTTP message
 		char *fle = "Main.html";
 		FILE *f;
-		f = fopen(fle, "r");
-		fseek(f, 0, SEEK_END);
-		long input_file_size = ftell(f);
-		rewind(f);
-		char *buffer;
-		buffer = malloc(input_file_size * (sizeof(char)));
-		fread(buffer, sizeof(char), input_file_size, f);
-		printf("%s\n", buffer);
-		fclose(f);
-		strcat(tcp_server_message, buffer);
-		write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message));
+		f = fopen(fle, "r"); //Open in read only
+
+		fseek(f, 0, SEEK_END);													  //Go to end of file
+		long input_file_size = ftell(f);										  //Find the length of the file
+		rewind(f);																  //Return to the start of the file
+		char *buffer;															  //Holds the file contents
+		buffer = malloc(input_file_size * (sizeof(char)));						  //Assigns the apropriate size for the buffer
+		fread(buffer, sizeof(char), input_file_size, f);						  //Copy the contents of the file to a buffer
+		fclose(f);																  //Close file
+		strcat(tcp_server_message, buffer);										  //Add the html file to the header
+		write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message)); //Send the header and html together
 		return 0;
 	}
+	//Terminate server
 	else if (strcmp(file, "/KILL") == 0)
 	{
+		char tcp_server_message[CHUNK] = "HTTP/1.1 001 ShutDown\r\n";			  //Basic HTTP message
+		write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message)); //Send the header and html together
 		printf("User requested to exit \n\n");
 		return 1;
 	}
+	//Send a requested file
 	else
 	{
-		char c = file[1];
-		char fle[128];
+		char tcp_server_message[CHUNK] = "HTTP/1.1 200 OK\r\n"; //Basic HTTP message
+		char c = file[1];										//Name of directory
+		char fle[128];											//Entire name of file, without '/'
 		int i;
+
+		//Adds the name of the file to fle
 		for (i = 0; c > 32 && c < 127; i++)
 		{
 			fle[i] = c;
 			fle[i + 1] = '\0';
 			c = file[i + 2];
 		}
+
+		//Lets user know what is being requested from the server
 		printf("Requesting file %s\n", fle);
 
+		//Open the file to be sent
 		FILE *f;
 		f = fopen(fle, "r");
+		//Error handler for opening the file
 		if (f == NULL)
 		{
 			write(tcp_client_socket, "HTTP/1.1 404 not found\n\r", 128);
 			printf("Error\n");
 		}
-		else
+		else //If all is good, proceed
 		{
-			printf("%i\n", strlen(tcp_server_message));
-			fseek(f, 0, SEEK_END);
-			long input_file_size = ftell(f);
-			rewind(f);
-			char *buffer;
-			buffer = malloc(input_file_size * (sizeof(char)));
-			fread(buffer, sizeof(char), input_file_size, f);
-			fclose(f);
-			strcat(tcp_server_message, buffer);
-			printf("%s\n", buffer);
-			write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message));
+			fseek(f, 0, SEEK_END);													  //Go to end of file
+			long input_file_size = ftell(f);										  //Find the length of the file
+			rewind(f);																  //Return to the start of the file
+			char *buffer;															  //Holds the file contents
+			buffer = malloc(input_file_size * (sizeof(char)));						  //Assigns the apropriate size for the buffer
+			fread(buffer, sizeof(char), input_file_size, f);						  //Copy contnets of file to buffer
+			fclose(f);																  //Close file
+			strcat(tcp_server_message, buffer);										  //add html to the message
+			write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message)); //write the message to the client
 		}
 		return 0;
 	}

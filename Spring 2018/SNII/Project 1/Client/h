@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Server started. Server ready. Server listening and waiting for client Request....</h1>
+
+<p>Test.<br />
+   <br />
+    Working link: 
+<a href = "Fake.html">working link </a>
+<br />
+link for image:
+<a href="Image.html">image</a>
+<br />
+Link or not working link: 
+<a href = "nothing">not working link </a>
+<br />
+<a href = "KILL">Exit </a>
+</p>
+</body>
+</html>ver portp´

@@ -8,7 +8,7 @@ HTTPClient: $(objects)
 	$(CC)  -o HTTPClient $(objects)
 
 
-HTTPClient.o: HTTPClient.c
+HTTPClient.o: HTTPClient.c Client.h
 .PHONY : clean
 clean: 
 	rm HTTPClient $(objects)
