@@ -6,7 +6,7 @@ public class Handler {
     /*Method use to report errors to users*/
     public String errorHandler(int error) {
         if (error == 0) {
-            return"Program ran fine";
+            return"Program finished";
         } else if (error == 1) {
             return "Program ended in accepting State";
         }else if (error == -2) {
@@ -19,17 +19,21 @@ public class Handler {
             return "Error: Program experienced error building FSA logic";
         } else if (error == -5) {
             return "Error: Input Value not in alphabet";
+        }   else if (error == -6) {
+            return "Invalid Transition";
         }   else if (error == -7) {
             return "Program ended in non-accepting State";
         }
         return "Nothing";
     }
 
+    //Returns the status of the FSA
     public boolean getStatus()
     {
         return FSA1.getStatus();
     }
 
+    //Reads the FSA file
     public int readFile(String fileName)
     {
 
@@ -62,6 +66,36 @@ public class Handler {
         return 2;
     }
 
+    //Reads the FSA file
+    public int readCommand(String fileName)
+    {
+
+        // This will reference one line at a time
+        String line = null;
+        System.out.println(new File(".").getAbsoluteFile());
+        try {
+            FileReader fileReader = new FileReader("Input/" + fileName);
+
+            // reads input file.
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            if((line = bufferedReader.readLine()) != null) {
+                // close file.
+                System.out.println(line);
+                bufferedReader.close();
+                return run(line);
+            }
+        }
+        catch(FileNotFoundException ex) {
+            return run(fileName);
+
+        }
+        catch(IOException ex) {
+            return 2;
+        }
+        return 2;
+    }
+
     /*Method use to create FSA object and to validate user input*/
     public int build(String Test) {
         int i = 0;
@@ -75,15 +109,15 @@ public class Handler {
         return 0;
     }
 
+    //Runs the FSA machine and returns results
     public int run(String input)
     {
         if (FSA1.validate(input) == 0) {
-            if (FSA1.run(input) == 1) {
-                System.out.println("Input finished in accepting state!");
+            int code = FSA1.run(input);
+            if (code == 1) {
                 return 1;
             } else {
-                System.out.println("Input finished in accepting non-state!");
-                return -7;
+                return code;
             }
         } else {
             return -5;

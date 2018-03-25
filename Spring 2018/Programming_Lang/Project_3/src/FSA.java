@@ -12,17 +12,18 @@ public class FSA {
     {
         FSA = s;
     }
-
+/*Retrieves status of FSA.*/
     public boolean getStatus()
     {
         return set;
     }
-
+    /*sets status of FSA. This determines whether the user can run it yet*/
     public void setStatus(boolean x)
     {
         this.set = x;
     }
 
+    /*Relieves the number of states in the FSA*/
     public int getNumState()
     {
         return numOfStates;
@@ -33,7 +34,7 @@ public class FSA {
         int found;
         for (int i = 0; i < sent.length(); i++) {
             found = 0;
-            for (int j = 0; j < alphabet.length; j++)
+            for (int j = 0; j < alphabet.length; j++) //Loops through alphabet to at least find one input
                 if (sent.charAt(i) == alphabet[j]) {
                     found = 1;
                 }
@@ -53,12 +54,13 @@ public class FSA {
             for (int j = 0; j < alphabet.length; j++)
                 if (sent.charAt(i) == alphabet[j]) {
                     if (transition[currentState][j] != -1) {
-                        currentState = transition[currentState][j];
+                        currentState = transition[currentState][j]; //Sets the state to the appropriate end state
                     } else {
                         return -6;
                     }
                 }
         }
+        //When the travers is finished, the program checks to see if the end state is accepting
         for (int i = 0; i < accepting.length; i++) {
             if (currentState == accepting[i]) {
                 return 1;
@@ -78,21 +80,23 @@ public class FSA {
         numOfStates = Integer.parseInt(hold);
         System.out.println("Number of state : " + numOfStates);
         return i + 1;
-    }
+        }
 
+/*Creates an list of inputs that are in the alphabet*/
     public int setAlphabet(int i) {
         if (i > 0) {
-            int count = 0;
+            int count = 0; //keeps track of the number of items to be placed in the alphabet
             String hold = "";
 
             for (i = i; i < FSA.length() && FSA.charAt(i) != ';'; i++) {
-                if (FSA.charAt(i) == ',') {
+                if (FSA.charAt(i) == ',') {//finds ',' and uses it to count values
                     count++;
                 }
                 hold = hold + FSA.charAt(i);
             }
             alphabet = new char[count + 1];
             int l = 0;
+            //adds Characters to alphabet
             for (int j = 0; j < hold.length(); j++) {
                 if (hold.charAt(j) != ',') {
                     alphabet[l] = hold.charAt(j);
@@ -109,11 +113,12 @@ public class FSA {
             return i;
     }
 
+    /*Sets the transitions for the FSA*/
     public int setTransitions(int i) {
         if (i > 0) {
-            buildTransitionTable();
+            buildTransitionTable(); //Default ass the varaibles to -1 for error testing
             String hold = "";
-            int count = 0;
+            int count = 0; //keeps track of number of states
             for (i = i; i < FSA.length() && FSA.charAt(i) != ';'; i++) {
                 if (FSA.charAt(i) == ',') {
                     count++;
@@ -122,7 +127,9 @@ public class FSA {
             }
             System.out.println("Transitions : " + hold);
             int l = 0;
+            //Parser to split the section of the transitions
             for (int j = 0; j < count + 1; j++) {
+                //Elements of the transition. The start, the end state, and the location of the alphabet to cause this transition.
                 int start, end, location;
                 if (hold.charAt(l) == '(') {
                     l++;
@@ -163,6 +170,7 @@ public class FSA {
             return i;
     }
 
+    /*Defaults all transitions to -1 for testing*/
     public void buildTransitionTable() {
         transition = new int[numOfStates][alphabet.length];
         for (int i = 0; i < numOfStates; i++) {
@@ -171,7 +179,7 @@ public class FSA {
             }
         }
     }
-
+    //Prints table
     public void printTable() {
         for (int j = 0; j < alphabet.length; j++) {
             System.out.print(alphabet[j]);
@@ -184,7 +192,7 @@ public class FSA {
             System.out.println("");
         }
     }
-
+    //sets the start state
     public int setStart(int i) {
         if (i > 0) {
             String hold = "";
@@ -197,11 +205,12 @@ public class FSA {
         } else
             return i;
     }
-
+//Creates an array of accepting states
     public int setAccepting(int i) {
         if (i > 0) {
             String hold = "";
             int count = 0;
+            //Finds the amount of accepting states in the FSA
             for (i = i; i < FSA.length() && FSA.charAt(i) != ';'; i++) {
                 if (FSA.charAt(i) == ',') {
                     count++;
@@ -209,6 +218,7 @@ public class FSA {
                 hold = hold + FSA.charAt(i);
             }
             System.out.println("Accepting States : " + hold);
+            //Adds accepting states to list
             accepting = new int[count + 1];
             int l = 0;
             for (int j = 0; j < hold.length(); j++) {

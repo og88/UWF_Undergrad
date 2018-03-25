@@ -107,7 +107,7 @@ public class FSAGui extends Application {
             @Override
             public void handle(ActionEvent event) {
                 if(handler.getStatus()) {
-                    label2.setText(handler.errorHandler(handler.run(textField.getText())));
+                    label2.setText(handler.errorHandler(handler.readCommand(textField.getText())));
                 }
                 else
                 {
