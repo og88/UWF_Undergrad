@@ -39,7 +39,6 @@ public class Handler {
 
         // This will reference one line at a time
         String line = null;
-        System.out.println(new File(".").getAbsoluteFile());
         try {
             // FileReader reads text files in the default encoding.
             FileReader fileReader = new FileReader("FSA/" + fileName);
@@ -72,7 +71,6 @@ public class Handler {
 
         // This will reference one line at a time
         String line = null;
-        System.out.println(new File(".").getAbsoluteFile());
         try {
             FileReader fileReader = new FileReader("Input/" + fileName);
 

@@ -7,6 +7,34 @@ public class FSA {
     private int[] accepting;
     private boolean set = false;
 
+    public int getStart()
+    {
+        return start;
+    }
+
+    public int getAcepting(int i)
+    {
+        return accepting[i];
+    }
+    public int getAcceptingSize()
+    {
+        return accepting.length;
+    }
+
+    public char getAlphabet(int i)
+    {
+        return alphabet[i];
+    }
+
+    public int getTransition(int x,int y) {
+        return transition[x][y];
+
+    }
+
+    public int getNumOfAlphabet()
+    {
+        return alphabet.length;
+    }
     /*Sets the private String FSA to a user defined FSA*/
     public void setFSA(String s)
     {
@@ -199,8 +227,9 @@ public class FSA {
             for (i = i; i < FSA.length() && FSA.charAt(i) != ';'; i++) {
                 hold = hold + FSA.charAt(i);
             }
-            System.out.println("Start state : " + hold);
             start = Character.getNumericValue(hold.charAt(0));
+            System.out.println("Start state : " + start);
+
             return i + 1;
         } else
             return i;

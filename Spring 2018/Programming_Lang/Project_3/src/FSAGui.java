@@ -199,8 +199,6 @@ public class FSAGui extends Application {
             }
         });
 
-
-
         Pane root = new Pane();
         root.getChildren().add(btn);
         root.getChildren().add(btn2);
