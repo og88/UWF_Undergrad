@@ -1,12 +1,18 @@
-package com.example.omarg.scavenge_client;
 
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
-public class Handler {
-    public static String main(){
+public class Main {
+    public static void main(String[] args) {
+
         URL url;
-        String inputLine;
 
         try {
             // get URL content
@@ -17,13 +23,12 @@ public class Handler {
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(conn.getInputStream()));
 
-
+            String inputLine;
 
 
 
             while ((inputLine = br.readLine()) != null) {
                 System.out.println(inputLine);
-                return inputLine;
             }
 
             br.close();
@@ -35,6 +40,6 @@ public class Handler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "Done";
+
     }
 }
