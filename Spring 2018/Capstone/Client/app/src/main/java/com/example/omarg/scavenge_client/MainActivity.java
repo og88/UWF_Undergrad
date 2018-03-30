@@ -1,11 +1,11 @@
 package com.example.omarg.scavenge_client;
+
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,21 +22,17 @@ public class MainActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(MainActivity.this, com.example.omarg.scavenge_client.ZingQR.class));
+
             }
         });
-
 
 
         Button b2 = this.findViewById(R.id.List);
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //finish();
-                TextView t = findViewById(R.id.textView);
-
-                    String h = new Handler().main();
-                    t.setText(h);
+                startActivity(new Intent(MainActivity.this, com.example.omarg.scavenge_client.ListActivity.class));
 
             }
         });
