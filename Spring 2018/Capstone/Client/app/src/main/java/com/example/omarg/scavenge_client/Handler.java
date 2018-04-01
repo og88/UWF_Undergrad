@@ -82,21 +82,33 @@ public class Handler {
                 //System.out.println("Missing: \"");
             }
         }
-        return "";
+        return null;
     }
 
     static Building id() {
         Building building = new Building();
         while (i < inputLine.length()) {
             String s = Parse();
+            if(s == null)
+            {
+                return null;
+            }
             //System.out.print(s);
             if (s.equals("building_id")) {
                 //System.out.print(" : Found");
                 s = Parse();
+                if(s == null)
+                {
+                    return null;
+                }
                 if (s.equals("S")) {
                     // System.out.print(s);
                     // System.out.print(" : Found");
                     s = Parse();
+                    if(s == null)
+                    {
+                        return null;
+                    }
                     building.setBuilding_id(s);
                 }
             } else if (s.equals("info")) {
@@ -104,34 +116,66 @@ public class Handler {
             } else if (s.equals("Location_type")) {
                 //System.out.print(" : Found");
                 s = Parse();
+                if(s == null)
+                {
+                    return null;
+                }
                 if (s.equals("S")) {
                     //System.out.print(s);
                     // System.out.print(" : Found");
                     s = Parse();
+                    if(s == null)
+                    {
+                        return null;
+                    }
                     building.setLocation_type(s);
                 }
             } else if (s.equals("room#")) {
                 //System.out.print(" : Found");
                 s = Parse();
+                if(s == null)
+                {
+                    return null;
+                }
                 if (s.equals("S")) {
                     // System.out.print(" : Found");
                     s = Parse();
+                    if(s == null)
+                    {
+                        return null;
+                    }
                     building.setRoom(s);
                 }
             } else if (s.equals("Description")) {
                 //System.out.print(" : Found");
                 s = Parse();
+                if(s == null)
+                {
+                    return null;
+                }
                 if (s.equals("S")) {
                     //System.out.print(" : Found");
                     s = Parse();
+                    if(s == null)
+                    {
+                        return null;
+                    }
                     building.setDescription(s);
                 }
             } else if (s.equals("_id")) {
                 //System.out.print(" : Found");
                 s = Parse();
+                if(s == null)
+                {
+                    return null;
+                }
                 if (s.equals("S")) {
                     // System.out.print(" : Found");
                     s = Parse();
+                    if(s == null)
+                    {
+                        return null;
+                    }
                     building.set_id(s);
                     return building;
                 }
