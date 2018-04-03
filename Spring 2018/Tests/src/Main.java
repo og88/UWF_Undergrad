@@ -1,6 +1,8 @@
-package com.example.omarg.scavenge_client;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -8,19 +10,19 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-public class Handler {
+public class Main {
     static String inputLine;
     static int i = 0;
     static int buildingNum = 0;
 
 
-    public static ArrayList<Building> main(String URL) {
+    public static void main(String[] args) {
 
         URL url;
 
         try {
             // get URL content
-            url = new URL("http://node-express-env.hvwzjgwfbd.us-east-1.elasticbeanstalk.com/" + URL);
+            url = new URL("http://node-express-env.hvwzjgwfbd.us-east-1.elasticbeanstalk.com/building/004");
             URLConnection conn = url.openConnection();
 
             // open the stream and put it into BufferedReader
@@ -32,25 +34,25 @@ public class Handler {
                 System.out.println(inputLine);
                 ArrayList<Building> buildingList = start();
                 printList(buildingList);
-                return buildingList;
             }
 
             br.close();
-            return null;
+
+            System.out.println("Done");
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+
     }
 
     static ArrayList<Building> start() {
         ArrayList<Building> buildingList = new ArrayList<>();
-        while (i < inputLine.length()) {
+        while(i < inputLine.length()) {
             Building toAdd = id();
-            if (toAdd != null) {
+            if(toAdd != null) {
                 buildingList.add(toAdd);
                 buildingNum++;
             }
@@ -61,6 +63,11 @@ public class Handler {
     static void printList(ArrayList<Building> List) {
         for (int i = 0; i < buildingNum; i++) {
             System.out.println(List.get(i).getBuilding_id());
+            System.out.println(List.get(i).get_id());
+            System.out.println(List.get(i).getDescription());
+            System.out.println(List.get(i).getLocation_type());
+            System.out.println(List.get(i).getRoom());
+            System.out.println(" ");
         }
     }
 
@@ -82,33 +89,21 @@ public class Handler {
                 //System.out.println("Missing: \"");
             }
         }
-        return null;
+        return "";
     }
 
     static Building id() {
         Building building = new Building();
         while (i < inputLine.length()) {
             String s = Parse();
-            if(s == null)
-            {
-                return null;
-            }
             //System.out.print(s);
             if (s.equals("building_id")) {
                 //System.out.print(" : Found");
                 s = Parse();
-                if(s == null)
-                {
-                    return null;
-                }
                 if (s.equals("S")) {
                     // System.out.print(s);
                     // System.out.print(" : Found");
                     s = Parse();
-                    if(s == null)
-                    {
-                        return null;
-                    }
                     building.setBuilding_id(s);
                 }
             } else if (s.equals("info")) {
@@ -116,66 +111,34 @@ public class Handler {
             } else if (s.equals("Location_type")) {
                 //System.out.print(" : Found");
                 s = Parse();
-                if(s == null)
-                {
-                    return null;
-                }
                 if (s.equals("S")) {
                     //System.out.print(s);
                     // System.out.print(" : Found");
                     s = Parse();
-                    if(s == null)
-                    {
-                        return null;
-                    }
                     building.setLocation_type(s);
                 }
             } else if (s.equals("room#")) {
                 //System.out.print(" : Found");
                 s = Parse();
-                if(s == null)
-                {
-                    return null;
-                }
                 if (s.equals("S")) {
                     // System.out.print(" : Found");
                     s = Parse();
-                    if(s == null)
-                    {
-                        return null;
-                    }
                     building.setRoom(s);
                 }
             } else if (s.equals("Description")) {
                 //System.out.print(" : Found");
                 s = Parse();
-                if(s == null)
-                {
-                    return null;
-                }
                 if (s.equals("S")) {
                     //System.out.print(" : Found");
                     s = Parse();
-                    if(s == null)
-                    {
-                        return null;
-                    }
                     building.setDescription(s);
                 }
             } else if (s.equals("_id")) {
                 //System.out.print(" : Found");
                 s = Parse();
-                if(s == null)
-                {
-                    return null;
-                }
                 if (s.equals("S")) {
                     // System.out.print(" : Found");
                     s = Parse();
-                    if(s == null)
-                    {
-                        return null;
-                    }
                     building.set_id(s);
                     return building;
                 }
