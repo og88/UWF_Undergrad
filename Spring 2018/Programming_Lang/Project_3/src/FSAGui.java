@@ -179,6 +179,7 @@ public class FSAGui extends Application {
                     label2.setText(textField.getText() + " Loaded!");
                     handler.build(textField.getText());
                     PrintFSA.print(handler);
+                    writeLSP.Create(handler);
                 }
                 else if(x == 1)
                 {

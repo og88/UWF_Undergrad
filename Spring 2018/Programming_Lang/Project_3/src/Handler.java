@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class Handler {
-    FSA FSA1 = new FSA();
+     FSA FSA1 = new FSA();
 
     /*Method use to report errors to users*/
     public String errorHandler(int error) {
@@ -107,6 +107,7 @@ public class Handler {
         return 0;
     }
 
+
     //Runs the FSA machine and returns results
     public int run(String input)
     {
@@ -121,4 +122,5 @@ public class Handler {
             return -5;
         }
     }
+
 }

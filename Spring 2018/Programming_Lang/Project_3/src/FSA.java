@@ -16,6 +16,7 @@ public class FSA {
     {
         return accepting[i];
     }
+
     public int getAcceptingSize()
     {
         return accepting.length;
@@ -56,6 +57,8 @@ public class FSA {
     {
         return numOfStates;
     }
+
+
 
     /*Validates the user input string. This makes sure the strings characters are in the alphabet.*/
     public int validate(String sent) {
@@ -234,6 +237,7 @@ public class FSA {
         } else
             return i;
     }
+
 //Creates an array of accepting states
     public int setAccepting(int i) {
         if (i > 0) {
