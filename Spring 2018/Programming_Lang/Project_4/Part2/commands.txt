@@ -1,0 +1,5 @@
+(x x y)
+(x x y y x x x y y x y y x y y x y z)
+(x x x x x y x x x y x x x z x x x a)
+(a b c d e f f e d b c a c b c b d a b d a b d a b)
+(b a b a b a b a b a b a b a b a b a b b a d d e f d e f d e f d e f f e d c b a)
