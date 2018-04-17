@@ -100,7 +100,9 @@ int start(int port, int count)
 		sprintf(previous, "%d", portList[count-1]); // puts string into buffer
 		printf("%s\n", previous); // outputs so you can see it
 		send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
-		send(clientList[i], "1", strlen("1"), 0); // send where, what, how much, flags (optional)
+		char order[16];
+		sprintf(order,"%i",i);
+		send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
 		}
 		else if(i < (count - 1))
 		{
@@ -113,7 +115,9 @@ int start(int port, int count)
 		sprintf(previous, "%d", portList[i-1]); // puts string into buffer
 		printf("%s\n", previous); // outputs so you can see it
 		send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
-			send(clientList[i], "0", strlen("0"), 0); // send where, what, how much, flags (optional)
+		char order[16];
+		sprintf(order,"%i", i);
+		send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
 		}
 		else
 		{
@@ -126,13 +130,13 @@ int start(int port, int count)
 		sprintf(previous, "%d", portList[i-1]); // puts string into buffer
 		printf("%s\n", previous); // outputs so you can see it
 		send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
-		send(clientList[i], "0", strlen("0"), 0); // send where, what, how much, flags (optional)
+		char order[16];
+		sprintf(order,"%i", i);
+		send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
 		}
 	}
 	return 0;
 }
-
-
 
 
 

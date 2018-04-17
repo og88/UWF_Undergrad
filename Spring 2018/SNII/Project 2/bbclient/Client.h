@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <string.h>     //Library for strings
 #include <arpa/inet.h>
+#include <stdbool.h>
 
 
 #define CHUNK 256
