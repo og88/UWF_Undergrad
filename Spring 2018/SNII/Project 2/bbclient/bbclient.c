@@ -99,6 +99,7 @@ int start(int serverPort, char *clientPort)
 
 	printf("nextPort %i, previousPort %i, order %i\n", nextPort, previousPort, order);
 	close(tcp_client_socket);
+		sprintf(ID, "%d", order);
 	userOrder(nextPort, previousPort, order);
 	return 0;
 }
@@ -112,7 +113,7 @@ int userOrder(int nextPort, int previousPort, int order)
 		while (finish == 0)
 		{
 			finish = sendConnection(nextPort);
-			if (order == 0)
+			if (finish == 0)
 			{
 				finish = recieveConnection(previousPort);
 			}
@@ -123,7 +124,7 @@ int userOrder(int nextPort, int previousPort, int order)
 		while (finish == 0)
 		{
 			finish = recieveConnection(previousPort);
-			if (order == 0)
+			if (finish == 0)
 			{
 				finish = sendConnection(nextPort);
 			}
@@ -247,7 +248,8 @@ int recieveConnection(int port)
 	tcp_server_address.sin_addr = ip;			//Connecting to 127.0.0.1
 
 	// binding the socket to the IP address and port
-	bind(tcp_client_socket, (struct sockaddr *)&tcp_server_address, sizeof(tcp_server_address)); //Params: which socket, cast for server address, its size																						 //listen for simultaneous connections
+	bind(tcp_client_socket, (struct sockaddr *)&tcp_server_address, sizeof(tcp_server_address)); //Params: which socket, cast for server address, its size	
+	//listen for simultaneous connections
 	listen(tcp_client_socket, 1);
 
 	//Create a client socket
@@ -259,7 +261,7 @@ int recieveConnection(int port)
 	printf("client Message : %s\n", tcp_client_message);
 
 	close(tcp_client_socket);
-	if(strcmp(tcp_client_message, "exit"))
+	if(strcmp(tcp_client_message, "exit") == 0)
 	{
 		return 1;
 	}
