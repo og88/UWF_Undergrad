@@ -5,7 +5,7 @@ CC = gcc
 objects = bbclient.o 
 
 bbclient: $(objects)
-	$(CC)  -o bbclient $(objects)
+	$(CC)  -pthread -o bbclient $(objects)
 
 
 bbclient.o: bbclient.c Client.h

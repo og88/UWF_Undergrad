@@ -12,16 +12,16 @@ int tokenRing(int tcp_server_socket);
 
 int main(int argc, char *argv[])
 {
-	if(argc == 3)
+	if (argc == 3)
 	{
-	printf("Program ran fine\n");
-		printf("%s %s %s\n",argv[0], argv[1], argv[2]);
+		printf("Program ran fine\n");
+		printf("%s %s %s\n", argv[0], argv[1], argv[2]);
 		start(atoi(argv[1]), atoi(argv[2]));
 	}
 	else
 	{
-	printf("Too few arguments\n");
-		}
+		printf("Too few arguments\n");
+	}
 }
 
 int start(int port, int count)
@@ -29,98 +29,173 @@ int start(int port, int count)
 	int i;
 	int portList[count];
 	int clientList[count];
-	for(i = 0; i < count; i++)
+	for (i = 0; i < count; i++)
 	{
-	//create the server socket
-	int tcp_server_socket;								 //variable for the socket descriptor
-	tcp_server_socket = socket(AF_INET, SOCK_STREAM, 0); //calling the socket function. Params: Domain of the socket (Internet in this case), type of socket stream (TCP), Protocol (default, 0 for TCP)
+		//create the server socket
+		int tcp_server_socket;								 //variable for the socket descriptor
+		tcp_server_socket = socket(AF_INET, SOCK_STREAM, 0); //calling the socket function. Params: Domain of the socket (Internet in this case), type of socket stream (TCP), Protocol (default, 0 for TCP)
 
-	//Define an ip adress
-	struct in_addr ip;
-	if (inet_pton(AF_INET, "127.0.0.1", &ip) != 1)
-	{
-		perror("inet_pton"); //printout error if ip address could not be found
-		exit(1);
-	}
+		//Define an ip adress
+		struct in_addr ip;
+		if (inet_pton(AF_INET, "127.0.0.1", &ip) != 1)
+		{
+			perror("inet_pton"); //printout error if ip address could not be found
+			exit(1);
+		}
 
-	//define the server address
-	struct sockaddr_in tcp_server_address;		//declaring a structure for the address
-	tcp_server_address.sin_family = AF_INET;	//Structure Fields' definition: Sets the address family of the address the client would connect to
-	tcp_server_address.sin_port = htons(port); //Passing the port number - in this case 60039
-	tcp_server_address.sin_addr = ip;			//Connecting to 127.0.0.1
+		//define the server address
+		struct sockaddr_in tcp_server_address;		//declaring a structure for the address
+		tcp_server_address.sin_family = AF_INET;	//Structure Fields' definition: Sets the address family of the address the client would connect to
+		tcp_server_address.sin_port = htons(port); //Passing the port number - in this case 60039
+		tcp_server_address.sin_addr = ip;			//Connecting to 127.0.0.1
 
-	// binding the socket to the IP address and port
-	bind(tcp_server_socket, (struct sockaddr *)&tcp_server_address, sizeof(tcp_server_address)); //Params: which socket, cast for server address, its size																						 //listen for simultaneous connections
-	listen(tcp_server_socket, count);																 //which socket, how many connections
+		// binding the socket to the IP address and port
+		bind(tcp_server_socket, (struct sockaddr *)&tcp_server_address, sizeof(tcp_server_address)); //Params: which socket, cast for server address, its size																						 //listen for simultaneous connections
+		listen(tcp_server_socket, count);																 //which socket, how many connections
 
 
-	//Create a client socket
+		//Create a client socket
 		int tcp_client_socket;
 		tcp_client_socket = accept(tcp_server_socket, NULL, NULL); // server socket to interact with client, structure like before - if you know - else NULL for local connection
 	//HTTP(tcp_server_socket);																	 //Call on the HTTP method
-			
-	char tcp_client_message[1024];
-	read(tcp_client_socket, &tcp_client_message, sizeof(tcp_client_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
-	printf("%s\n", tcp_client_message);
+
+		char tcp_client_message[1024];
+		read(tcp_client_socket, &tcp_client_message, sizeof(tcp_client_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
+		printf("%s\n", tcp_client_message);
+
+		char c;
+		int i = 0, j = 0;
+		char header[CHUNK];
+		memset(header, 0, strlen(header));
+		c = tcp_client_message[i];
+		while (c != ';')
+		{
+			header[j] = c;
+			j++;
+			i++;
+			c = tcp_client_message[i];
+		}
+		printf("%s\n", header);
 
 		bool onList = false;
-		int j;
-		for(j = 0; j < i;j++)
+
+
+		if (strcmp(header, "insert") == 0)
 		{
-			if(portList[j] == atoi(tcp_client_message))
+			i++;
+			j = 0;
+			char content[CHUNK];
+			c = tcp_client_message[i];
+			while (c != ';' && c != '\0' && c != ',')
 			{
-				onList = true;
+				content[j] = c;
+				j++;
+				content[j] = '\0';
+				i++;
+				c = tcp_client_message[i];
+			}
+			int j;
+			for (j = 0; j < i;j++)
+			{
+				if (portList[j] == atoi(content))
+				{
+					onList = true;
+				}
+			}
+			if (!onList)
+			{
+				portList[i] = atoi(content);
+				clientList[i] = tcp_client_socket;
+				write(tcp_client_socket, "true", strlen("true") + 1); // send where, what, how much, flags (optional)
+			}
+			else
+			{
+				write(tcp_client_socket, "false", strlen("false") + 1); // send where, what, how much, flags (optional)
+				i--;
 			}
 		}
-		if(!onList)
-		{
-			portList[i] = atoi(tcp_client_message);
-			clientList[i] = tcp_client_socket;
-			send(tcp_client_socket, "true", strlen("true"), 0); // send where, what, how much, flags (optional)
-		}
 		else
 		{
-			send(tcp_client_socket, "false", strlen("false"), 0); // send where, what, how much, flags (optional)
 			i--;
 		}
-		printf("%i\n",onList);
+		printf("%i\n", onList);
 		printf("client %i, server %i\n", tcp_client_socket, tcp_server_socket);
-	close(tcp_server_socket); //Closes the connection to the server soccket
+		close(tcp_server_socket); //Closes the connection to the server soccket
 	}
-	for(i = 0; i < count; i++)
+	for (i = 0; i < count; i++)
 	{
-		if(i == 0)
+		if (i == (count - 1))
 		{
-		char next[128];
-		sprintf(next, "%d", portList[i+1]); // puts string into buffer
-		printf("%s\n", next); // outputs so you can see it
-		send(clientList[i], next, strlen(next), 0); // send where, what, how much, flags (optional)
-
-		char previous[128];
-		sprintf(previous, "%d", portList[count-1]); // puts string into buffer
-		printf("%s\n", previous); // outputs so you can see it
-		send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
-		char order[16];
-		sprintf(order,"%i",i);
-		send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
+			char message[512];
+			if (i > 0)
+			{
+				sprintf(message, "next=%d;prev=%d;order=%i,%i;", portList[0], portList[i - 1], i, count);
+			}
+			else
+			{
+				sprintf(message, "next=%d;prev=%d;order=%i,%i;", portList[0], portList[0], i, count);
+			}
+				printf("%s\n", message);
+			int len = strlen(message);
+			message[len + 1] = '\0';
+			send(clientList[i], message, strlen(message) + 1, 0); // send where, what, how much, flags (optional)
 		}
-		else if(i < (count - 1))
+		else if (i == 0)
 		{
-		char next[128];
-		sprintf(next, "%d", portList[i+1]); // puts string into buffer
-		printf("%s\n", next); // outputs so you can see it
-		send(clientList[i], next, strlen(next), 0); // send where, what, how much, flags (optional)
+			/*char next[128];
+			sprintf(next, "%d", portList[i+1]); // puts string into buffer
+			printf("%s\n", next); // outputs so you can see it
+			send(clientList[i], next, strlen(next), 0); // send where, what, how much, flags (optional)
 
 			char previous[128];
-		sprintf(previous, "%d", portList[i-1]); // puts string into buffer
-		printf("%s\n", previous); // outputs so you can see it
-		send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
-		char order[16];
-		sprintf(order,"%i", i);
-		send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
+			sprintf(previous, "%d", portList[count-1]); // puts string into buffer
+			printf("%s\n", previous); // outputs so you can see it
+			send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
+			char order[16];
+			sprintf(order,"%i",i);
+			send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
+			*/
+			char message[512];
+			sprintf(message, "next=%d;prev=%d;order=%i,%i;", portList[i + 1], portList[count - 1], i, count);
+			printf("%s\n", message);
+			int len = strlen(message);
+			message[len + 1] = '\0';
+			write(clientList[i], message, strlen(message) + 1); // send where, what, how much, flags (optional)
+
+		}
+		else if (i < (count - 1))
+		{
+			/*char next[128];
+			sprintf(next, "%d", portList[i+1]); // puts string into buffer
+			printf("%s\n", next); // outputs so you can see it
+			send(clientList[i], next, strlen(next), 0); // send where, what, how much, flags (optional)
+
+				char previous[128];
+			sprintf(previous, "%d", portList[i-1]); // puts string into buffer
+			printf("%s\n", previous); // outputs so you can see it
+			send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
+			char order[16];
+			sprintf(order, "%i", i);
+			send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
+			char message[512];
+
+			sprintf(message, "%s%s%s", next, previous, order);
+			printf("%s\n", message);
+			int len = strlen(message);
+			message[len + 1] = '\0';
+			*/
+
+			char message[512];
+			sprintf(message, "next=%d;prev=%d;order=%i,%i;", portList[i + 1], portList[i - 1], i, count);
+			printf("%s\n", message);
+			int len = strlen(message);
+			message[len + 1] = '\0';
+			send(clientList[i], message, strlen(message) + 1, 0); // send where, what, how much, flags (optional)
+
 		}
 		else
 		{
+			/*
 		char next[128];
 		sprintf(next, "%d", portList[0]); // puts string into buffer
 		printf("%s\n", next); // outputs so you can see it
@@ -131,185 +206,17 @@ int start(int port, int count)
 		printf("%s\n", previous); // outputs so you can see it
 		send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
 		char order[16];
-		sprintf(order,"%i", i);
+		sprintf(order, "%i", i, count);
 		send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
+
+		char message[512];
+		sprintf(message, "%s%s%s",next,previous,order);
+		printf("%s\n", message);
+		int len = strlen(message);
+		message[len + 1] = '\0';*/
+
 		}
 	}
 	return 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int tokenRing(int tcp_server_socket)
-{
-	
-		//Create a client socket
-		int tcp_client_socket;
-		tcp_client_socket = accept(tcp_server_socket, NULL, NULL); // server socket to interact with client, structure like before - if you know - else NULL for local connection
-}
-
-int HTTP(int tcp_server_socket)
-{
-	int kill = 0;	 //Kill is used to determine if the server connection should terminate
-	while (kill != 1) //loop lets the server listen to multiple request per instance
-	{
-		char tcp_client_message[1024];
-
-		//Create a client socket
-		int tcp_client_socket;
-		tcp_client_socket = accept(tcp_server_socket, NULL, NULL); // server socket to interact with client, structure like before - if you know - else NULL for local connection
-
-		//Read the request of a client
-		read(tcp_client_socket, &tcp_client_message, sizeof(tcp_client_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
-
-		//Variables needed to handle requests
-		char c;				 //Holds a char value. This is used to check for spaces and new-lines characters
-		int i;				 //Variable used to keep track of our position of the variables used for HTTP headers
-		int L = 0;			 //Variable used to keep track of the current position of the client message
-		char header[CHUNK];  //Holds the entire HTTP header that will be broken down
-		char command[CHUNK]; //Holds what command the client would like to run, for this project GET is the only available command
-		char file[CHUNK];	//Holds the name of the file the client wants to retrieve
-		char type[CHUNK];	//Type of connection
-
-		c = tcp_client_message[L]; //c is set to the first character of the client message
-								   //For loop to store the header into the header variable. Stops after new line or EOF.
-		for (i = 0; c != EOF && c != '\n'; i++)
-		{
-			header[i] = c;
-			L++;
-			c = tcp_client_message[L];
-		}
-		L = 0;
-		c = header[L];
-
-		//Records the command
-		for (i = 0; c > 32 && c < 127; i++)
-		{
-			command[i] = c;
-			command[i + 1] = '\0';
-			L++;
-			c = header[L];
-		}
-		L++;
-		c = header[L];
-
-		//records the name of the file that needs to be retrieved
-		for (i = 0; c > 32 && c < 127; i++)
-		{
-			file[i] = c;
-			file[i + 1] = '\0';
-			L++;
-			c = header[L];
-		}
-		L++;
-		c = header[L];
-
-		//Records the type of conection
-		for (i = 0; c > 32 && c < 127; i++)
-		{
-			type[i] = c;
-			type[i + 1] = '\0';
-			L++;
-			c = header[L];
-		}
-
-		//Calls the appropriate command from the user requests
-		if (strcmp(command, "GET") == 0)
-		{
-			//return item determines whether the code should run again
-			kill = GET(tcp_client_socket, file, type);
-		}
-		//closes connection with client
-		close(tcp_client_socket);
-	}
-	return 0;
-}
-
-int GET(int tcp_client_socket, char file[], char *type)
-{
-
-	//Open defualt page
-	if (strcmp(file, "/") == 0)
-	{
-		char tcp_server_message[CHUNK] = "HTTP/1.1 200 OK\r\n"; //Basic HTTP message
-		char *fle = "Main.html";
-		FILE *f;
-		f = fopen(fle, "r"); //Open in read only
-
-		fseek(f, 0, SEEK_END);													  //Go to end of file
-		long input_file_size = ftell(f);										  //Find the length of the file
-		rewind(f);																  //Return to the start of the file
-		char *buffer;															  //Holds the file contents
-		buffer = malloc(input_file_size * (sizeof(char)));						  //Assigns the apropriate size for the buffer
-		fread(buffer, sizeof(char), input_file_size, f);						  //Copy the contents of the file to a buffer
-		fclose(f);																  //Close file
-		strcat(tcp_server_message, buffer);										  //Add the html file to the header
-		write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message)); //Send the header and html together
-		return 0;
-	}
-	//Terminate server
-	else if (strcmp(file, "/KILL") == 0)
-	{
-		char tcp_server_message[CHUNK] = "HTTP/1.1 001 ShutDown\r\n";			  //Basic HTTP message
-		write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message)); //Send the header and html together
-		printf("User requested to exit \n\n");
-		return 1;
-	}
-	//Send a requested file
-	else
-	{
-		char tcp_server_message[CHUNK] = "HTTP/1.1 200 OK\r\n"; //Basic HTTP message
-		char c = file[1];										//Name of directory
-		char fle[128];											//Entire name of file, without '/'
-		int i;
-
-		//Adds the name of the file to fle
-		for (i = 0; c > 32 && c < 127; i++)
-		{
-			fle[i] = c;
-			fle[i + 1] = '\0';
-			c = file[i + 2];
-		}
-
-		//Lets user know what is being requested from the server
-		printf("Requesting file %s\n", fle);
-
-		//Open the file to be sent
-		FILE *f;
-		f = fopen(fle, "r");
-		//Error handler for opening the file
-		if (f == NULL)
-		{
-			write(tcp_client_socket, "HTTP/1.1 404 not found\n\r", 128);
-			printf("Error\n");
-		}
-		else //If all is good, proceed
-		{
-			fseek(f, 0, SEEK_END);													  //Go to end of file
-			long input_file_size = ftell(f);										  //Find the length of the file
-			rewind(f);																  //Return to the start of the file
-			char *buffer;															  //Holds the file contents
-			buffer = malloc(input_file_size * (sizeof(char)));						  //Assigns the apropriate size for the buffer
-			fread(buffer, sizeof(char), input_file_size, f);						  //Copy contnets of file to buffer
-			fclose(f);																  //Close file
-			strcat(tcp_server_message, buffer);										  //add html to the message
-			write(tcp_client_socket, tcp_server_message, strlen(tcp_server_message)); //write the message to the client
-		}
-		return 0;
-	}
-	return 0;
-}

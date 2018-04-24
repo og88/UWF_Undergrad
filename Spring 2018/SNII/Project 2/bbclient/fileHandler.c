@@ -7,10 +7,12 @@ int openFile(char* fileName, char* type)
 	if (fp == NULL)
 	{
 		fp = fopen(fileName, type);
+		return 0;
 	}
 	else
 	{
 		printf("Error file already opened");
+		return 1;
 	}
 }
 

@@ -11,9 +11,6 @@
 #include <arpa/inet.h>
 #include <stdbool.h>
 
-
-#define CHUNK 256
-
 /*Handle sending a proper HTTP reqquest to a server*/
 int http(int tcp_client_socket);
 /*Handles code recieved from the server*/
