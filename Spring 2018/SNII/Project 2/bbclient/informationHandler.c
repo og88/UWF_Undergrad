@@ -85,31 +85,33 @@ int intitialInfo(char* recieved)
 	if (strcmp(buff, "order") == 0)
 	{
 		c = recieved[i];
-		char pos[CHUNK];
+		memset(buff, 0, strlen(buff));
 		while (c != ';' && c != ',')
 		{
-			pos[j] = c;
+			buff[j] = c;
 			j++;
 			i++;
 			c = recieved[i];
 		}
-		order = atoi(pos);
+		order = atoi(buff);
 		j = 0;
 		i++;
 		c = recieved[i];
-		char siz[CHUNK];
+		memset(buff, 0, strlen(buff));
 		while (c != ';' && c != ',')
 		{
-			siz[j] = c;
+				printf("%c\n", c);
+			buff[j] = c;
 			j++;
 			i++;
 			c = recieved[i];
 		}
-		size = atoi(siz);
+		printf("%s\n\n",buff);
+		size = atoi(buff);
 	}
 	printf("%s\n", buff);
 
 
-	printf("next port : %i\nPrevious port : %i\nnumber of connectioins : %i\nMy position : %i\n", nextPort, previousPort, size, order);
+	printf("next port : %i\nPrevious port : %i\nnumber of connections : %i\nMy position : %i\n", nextPort, previousPort, size, order);
 	return 0;
 }

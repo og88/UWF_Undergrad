@@ -64,16 +64,16 @@ int start(int port, int count)
 		printf("%s\n", tcp_client_message);
 
 		char c;
-		int i = 0, j = 0;
+		int k = 0, j = 0;
 		char header[CHUNK];
 		memset(header, 0, strlen(header));
-		c = tcp_client_message[i];
+		c = tcp_client_message[k];
 		while (c != ';')
 		{
 			header[j] = c;
 			j++;
-			i++;
-			c = tcp_client_message[i];
+			k++;
+			c = tcp_client_message[k];
 		}
 		printf("%s\n", header);
 
@@ -82,19 +82,19 @@ int start(int port, int count)
 
 		if (strcmp(header, "insert") == 0)
 		{
-			i++;
+			k++;
 			j = 0;
 			char content[CHUNK];
-			c = tcp_client_message[i];
+			c = tcp_client_message[k];
 			while (c != ';' && c != '\0' && c != ',')
 			{
 				content[j] = c;
 				j++;
 				content[j] = '\0';
-				i++;
-				c = tcp_client_message[i];
+				k++;
+				c = tcp_client_message[k];
 			}
-			int j;
+
 			for (j = 0; j < i;j++)
 			{
 				if (portList[j] == atoi(content))
@@ -142,19 +142,6 @@ int start(int port, int count)
 		}
 		else if (i == 0)
 		{
-			/*char next[128];
-			sprintf(next, "%d", portList[i+1]); // puts string into buffer
-			printf("%s\n", next); // outputs so you can see it
-			send(clientList[i], next, strlen(next), 0); // send where, what, how much, flags (optional)
-
-			char previous[128];
-			sprintf(previous, "%d", portList[count-1]); // puts string into buffer
-			printf("%s\n", previous); // outputs so you can see it
-			send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
-			char order[16];
-			sprintf(order,"%i",i);
-			send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
-			*/
 			char message[512];
 			sprintf(message, "next=%d;prev=%d;order=%i,%i;", portList[i + 1], portList[count - 1], i, count);
 			printf("%s\n", message);
@@ -165,55 +152,12 @@ int start(int port, int count)
 		}
 		else if (i < (count - 1))
 		{
-			/*char next[128];
-			sprintf(next, "%d", portList[i+1]); // puts string into buffer
-			printf("%s\n", next); // outputs so you can see it
-			send(clientList[i], next, strlen(next), 0); // send where, what, how much, flags (optional)
-
-				char previous[128];
-			sprintf(previous, "%d", portList[i-1]); // puts string into buffer
-			printf("%s\n", previous); // outputs so you can see it
-			send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
-			char order[16];
-			sprintf(order, "%i", i);
-			send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
-			char message[512];
-
-			sprintf(message, "%s%s%s", next, previous, order);
-			printf("%s\n", message);
-			int len = strlen(message);
-			message[len + 1] = '\0';
-			*/
-
 			char message[512];
 			sprintf(message, "next=%d;prev=%d;order=%i,%i;", portList[i + 1], portList[i - 1], i, count);
 			printf("%s\n", message);
 			int len = strlen(message);
 			message[len + 1] = '\0';
 			send(clientList[i], message, strlen(message) + 1, 0); // send where, what, how much, flags (optional)
-
-		}
-		else
-		{
-			/*
-		char next[128];
-		sprintf(next, "%d", portList[0]); // puts string into buffer
-		printf("%s\n", next); // outputs so you can see it
-		send(clientList[i], next, strlen(next), 0); // send where, what, how much, flags (optional)
-
-		char previous[128];
-		sprintf(previous, "%d", portList[i-1]); // puts string into buffer
-		printf("%s\n", previous); // outputs so you can see it
-		send(clientList[i], previous, strlen(previous), 0); // send where, what, how much, flags (optional)
-		char order[16];
-		sprintf(order, "%i", i, count);
-		send(clientList[i], order, strlen(order), 0); // send where, what, how much, flags (optional)
-
-		char message[512];
-		sprintf(message, "%s%s%s",next,previous,order);
-		printf("%s\n", message);
-		int len = strlen(message);
-		message[len + 1] = '\0';*/
 
 		}
 	}
