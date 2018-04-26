@@ -16,7 +16,7 @@ int size;
 int intitialInfo(char* recieved)
 {
 	//char *recieved = "next=60039;prev=60038;order=1,3;";
-	printf("%s\n", recieved);
+	printf("Handling message %s\n", recieved);
 	char buff[128];
 	char c;
 	int i = 0, j = 0;
@@ -109,7 +109,7 @@ int intitialInfo(char* recieved)
 		printf("%s\n\n",buff);
 		size = atoi(buff);
 	}
-	printf("%s\n", buff);
+	printf("buff = %s\n", buff);
 
 
 	printf("next port : %i\nPrevious port : %i\nnumber of connections : %i\nMy position : %i\n", nextPort, previousPort, size, order);

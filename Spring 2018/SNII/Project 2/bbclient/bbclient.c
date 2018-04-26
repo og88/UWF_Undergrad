@@ -69,7 +69,7 @@ int start(int serverPort, char *clientPort)
 
 	char tcp_server_message[CHUNK];
 	read(socket, &tcp_server_message, sizeof(tcp_server_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
-	//printf("%s\n", tcp_server_message);
+	printf("Server message  %s\n", tcp_server_message);
 	if (strcmp(tcp_server_message, "true") == 0)
 	{
 		printf("valid\n");
@@ -80,6 +80,7 @@ int start(int serverPort, char *clientPort)
 	}
 
 	read(socket, &tcp_server_message, sizeof(tcp_server_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
+		printf("Server message  %s\n", tcp_server_message);
 	//printf("nextPort %i, previousPort %i, order %i\n", nextPort, previousPort, order);
 	close(socket);
 	sprintf(ID, "%d", order);
@@ -163,14 +164,13 @@ int userActions()
 		}
 		else if (selection == 2) //write
 		{
-			int tcp_client_socket = socketConnect(nextPort, 1);
 			getchar();
+			int tcp_client_socket = socketConnect(nextPort, 1);
 			openFile(fileName, "a+");
 			char buff[128];
 			scanf("%[^\n]s", &buff);
 			char message[256];
-			sprintf(message, "<message n = %i> %s </message>\n", order, buff);
-			writeToFile(message);
+			writeToFile(buff);
 			closeFile();
 			char filemessage[CHUNK];
 			sprintf(filemessage, "token;");
@@ -191,7 +191,7 @@ int userActions()
 			char message[CHUNK];
 			if(portNum == previousPort)
 			{
-			sprintf(message, "Bye", portNum, previousPort);
+			sprintf(message, "Bye");
 			}
 			else{
 			sprintf(message, "exit;%i;%i;", portNum, previousPort);
