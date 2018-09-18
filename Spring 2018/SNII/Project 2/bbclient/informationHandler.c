@@ -5,8 +5,6 @@
 
 #define CHUNK 128
 
-/*char nextPort[CHUNK];
-char previousPort[CHUNK];*/
 
 int nextPort;
 int previousPort;
@@ -15,7 +13,6 @@ int size;
 
 int intitialInfo(char* recieved)
 {
-	//char *recieved = "next=60039;prev=60038;order=1,3;";
 	printf("Handling message %s\n", recieved);
 	char buff[128];
 	char c;
@@ -109,7 +106,6 @@ int intitialInfo(char* recieved)
 		printf("%s\n\n",buff);
 		size = atoi(buff);
 	}
-	printf("buff = %s\n", buff);
 
 
 	printf("next port : %i\nPrevious port : %i\nnumber of connections : %i\nMy position : %i\n", nextPort, previousPort, size, order);

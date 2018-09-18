@@ -3,6 +3,8 @@
 
 FILE *fp;
 
+#define chunk 64
+
 int openFile(char *fileName, char *type)
 {
 	if (fp == NULL)
@@ -30,12 +32,14 @@ int closeFile()
 
 char *readFile()
 {
+	fseek(fp, 0, SEEK_SET); //same as rewind(f);
 	fseek(fp, 0, SEEK_END);
 	long fsize = ftell(fp);
 	fseek(fp, 0, SEEK_SET); //same as rewind(f);
-
 	char *string = malloc(fsize + 1);
 	fread(string, fsize, 1, fp);
+	fseek(fp, 0, SEEK_SET); //same as rewind(f);
+	fflush(stdout);
 	return string;
 }
 
@@ -48,7 +52,6 @@ long fileSize()
 
 int writeToFile(char *string)
 {
-	int CHUNK = 256;
 	if (fp == NULL)
 	{
 		perror("Error opening file.");
@@ -56,30 +59,32 @@ int writeToFile(char *string)
 	}
 	else
 	{
-		char message[CHUNK];
+		char message[chunk];
+		fseek(fp, 0, SEEK_SET); //same as rewind(f);
 		fseek(fp, 0, SEEK_END);
 		long fsize = ftell(fp);
-		printf("%i\n",fsize);
 		fseek(fp, fsize, SEEK_SET);
-		sprintf(message, "<message n = %i> %s </message>", fsize / CHUNK, string);
+		sprintf(message, "<message n = %i> %s </message>\n", (fsize / chunk), string);
 		fputs(message, fp);
-		fseek(fp, (fsize + CHUNK) - 1, SEEK_SET);
+		fseek(fp, (fsize + chunk) - 1, SEEK_SET);
 		fputs("\n", fp);
+		fseek(fp, 0, SEEK_SET); //same as rewind(f);
 		return 1;
 	}
 }
 
 char *listMessage(int x)
 {
-		int CHUNK = 256;
+	fseek(fp, 0, SEEK_SET); //same as rewind(f);
 	fseek(fp, 0, SEEK_END);
 	int fsize = ftell(fp);
-	if ((x * CHUNK) <= fsize)
+	if ((x * chunk) <= fsize)
 	{
-		fseek(fp, CHUNK * 4, SEEK_SET);
-		char *string = malloc(fsize + 1);
-		fread(string, CHUNK, 1, fp);
-		printf("%s\n", string);
+		fseek(fp, chunk * x, SEEK_SET);
+		char *string = malloc(chunk*2);
+		fread(string, chunk*2, 1, fp);
+		printf("found message \n%s\n", string);
+		fseek(fp, 0, SEEK_SET); //same as rewind(f);
 		return string;
 	}
 	else

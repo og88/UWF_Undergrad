@@ -19,7 +19,7 @@ int socketConnect(int port, int x);
 
 char *fileName;
 char *ID;
-int portNum;
+int portNum; 
 int finish;
 
 bool token;
@@ -29,8 +29,7 @@ int main(int argc, char *argv[])
 {
 	if (argc == 5)
 	{
-		//printf("Program ran fine\n");
-		//printf("%s %s %s %s %s\n", argv[0], argv[1], argv[2], argv[3], argv[4]);
+		printf("Program ran fine\n");
 		fileName = argv[4];
 
 		if (openFile(fileName, "w+") == 0)
@@ -49,7 +48,7 @@ int main(int argc, char *argv[])
 }
 
 int start(int serverPort, char *clientPort)
-{
+{ 
 	int socket = socketConnect(serverPort, 1);
 	while (socket == 1)
 	{
@@ -60,10 +59,8 @@ int start(int serverPort, char *clientPort)
 	}
 	if (socket != 1)
 	{
-		//printf("Connected \n");
 		char insert[CHUNK];
 		sprintf(insert, "insert;%s;", clientPort);
-		//printf("%s\n", insert);
 		send(socket, insert, strlen(insert) + 1, 0); // send where, what, how much, flags (optional)
 	}
 
@@ -80,8 +77,6 @@ int start(int serverPort, char *clientPort)
 	}
 
 	read(socket, &tcp_server_message, sizeof(tcp_server_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
-		printf("Server message  %s\n", tcp_server_message);
-	//printf("nextPort %i, previousPort %i, order %i\n", nextPort, previousPort, order);
 	close(socket);
 	sprintf(ID, "%d", order);
 	intitialInfo(tcp_server_message);
@@ -102,7 +97,6 @@ int start(int serverPort, char *clientPort)
 		pthread_create(&tid, NULL, userOrder, (void *)i);
 	}
 	pthread_exit(NULL);
-	//userOrder(nextPort, previousPort, order);
 	return 0;
 }
 
@@ -111,29 +105,25 @@ void *userOrder(void *args)
 	int *id = (int *)args;
 	int result = 0;
 	finish = 0;
+	openFile(fileName, "w+");
 	if (id == 0)
 	{
-		//printf("Recieve thread\n");
 		while (result == 0 && finish == 0)
 		{
-			printf("Try recieve\n");
 			result = recieveConnection(portNum);
-			printf("result %i\nfinish %i\n\n", result, finish);
 		}
 	}
 	else
 	{
-		//printf("Send thread\n");
 		while (result == 0 && finish == 0)
 		{
 			if (token)
 			{
-				printf("Try send\n");
 				result = sendConnection();
-			printf("result %i\nfinish %i\n\n", result, finish);
 			}
 		}
 	}
+	closeFile();
 }
 
 int userActions()
@@ -149,12 +139,11 @@ int userActions()
 		if (selection == 1) //Read
 		{
 			int tcp_client_socket = socketConnect(nextPort, 1);
-			openFile(fileName, "r");
 			long filesize = fileSize();
 			char *fileContent = malloc(filesize);
 			fileContent = readFile();
-			printf("%s\n", fileContent);
-			closeFile();
+			printf("%s", fileContent);
+			fflush(stdout);
 			char message[CHUNK];
 			sprintf(message, "token;");
 			send(tcp_client_socket, message, strlen(message) + 1, 0); // send where, what, how much, flags (optional)
@@ -164,15 +153,13 @@ int userActions()
 		}
 		else if (selection == 2) //write
 		{
+			printf("input message you would like to write\n");
 			getchar();
 			int tcp_client_socket = socketConnect(nextPort, 1);
-			openFile(fileName, "a+");
 			char buff[128];
 			scanf("%[^\n]s", &buff);
-			char message[256];
 			writeToFile(buff);
-			closeFile();
-			char filemessage[CHUNK];
+			char filemessage[CHUNK]; 
 			sprintf(filemessage, "token;");
 			send(tcp_client_socket, filemessage, strlen(filemessage) + 1, 0); // send where, what, how much, flags (optional)
 			close(tcp_client_socket);
@@ -181,6 +168,17 @@ int userActions()
 		}
 		else if (selection == 3) //List
 		{
+			printf("input message # you would like to read\n");
+			getchar();
+			char buff[128];
+			scanf("%[^\n]s", &buff);
+			listMessage(atoi(buff));
+			
+			int tcp_client_socket = socketConnect(nextPort, 1);
+			char filemessage[CHUNK];
+			sprintf(filemessage, "token;");
+			send(tcp_client_socket, filemessage, strlen(filemessage) + 1, 0); // send where, what, how much, flags (optional)
+			close(tcp_client_socket);
 			token = false;
 			return 0;
 		}
@@ -213,14 +211,12 @@ int userActions()
 
 int sendConnection()
 {
-		//printf("Connected \n");
 		int result = userActions();
 		return result;
 }
 
 int recieveConnection(int port)
 {
-	printf("Recieve\n");
 	int socket = socketConnect(port, 2);
 
 	if (socket != 1)
@@ -228,7 +224,6 @@ int recieveConnection(int port)
 		char tcp_client_message[CHUNK];
 		memset(tcp_client_message, 0, strlen(tcp_client_message));
 		read(socket, &tcp_client_message, sizeof(tcp_client_message)); // params: where (socket), what (string), how much - size of the server response, flags (0)
-	//	printf("client Message : %s\n", tcp_client_message);
 
 		char c;
 		int i = 0, j = 0;
@@ -242,8 +237,6 @@ int recieveConnection(int port)
 			i++;
 			c = tcp_client_message[i];
 		}
-		//printf("%s\n", header);
-
 		if (strcmp(header, "token") == 0)
 		{
 			token = true;
@@ -252,6 +245,7 @@ int recieveConnection(int port)
 
 		if (strcmp(header, "Bye") == 0)
 		{
+			printf("Bye\n");
 			finish = 1;
 			close(socket);
 			return 1;
@@ -273,18 +267,13 @@ int recieveConnection(int port)
 				c = tcp_client_message[i];
 			}
 			int newPort = atoi(content);
-			printf("Content %s\n\n", content);
-			printf("new member %i\n", newPort);
+		printf("new member %i\n", newPort);
 			if (socket != 1)
 			{
-				printf("Connected \n");
 				char message[CHUNK / 2];
 				sprintf(message, "next=%d;prev=%d;order=%i,%i;", portNum, previousPort, size, size++);
-				printf("%s\n\n", message);
 				write(socket, "true", strlen("true") + 1); // send where, what, how much, flags (optional)
-				printf("true\n\n");
 				send(socket, message, strlen(message) + 1, 0); // send where, what, how much, flags (optional)
-				printf("message sent\n\n");
 			}
 			close(socket);
 			socket = socketConnect(previousPort, 1);
@@ -297,7 +286,7 @@ int recieveConnection(int port)
 			}
 			if (socket != 1)
 			{
-				printf("Connected \n");
+			//	printf("Connected \n");
 				char message[CHUNK / 2];
 				sprintf(message, "update;%s", content);
 				send(socket, message, strlen(message) + 1, 0); // send where, what, how much, flags (optional)
@@ -321,7 +310,6 @@ int recieveConnection(int port)
 				c = tcp_client_message[i];
 			}
 			printf("%s\n", content);
-			int oldPort = nextPort;
 			nextPort = atoi(content);
 			printf("new neighbor%i\n\n", nextPort);
 		}
@@ -346,7 +334,7 @@ int recieveConnection(int port)
 
 				if (atoi(content) == previousPort)
 				{
-					printf("previous client exited\n\n");
+				//	printf("previous client exited\n\n");
 					i++;
 					j = 0;
 					memset(content, 0, strlen(content));
@@ -360,7 +348,7 @@ int recieveConnection(int port)
 						c = tcp_client_message[i];
 					}
 					previousPort = atoi(content);
-					printf("new pre port %i\n\n", previousPort);
+				//	printf("new pre port %i\n\n", previousPort);
 					int socket = socketConnect(previousPort, 1);
 					while (socket == 1)
 					{
@@ -371,7 +359,7 @@ int recieveConnection(int port)
 					}
 					if (socket != 1)
 					{
-						printf("Connected \n");
+					//	printf("Connected \n");
 						char message[CHUNK];
 						sprintf(message, "update;%i", portNum);
 						send(socket, message, strlen(message) + 1, 0); // send where, what, how much, flags (optional)
@@ -442,24 +430,18 @@ int socketConnect(int port, int x)
 	}
 	else if (x == 2)
 	{
-		//printf("%i\n", portNum);
-		//printf("Found Connection1\n");
 
 		tcp_server_address.sin_port = htons(portNum); //Specify and pass the port number to connect - converting in right network byte order
 													  // binding the socket to the IP address and port
-		//printf("Found Connection2\n");
 
 		bind(tcp_client_socket, (struct sockaddr *)&tcp_server_address, sizeof(tcp_server_address)); //Params: which socket, cast for server address, its size
 																									 //listen for simultaneous connections
-		//printf("Found Connection3\n");
 
 		listen(tcp_client_socket, 1);
-		//printf("Found Connection4\n");
 
 		//Create a client socket
 		int tcp_preClient_socket;
 		tcp_preClient_socket = accept(tcp_client_socket, NULL, NULL); // server socket to interact with client, structure like before - if you know - else NULL for local connection
-		//printf("Found Connection5\n");
 		close(tcp_client_socket);
 		return tcp_preClient_socket;
 	}
