@@ -1,4 +1,4 @@
-
+import java.util.Random;
 
 public class Vehicle {
 
@@ -6,7 +6,9 @@ public class Vehicle {
      * Private Variables
      * */
     private String make;
+    enum Make {Ford, Chevy, Toyota, Nissan, Hyundai}
     private String model;
+    enum Model {Compact, Intermediate, FullSize, SUV}
     private double weight;
     private double engineSize;
     private boolean Import;
@@ -41,31 +43,54 @@ public class Vehicle {
 
     /**
     * Setters for the make
-    * @param make Allows the user to set the values of the make
     * */
 
-    public void setMake(String make)
+    public void setMake()
     {
-
-        this.make = make;
+        Random rand = new Random();
+        int n = rand.nextInt(5);
+        if(n == 0){this.make = Make.Ford.name();}
+        if(n == 1){this.make = Make.Chevy.name();}
+        if(n == 2){this.make = Make.Toyota.name();}
+        if(n == 3){this.make = Make.Hyundai.name();}
+        if(n == 4){this.make = Make.Nissan.name();}
     }
 
     /**
      * Setters for the module
-     * @param model Allows the user to set the values of the module
      * */
-    public void setModel(String model)
+    public void setModel()
     {
-        this.model = model;
+        Random rand = new Random();
+        int n = rand.nextInt(4);
+        if(n == 0){this.model = Model.SUV.name();}
+        if(n == 1){this.model = Model.Compact.name();}
+        if(n == 2){this.model = Model.FullSize.name();}
+        if(n == 3){this.model = Model.Intermediate.name();}
     }
 
     /**
      * Setters for the weight
      * @param weight Allows the user to set the values of the weight
      * */
-    public void setWeight(double weight)
+    public int setWeight(double weight)
     {
-        this.weight = weight;
+        if(this.model == Model.Compact.name())
+        {
+            if(weight < 1500 || weight > 2000) {return 0;}
+            else{this.weight = weight; return 1;}
+        }
+        else if(this.model == Model.Intermediate.name())
+        {
+            if(weight < 2000 || weight > 2500) {return 0;}
+            else{this.weight = weight; return 1;}
+        }
+        else if(this.model == Model.SUV.name() || this.model == Model.FullSize.name())
+        {
+            if(weight < 2500 || weight > 4000) {return 0;}
+            else{this.weight = weight; return 1;}
+        }
+        return 0;
     }
 
     /**
