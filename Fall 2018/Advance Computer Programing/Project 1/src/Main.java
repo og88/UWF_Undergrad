@@ -1,9 +1,13 @@
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
 
         Class vehicle = Vehicle.class; //Creates a class object for our reflection processes
 
@@ -18,8 +22,7 @@ public class Main {
      * The variable types are the item types as well.
      * @param class1 The method extracts all needed information form this class.
      */
-    static void createTable(Class class1)
-    {
+    static void createTable(Class class1) throws IOException, ClassNotFoundException, SQLException {
         Writer write1 = new Writer("dbOperations.log");
         write1.startNew("DB Log \n");
         write1.add("Test\n");
@@ -43,6 +46,13 @@ public class Main {
         createTable = createTable + ");";
 
         System.out.print(createTable);
+
+        SimpleDataSource.init(className);
+        Connection conn = SimpleDataSource.getConnection();
+        Statement stat = conn.createStatement();
+        stat.execute(createTable);
+        conn.close();
+
 
     }
 }
