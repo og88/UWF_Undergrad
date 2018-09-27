@@ -5,12 +5,12 @@ public class Vehicle {
     /**
      * Private Variables
      * */
-    private String make;
-    enum Make {Ford, Chevy, Toyota, Nissan, Hyundai}
-    private String model;
-    enum Model {Compact, Intermediate, FullSize, SUV}
-    private double weight;
-    private double engineSize;
+    private String Make;
+    enum make {Ford, Chevy, Toyota, Nissan, Hyundai}
+    private String Model;
+    enum model {Compact, Intermediate, FullSize, SUV}
+    private double Weight;
+    private double EngineSize;
     private boolean Import;
 
 
@@ -19,10 +19,10 @@ public class Vehicle {
     * */
     public Vehicle()
     {
-        make = "";
-        model = "";
-        weight = 0;
-        engineSize = 0;
+        Make = "";
+        Model = "";
+        Weight = 0;
+        EngineSize = 0;
         Import = false;
     }
 
@@ -34,10 +34,10 @@ public class Vehicle {
      *               * **/
     public Vehicle(String make, String model, double weight, double engineSize, boolean Import)
     {
-        this.make = make;
-        this.model = model;
-        this.weight = weight;
-        this.engineSize = engineSize;
+        this.Make = make;
+        this.Model = model;
+        this.Weight = weight;
+        this.EngineSize = engineSize;
         this.Import = Import;
     }
 
@@ -49,11 +49,11 @@ public class Vehicle {
     {
         Random rand = new Random();
         int n = rand.nextInt(5);
-        if(n == 0){this.make = Make.Ford.name();}
-        if(n == 1){this.make = Make.Chevy.name();}
-        if(n == 2){this.make = Make.Toyota.name();}
-        if(n == 3){this.make = Make.Hyundai.name();}
-        if(n == 4){this.make = Make.Nissan.name();}
+        if(n == 0){this.Make = make.Ford.name();}
+        if(n == 1){this.Make = make.Chevy.name();}
+        if(n == 2){this.Make = make.Toyota.name();}
+        if(n == 3){this.Make = make.Hyundai.name();}
+        if(n == 4){this.Make = make.Nissan.name();}
     }
 
     /**
@@ -63,10 +63,10 @@ public class Vehicle {
     {
         Random rand = new Random();
         int n = rand.nextInt(4);
-        if(n == 0){this.model = Model.SUV.name();}
-        if(n == 1){this.model = Model.Compact.name();}
-        if(n == 2){this.model = Model.FullSize.name();}
-        if(n == 3){this.model = Model.Intermediate.name();}
+        if(n == 0){this.Model = model.SUV.name();}
+        if(n == 1){this.Model = model.Compact.name();}
+        if(n == 2){this.Model = model.FullSize.name();}
+        if(n == 3){this.Model = model.Intermediate.name();}
     }
 
     /**
@@ -75,20 +75,20 @@ public class Vehicle {
      * */
     public int setWeight(double weight)
     {
-        if(this.model == Model.Compact.name())
+        if(this.Model == model.Compact.name())
         {
             if(weight < 1500 || weight > 2000) {return 0;}
-            else{this.weight = weight; return 1;}
+            else{this.Weight = weight; return 1;}
         }
-        else if(this.model == Model.Intermediate.name())
+        else if(this.Model == model.Intermediate.name())
         {
             if(weight < 2000 || weight > 2500) {return 0;}
-            else{this.weight = weight; return 1;}
+            else{this.Weight = weight; return 1;}
         }
-        else if(this.model == Model.SUV.name() || this.model == Model.FullSize.name())
+        else if(this.Model == model.SUV.name() || this.Model == model.FullSize.name())
         {
             if(weight < 2500 || weight > 4000) {return 0;}
-            else{this.weight = weight; return 1;}
+            else{this.Weight = weight; return 1;}
         }
         return 0;
     }
@@ -108,7 +108,7 @@ public class Vehicle {
      * */
     public void setEngineSize(double engineSize)
     {
-        this.engineSize = engineSize;
+        this.EngineSize = engineSize;
     }
 
     /**
@@ -118,7 +118,7 @@ public class Vehicle {
     public String getMake()
     {
 
-        return make;
+        return Make;
     }
 
     /**
@@ -128,7 +128,7 @@ public class Vehicle {
     public String getModel()
     {
 
-        return model;
+        return Model;
     }
 
     /**
@@ -137,16 +137,17 @@ public class Vehicle {
      * */
     public double getWeight()
     {
-        return weight;
+        return Weight;
     }
 
     /**
      * import getters
      * @Returns A booleagn that tells the user whether the vehicle is imported or not.
      * */
-    public boolean isImport()
+    public int isImport()
     {
-        return Import;
+        if(Import){return 1;}
+        return 0;
     }
 
     /**
@@ -155,7 +156,7 @@ public class Vehicle {
      * */
     public double getEngineSize()
     {
-        return engineSize;
+        return EngineSize;
     }
 
 }
