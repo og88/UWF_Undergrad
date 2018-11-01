@@ -1,5 +1,3 @@
-package sample;
-
 import java.io.IOException;
 
 public class SpellChecker {	static HashTable t;
@@ -7,6 +5,7 @@ public class SpellChecker {	static HashTable t;
 	public static void stringBuilder(String input)
 	{
 		StringBuffer in = new StringBuffer(input);
+		String recommend = "";
 		int c = 0;
 		int i = 0;
 		String word = "";
@@ -21,15 +20,20 @@ public class SpellChecker {	static HashTable t;
 			{
 				if(word != "")
 				{
-					spellCheck(word);
+					String result = spellCheck(word);
+					if(result != "\n" && result != "" && result != " ")
+					{
+						recommend += result;
+					}
 				}
 				word = "";
 			}
 			i++;
 		}
+		System.out.println(recommend);
 	}
 
-	public static void spellCheck(String s)
+	public static String spellCheck(String s)
 	{
 		StringBuffer str = new StringBuffer(s);
 		try {
@@ -38,13 +42,14 @@ public class SpellChecker {	static HashTable t;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String recomendation = "";
 		if(!t.isInTable(s))
 		{
-			String recomendation = "";
 			recomendation += oneLetterMissing(str);
 			recomendation += oneLetterAdded(str);
 			recomendation += swappedLetters(str);
 		}
+		return recomendation;
 	}
 
 
@@ -63,7 +68,7 @@ public class SpellChecker {	static HashTable t;
 			if(t.isInTable(sb.toString()))
 			{
 				recommend += "Recomend " + sb.toString() + " for word " + original + ".\n";
-				System.out.print("Recomend " + sb.toString() + " for word " + original + ".\n");
+				//System.out.print("Recomend " + sb.toString() + " for word " + original + ".\n");
 			}
 			else
 			{
@@ -87,7 +92,7 @@ public class SpellChecker {	static HashTable t;
 				if(t.isInTable(sb.toString()))
 				{
 					recommend += "Recomend " + sb.toString() + " for word " + original + ".\n";
-					System.out.print("Recomend " + sb.toString() + " for word " + original + ".\n");
+					//System.out.print("Recomend " + sb.toString() + " for word " + original + ".\n");
 				}
 			}
 			sb.deleteCharAt(pos);
@@ -107,7 +112,7 @@ public class SpellChecker {	static HashTable t;
 			if(t.isInTable(sb.toString()))
 			{
 				recommend += "Recomend " + sb.toString() + " for word " + origin + ".\n";
-				System.out.print("Recomend " + sb.toString() + " for word " + origin + ".\n");
+				//System.out.print("Recomend " + sb.toString() + " for word " + origin + ".\n");
 			}
 			sb.insert(pos, original);
 		}
@@ -123,7 +128,7 @@ public class SpellChecker {	static HashTable t;
 			for(int i = 97; i < 123; i++)
 			{
 				sb.setCharAt(pos, (char)i);
-				System.out.println(sb);
+				//System.out.println(sb);
 			}
 			sb.setCharAt(pos, old);
 		}
