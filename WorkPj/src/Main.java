@@ -37,11 +37,16 @@ public class Main {
             Boolean isType = false;  //Boolean used to check whether the requested calculation type is valid/exists.
 
             if(condition.equals("a")){  //Runs method to calculate the total salary of all employees in the CSV
-                salaryCalculator.totalSalary(employees);
+                int total = salaryCalculator.totalSalary(employees);
+                System.out.println("Total salary is " + total);  //Inform the user to total salary
                 isType = true;
             }
             if(condition.equals("b")){  //Runs method to calculate total salaries of employees grouped by roles
-                salaryCalculator.totalSalaryByRole(employees,Roles);
+                int[] totals = salaryCalculator.totalSalaryByRole(employees,Roles);
+                for(int i = 0; i < totals.length; i++)
+                {
+                    System.out.println("Total for " + Roles.get(i) + "s is " + totals[i]);
+                }
                 isType = true;
             }
             if(condition.equals("c")){  //Runs method to calculate total salary in different time units
