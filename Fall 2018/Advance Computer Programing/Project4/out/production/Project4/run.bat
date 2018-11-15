@@ -1,6 +1,11 @@
-javac Main.java
-java Main
-del FinishLine.class
+javac GUI.java
+
+java GUI
+
+del horseRace.class
+
 del GUI.class
+
 del Horse.class
-del Main.class
+
+
