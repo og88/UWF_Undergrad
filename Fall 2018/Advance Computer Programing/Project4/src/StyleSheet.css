@@ -1,0 +1,27 @@
+#horse0 {
+    -fx-background-image: url("horse0.gif");
+    -fx-background-repeat:stretch;
+    -fx-background-size:  110%  100%;
+    -fx-background-position: bottom ;
+}
+
+#horse1 {
+    -fx-background-image: url("horse1.gif");
+    -fx-background-repeat:stretch;
+    -fx-background-size:  110%  100%;
+    -fx-background-position: bottom ;
+}
+
+#horse2 {
+    -fx-background-image: url("horse2.gif");
+    -fx-background-repeat:stretch;
+    -fx-background-size:  110%  100%;
+    -fx-background-position: bottom ;
+}
+
+#horse3 {
+    -fx-background-image: url("horse3.gif");
+    -fx-background-repeat:stretch;
+    -fx-background-size:  110%  100%;
+    -fx-background-position: bottom ;
+}

@@ -1,34 +1,32 @@
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
 import java.util.Random;
 
 public  class Horse implements Runnable {
-    Button btn;
+    Label horse;
     int distance;
 
-    public void setBtn(Button btn) {
-        this.btn = btn;
+    public void setHorse(Label horse) {
+        this.horse = horse;
     }
 
     public void setMeters(int meters) {
-        this.distance = meters;
+        this.distance = (meters-(int)(meters*.1));
     }
-
-    public void Horse()
-{
-
-}
 
 
     public void run()
     {
-        int meters = distance;
+        int position = 0;
         Random rand = new Random();
-        while(meters > 0)
+        while(position < distance)
         {
-            meters -= rand.nextInt(distance / 10) + 1;
+            position += (rand.nextInt(11) + 1);
 
-            btn.setTranslateX(meters);
-            System.out.println("position = " + meters);
+            System.out.println("position = " + position);
+
+            GUI.update(Integer.parseInt(Thread.currentThread().getName()), position);
+
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
