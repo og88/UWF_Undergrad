@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -31,7 +28,7 @@ public class Main extends Application {
         FileChooser fileChooser = new FileChooser();  //File chooser used to select test txt
         configureFileChooser(fileChooser);   //Configure the file chooser object to open at the current directory
 
-        TextArea txt = new TextArea("Hello");   //Add a text area to the window to get user input
+        TextArea txt = new TextArea("Please input text, or open file!");   //Add a text area to the window to get user input
         txt.setWrapText(true); //Automatically adds new line if the text is too long
 
         MenuBar menuBar = new MenuBar();  //Menu bar for selecting various actions

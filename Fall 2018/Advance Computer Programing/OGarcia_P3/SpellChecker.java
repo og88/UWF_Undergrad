@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,7 +74,7 @@ public class SpellChecker {
 							recomendations(recommend, word,"");
 						}
 						else{
-							recomendations(recommend, word,"No suggestions could be found!");  //If recommended words are found, inform the user.
+							recomendations(recommend, word,"No suggestions could be found for " + word + "!");  //If recommended words are found, inform the user.
 						}
 					}
 				}
