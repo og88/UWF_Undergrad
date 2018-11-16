@@ -1,8 +1,5 @@
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,11 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
@@ -44,7 +38,7 @@ public class GUI extends Application {
         addHorses();  //Add horses to an ArrayList of horses.
         Pane root = setHorses();  //Get a Pane object with the horses and the finish line in it
         HBox Buttons = addButtons();  //Get an HBox filled with buttons. The buttons are used for user functionality
-        BorderPane pane = new BorderPane();  //Create a border pane to keep animations and buttons seperate
+        BorderPane pane = new BorderPane();  //Create a border pane to keep animations and buttons separate
         pane.setCenter(root); //Center of the pane will be for the horse race
         pane.setBottom(Buttons);  //The bottom will host the user buttons
         Scene scene = new Scene(pane,width,height);  //Create a new scene with the functionality

@@ -1,6 +1,5 @@
 import javafx.scene.control.Label;
 import javafx.application.Platform;
-
 import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -11,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class horseRace {
     private static ReentrantLock lock = new ReentrantLock(); //Lock used to prevent losing horses from finishing the race
-    private static ArrayList<Thread> threads;  //Array of threads, this willbe used to tell the threads to stop once a winner is declared
+    private static ArrayList<Thread> threads;  //Array of threads, this will be used to tell the threads to stop once a winner is declared
     private static String winner = null;  //name of the winning horse
     private static Boolean finished = false;  //Used to determine whether the race has finished
     private static Boolean started = false;  //Used to determine if a rac is underway
@@ -49,15 +48,7 @@ public class horseRace {
     public static void setStarted(Boolean started) {
         horseRace.started = started;
     }
-
-    /**
-     * Method used to retrieve winning horse
-     * @return returns the name of the winning horse
-     */
-    public static String getWinner()
-    {
-        return winner;
-    }
+    
 
     /**
      * Method used when a horse crosses the finish line. 
@@ -68,18 +59,18 @@ public class horseRace {
      */
     public static int finish(Long time)
     {
-        if(lock.tryLock())  //try to aquire the lock
+        if(lock.tryLock())  //try to acquire the lock
         {
-            winner = Thread.currentThread().getName();  //if lock is acquired, horse declares intself the winner
+            winner = Thread.currentThread().getName();  //if lock is acquired, horse declares itself the winner
             finished = true;  //race has finished
             started = false;  //race is over, so it is not started
             Platform.runLater(() -> {
                 GUI.showWinner(winner, time);  //Since this is not a Javax thread, the program schedules a pop up to be run later in the program
             });
             try{
-                for(Thread t : threads)  //Send an inturrupt to each thread telling it to stop racing
+                for(Thread t : threads)  //Send an interrupt to each thread telling it to stop racing
                 {
-                    if(Thread.currentThread().getId() != t.getId())  //Don't inturrupt current thread
+                    if(Thread.currentThread().getId() != t.getId())  //Don't interrupt current thread
                     {
                         t.interrupt();
                     }
@@ -90,7 +81,7 @@ public class horseRace {
             return 0;  //method finished
         }
         else{
-            return -1;  //error occured
+            return -1;  //error occurred
         }
     }
 
@@ -106,7 +97,6 @@ public class horseRace {
         threads = new ArrayList<>();  //create an array of threads
         for(int i = 0; i < numHorses;i++) { //create a horse object that will race and manipulate the horse visual object
             Horse h = new Horse(); 
-            //h.setHorse(horses.get(i));  //give each horse an horse visual object to manipulate
             h.setDistance((width - (int)horses.get(i).getWidth()) - 10);  //set the distance the horse will travel
             Thread t = new Thread(h, ("" + i));  //create thread with its id being the number thread it is
             threads.add(t);  //add to thread list

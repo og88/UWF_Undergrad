@@ -1,5 +1,3 @@
-import javafx.scene.control.Label;
-import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 /**
@@ -45,7 +43,7 @@ public  class Horse implements Runnable {
             }
 
             position += (rand.nextInt(31) + 1);  //Add the random steps to current position to get new position
-
+            System.out.println(position);
             GUI.update(Integer.parseInt(Thread.currentThread().getName()), position);    //Use GUI class to update this horses position
 
         }
