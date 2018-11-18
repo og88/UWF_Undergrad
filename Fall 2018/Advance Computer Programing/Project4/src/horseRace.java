@@ -48,7 +48,7 @@ public class horseRace {
     public static void setStarted(Boolean started) {
         horseRace.started = started;
     }
-    
+
 
     /**
      * Method used when a horse crosses the finish line. 
