@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE items SYSTEM "items.dtd">
+<items>
+  <item>
+    <product>
+      <description>Toaster</description>
+      <price>29.95</price></product>
+    <quantity>3</quantity>
+  </item>
+  <item>
+    <product>
+      <description>Bicycle</description>
+      <price>124.95</price>
+    </product>
+    <quantity>5</quantity>
+  </item>
+  <item>
+    <product>
+      <description>Hair dryer</description>
+      <price>24.95</price>
+    </product>
+    <quantity>1</quantity>
+  </item>
+</items>

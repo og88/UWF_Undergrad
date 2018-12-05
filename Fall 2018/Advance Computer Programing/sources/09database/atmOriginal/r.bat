@@ -1,0 +1,1 @@
+java -classpath derby.jar;. ATMSimulator database.properties

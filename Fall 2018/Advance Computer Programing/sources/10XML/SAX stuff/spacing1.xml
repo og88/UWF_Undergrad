@@ -1,0 +1,9 @@
+<?xml version = "1.0"?>
+
+<!-- Fig. 9.4 : spacing1.xml              -->
+<!-- Whitespaces in nonvalidating parsing -->
+<!-- XML document without DTD             -->
+
+<test name = "spacing 1" attribute2="welcome">
+   <example><object>World</object></example>
+</test>

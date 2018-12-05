@@ -1,0 +1,1 @@
+Run this program by running two command shells, changing both into the local directory, and running from the command line.

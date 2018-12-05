@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This XML document describes a DVD library -->
+<?xml-stylesheet type="text/xsl" href="dvdtoHTML.xsl"?>
+<library>
+	<DVD id="1">
+		<title>Breakfast at Tiffany's</title>
+		<format>Movie</format>
+		<genre>Classic</genre>
+	</DVD>
+	<DVD id="2">
+		<title>Contact</title>
+		<format>Movie</format>
+		<genre>Science fiction</genre>
+	</DVD>
+	<DVD id="3">
+		<title>Little Britain</title>
+		<format>TV Series</format>
+		<genre>Comedy</genre>
+	</DVD>
+	<DVD id="4">
+		<title>The land of the Free</title>
+		<format>Music</format>
+		<genre>Comedy</genre>
+	</DVD>
+
+	<DVD id="5">
+		<title>No Brains</title>
+		<format>Movie</format>
+		<genre>Horror</genre>
+	</DVD>
+	<DVD id="6">
+		<title>Thrice</title>
+		<format>CD</format>
+		<genre>Rock</genre>
+	</DVD>
+</library>

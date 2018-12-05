@@ -1,0 +1,1 @@
+java -classpath derby.jar;. ExecSQL database.properties Product.sql

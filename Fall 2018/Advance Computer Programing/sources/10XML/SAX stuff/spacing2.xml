@@ -1,0 +1,16 @@
+<?xml version = "1.0"?>
+
+<!-- Fig. 9.5 : spacing2.xml             -->
+<!-- Whitespace and nonvalidated parsing -->
+<!-- XML document with DTD               -->
+
+<!DOCTYPE test [
+<!ELEMENT test (example)>
+<!ATTLIST test name CDATA #IMPLIED>
+<!ELEMENT example (object*)>
+<!ELEMENT object (#PCDATA)>
+]>
+
+<test name = "  spacing 2  ">
+   <example><object>World</object></example>
+</test>
