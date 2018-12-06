@@ -1,7 +1,7 @@
 public class Service {
     private static Game ticktock;
     private static int ID;
-    public static void main(String[] args){
+    public  void main(String[] args){
         ticktock = new Game();
 
         String moves;
