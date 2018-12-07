@@ -1,6 +1,4 @@
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -12,17 +10,17 @@ import java.util.Scanner;
  */
 public class Service implements Runnable
 {
-    private static int ID;
     private Socket client;
-    private static Scanner in;
-    private static PrintWriter out;
+    private Scanner in;
+    private PrintWriter out;
+    private Game game;
 
-    public  Service(Socket s, int id)
+    public  Service(Socket s, Game g)
     {
         client = s;
-        ID = id;
-        Game.game();
+        game = g;
     }
+
 
     public void run()
     {
@@ -32,7 +30,10 @@ public class Service implements Runnable
             {
                 in = new Scanner(client.getInputStream());
                 out = new PrintWriter(client.getOutputStream());
-                start(ID);
+                game.setPlayer(game.getPlayer()+1);
+                out.println(game.getPlayer());  //Let player known what number player they are
+                out.flush();
+                doService(game);
             }
             finally
             {
@@ -45,77 +46,76 @@ public class Service implements Runnable
         }
     }
 
-
-
-    public static void main(String[] args){
-        start(1);
-    }
-
-    public static void start(int id) {
-        ID = id;
-        while (Game.getWinner() == 0) {
+    public void doService(Game game) throws IOException
+    {
+        while (true) {
             if (!in.hasNext()) {
+
                 return;
             }
-                System.out.print("Enter a string : ");
-                String inputString = in.next();
-                System.out.println(inputString);
-                if (ID == Game.getTurn()) {
-                    move(inputString);
+            String command = in.nextLine();
+            try {
+                game.lock();
+                if (command.equals("QUIT"))
+                    return;
+                else if (game.getPlayer() < 2) {
+                    System.out.println("Need a second player to start");
+                    out.println("Need a second player to start");
+                    out.flush();
+                } else if (game.getWinner() != 0) {
+                    out.print(game.getWinner());
+                    out.flush();
+                    out.println(game.printTable());
+                    out.flush();
                 } else {
-                    //System.out.println("not your turn yet");
-                    out.println("not your turn yet\n");
+                    out.println(move(command, game));
+                    out.flush();
+                    out.println(game.printTable());
                     out.flush();
                 }
+            } finally{
+                game.unlock();
+            }
         }
     }
 
-    public static void move(String moves)
+
+    public static String move(String moves, Game game)
     {
-        int id = moves.charAt(0) - '0';
-        int x = (int)moves.charAt(1)- '0';
-        int y = (int)moves.charAt(2)- '0';
-        ID = id;
-        try {
-            Game.lock();
-            if (ID == Game.getTurn()) {
-                out.println(messageHandler(Game.move(id, x, y)));
-                out.flush();
-            }
-            else
-            {
-                out.println("not your turn");
-                out.flush();
-            }
-        }
-        finally
-        {
-            Game.unlock();
-        }
 
+            int id = (int) moves.charAt(0) - '0';
+            if (id == game.getTurn()) {
+                    int x = (int) moves.charAt(1) - '0';
+                    int y = (int) moves.charAt(2) - '0';
+                    String result = messageHandler(game.move(id, x, y), id, x, y, game);
+                    return (result);
+            }
+        System.out.println("not Player " + id + "Turn yet");
+        return("Not your Turn yet");
     }
 
-    public static String messageHandler(int e)
+    public static String messageHandler(int e,int id, int x, int y, Game game)
     {
        if(e == 0)
        {
-           String win = "Winner is " + Game.getWinner();
-          System.out.println(win);
+           String win = "Winner is " + game.getWinner();
           return(win);
        } else if(e == 1)
        {
-           return "Invalid id";
+           return "Illegal player number: Invalid id";
        } else if(e == 2)
        {
-           return "x value out of range";
+           return "Illegal board position: x value out of range";
        } else if(e == 3)
        {
-           return "y value out of range";
+           return "Illegal board position: y value out of range";
        } else if(e == 4)
        {
-           return "space is already taken";
+           System.out.println("Position " + x + " " + y + " is already taken, try again");
+           return ("unsuccessful");
        }
-        return "Unknown error";
+       System.out.println("Player " + id + " has Chosen " + x + " " + y);  //Display to the serve the players move
+        return "success";  //Display to the serve the players move
     }
 
 }

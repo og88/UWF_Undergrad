@@ -5,26 +5,35 @@ public class Game {
     private static int winner = 0;
     private static ReentrantLock lock = new ReentrantLock();
     private static int turn = 1;
+    public int player = 0;
 
-    public static void lock()
+    public int getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(int player) {
+        this.player = player;
+    }
+
+    public void lock()
     {
         lock.lock();
     }
 
-    public static void unlock()
+    public void unlock()
     {
         lock.unlock();
     }
 
-    public static int getWinner() {
+    public int getWinner() {
         return winner;
     }
 
-    public static int getTurn() {
+    public int getTurn() {
         return turn;
     }
 
-    public static void switchTurns()
+    public void switchTurns()
     {
         if(turn == 1)
         {
@@ -35,7 +44,7 @@ public class Game {
         }
     }
 
-    public static void game()
+    public Game()
     {
         for(int i = 0; i < 3; i++)
         {
@@ -46,19 +55,20 @@ public class Game {
         }
     }
 
-    public static void printTable()
+    public String printTable()
     {
+        String Table = "";
         for(int i = 0; i < 3; i++)
         {
         for(int j = 0 ; j < 3; j++)
         {
-            System.out.print(board[i][j] + " ");
+           Table += (board[j][i] + " ");
         }
-        System.out.println("");
         }
+        return Table;
     }
 
-    public static int move(int id, int x, int y)
+    public int move(int id, int x, int y)
     {
         if(id > 0 && id < 3)
         {
@@ -72,7 +82,7 @@ public class Game {
                         if (result == 0) {
                             winner = id;
                         }else {
-                            System.out.println("Turn over!");
+                            //System.out.println("Turn over!");
                             switchTurns();
                         }
                         return result;
@@ -86,7 +96,7 @@ public class Game {
         return 1;
     }
 
-    public static int check()
+    public int check()
     {
         //rows
         for(int i = 0; i < 3; i++)
